@@ -611,17 +611,20 @@ public class MainActivity extends AppCompatActivity {
      * filter返回满足过滤条件的数据
      */
     private void initFilter() {
-        Observable.from(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}).filter(new Func1<Integer, Boolean>() {
-            @Override
-            public Boolean call(Integer integer) {
-                return integer < 5;
-            }
-        }).subscribe(new Action1<Integer>() {
-            @Override
-            public void call(Integer integer) {
-                Log.d(tag, "integer" + integer);//1,2,3,4
-            }
-        });
+        Observable
+                .from(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10})
+                .filter(new Func1<Integer, Boolean>() {
+                    @Override
+                    public Boolean call(Integer integer) {
+                        return integer < 5;
+                    }
+                })
+                .subscribe(new Action1<Integer>() {
+                    @Override
+                    public void call(Integer integer) {
+                        Log.d(tag, "integer" + integer);//1,2,3,4
+                    }
+                });
     }
 
     /**
@@ -661,7 +664,8 @@ public class MainActivity extends AppCompatActivity {
      * 过滤掉前n项
      */
     private void initSkip() {
-        Observable.from(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9}).skip(6)
+        Observable.from(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9})
+                .skip(6)
                 .subscribe(new Action1<Integer>() {
                     @Override
                     public void call(Integer integer) {
@@ -674,7 +678,9 @@ public class MainActivity extends AppCompatActivity {
      * Take操作符只取前n项。
      */
     private void initTake() {
-        Observable.from(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9}).take(2).subscribe(new Action1<Integer>() {
+        Observable.from(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9})
+                .take(2)
+                .subscribe(new Action1<Integer>() {
             @Override
             public void call(Integer integer) {
                 Log.d(tag, "integer+" + integer);

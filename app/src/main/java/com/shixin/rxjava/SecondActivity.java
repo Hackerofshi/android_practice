@@ -14,6 +14,7 @@ import network.api.News;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
@@ -23,6 +24,7 @@ public class SecondActivity extends AppCompatActivity {
 
     private Button bu1;
     private static String BASE_URL = "http://api-php.nashigroup.com/";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +38,6 @@ public class SecondActivity extends AppCompatActivity {
         });
 
     }
-
 
 
     private void initNet() {
@@ -58,7 +59,16 @@ public class SecondActivity extends AppCompatActivity {
                     public List<Newsbean.DataBean> call(Newsbean newsbean) {
                         return newsbean.data;
                     }
-                }).subscribe(new Subscriber<List<Newsbean.DataBean>>() {
+                })
+                .flatMap(new Func1<List<Newsbean.DataBean>, Observable<Newsbean.DataBean>>() {
+                    @Override
+                    public Observable<Newsbean.DataBean> call(List<Newsbean.DataBean> dataBeen) {
+                        return Observable.from(dataBeen);
+                    }
+                })
+                //制定第几个
+                //.elementAt(5)
+                .subscribe(new Subscriber<Newsbean.DataBean>() {
                     @Override
                     public void onCompleted() {
 
@@ -70,8 +80,8 @@ public class SecondActivity extends AppCompatActivity {
                     }
 
                     @Override
-                    public void onNext(List<Newsbean.DataBean> dataBeen) {
-                        System.out.println("------------------" + dataBeen.size());
+                    public void onNext(Newsbean.DataBean dataBean) {
+                        System.out.println("------"+dataBean.category);
                     }
                 });
 
