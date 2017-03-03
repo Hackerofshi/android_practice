@@ -21,9 +21,9 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-//    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.1', {
-//        exclude group: 'com.android.support', module: 'support-annotations'
-//    })
+    //    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.1', {
+    //        exclude group: 'com.android.support', module: 'support-annotations'
+    //    })
     androidTestCompile 'com.android.support:support-annotations:25.0.1'
     compile 'com.android.support:appcompat-v7:23.1.0'
     testCompile 'junit:junit:4.12'
@@ -32,15 +32,20 @@ dependencies {
     compile 'com.jakewharton.rxbinding:rxbinding:1.0.1'
     compile 'com.jakewharton.rxbinding:rxbinding-appcompat-v7:1.0.1'
     //全新网络请求框架Rxjava+RxAndroid+ReTrofit2+okHttp3
-//    compile 'com.tamic.novate:novate:1.2.7'
-//    compile 'com.squareup.retrofit2:retrofit:2.1.0'
-//    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-//    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
-//    //日志拦截器
-//    compile 'com.squareup.okhttp3:logging-interceptor:3.5.0'
-//    compile 'io.reactivex:rxjava:1.2.4'
-//    compile 'io.reactivex:rxandroid:1.2.1'
-//    compile 'org.ligboy.retrofit2:converter-fastjson-android:2.1.0'
-//    //RxBinding
-//    compile 'com.jakewharton.rxbinding:rxbinding:1.0.0'
+    //    compile 'com.tamic.novate:novate:1.2.7'
+    //    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    //    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
+    //    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    //    //日志拦截器
+    //    compile 'com.squareup.okhttp3:logging-interceptor:3.5.0'
+    //    compile 'io.reactivex:rxjava:1.2.4'
+    //    compile 'io.reactivex:rxandroid:1.2.1'
+    //    compile 'org.ligboy.retrofit2:converter-fastjson-android:2.1.0'
+    //    //RxBinding
+    //    compile 'com.jakewharton.rxbinding:rxbinding:1.0.0'
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava:2.2.0'
+    compile 'com.google.code.gson:gson:2.8.0'
 }
