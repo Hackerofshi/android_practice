@@ -1,4 +1,6 @@
-package com.shixin.rxjava;
+package bean;
+
+import bean.Course;
 
 /**
  * Created by admin on 2017/3/1 0001.

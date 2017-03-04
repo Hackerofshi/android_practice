@@ -1,6 +1,7 @@
 package com.shixin.rxjava;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -19,8 +20,6 @@ import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxCompoundButton;
-import com.jakewharton.rxbinding.widget.RxTextView;
-import com.jakewharton.rxbinding.widget.TextViewTextChangeEvent;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,10 +27,12 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import basex.RxManager;
+import bean.Course;
+import bean.Stu;
 import rx.Notification;
 import rx.Observable;
 import rx.Observer;
-import rx.Scheduler;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
@@ -43,11 +44,10 @@ import rx.observables.GroupedObservable;
 import rx.schedulers.Schedulers;
 import rx.schedulers.TimeInterval;
 
-import static android.R.attr.preferenceCategoryStyle;
 import static android.R.attr.x;
 import static android.R.attr.y;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private Subscriber<String> subscriber;
     private Observable observable;
@@ -70,9 +70,20 @@ public class MainActivity extends AppCompatActivity {
         //System.out.println("-----" + path + "----" + file.length());
         init();
         initView();
-
+        initRxBus();
 
     }
+
+    private void initRxBus() {
+        mRxManager.on("---", new Action1<Course>() {
+            @Override
+            public void call(Course course) {
+                System.out.println("-------------"+course.name);
+
+            }
+        });
+    }
+
 
     private void initView() {
         img1 = (ImageView) findViewById(R.id.img1);
@@ -115,6 +126,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.bu3:
                 initTimer();
+                break;
+            case R.id.bu4:
+                startActivity(new Intent(this,SecondActivity.class));
                 break;
         }
 

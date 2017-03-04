@@ -8,6 +8,8 @@ import android.widget.Button;
 
 import java.util.List;
 
+import basex.RxBus;
+import bean.Course;
 import model.Newsbean;
 import network.NetWork;
 import network.api.News;
@@ -36,6 +38,19 @@ public class SecondActivity extends AppCompatActivity {
                 initNet();
             }
         });
+
+
+        findViewById(R.id.bu2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Course content = new Course();
+                content.name = "hello";
+                RxBus.getInstance().post("---", content);
+               // finish();
+            }
+        });
+
+
 
     }
 

@@ -1,4 +1,4 @@
-package com.shixin.rxjava;
+package bean;
 
 /**
  * Created by admin on 2017/3/1 0001.
