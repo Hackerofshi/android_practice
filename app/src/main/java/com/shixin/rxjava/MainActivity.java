@@ -57,6 +57,7 @@ public class MainActivity extends BaseActivity {
     private Button button;
     private Button button1;
     private CheckBox check;
+    private CheckBox check1;
     private TextView tv1;
     private int i;
 
@@ -101,6 +102,7 @@ public class MainActivity extends BaseActivity {
                 });
 
         check = (CheckBox) findViewById(R.id.checkbox);
+        check1 = (CheckBox) findViewById(R.id.checkbox);
 
 
         RxCompoundButton.checkedChanges(check).subscribe(new Action1<Boolean>() {

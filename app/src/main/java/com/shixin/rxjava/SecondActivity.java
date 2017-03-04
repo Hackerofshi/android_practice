@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.jakewharton.rxbinding.view.RxView;
+
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import basex.RxBus;
 import bean.Course;
@@ -19,6 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
@@ -32,12 +36,14 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
         bu1 = (Button) findViewById(R.id.bu1);
-        bu1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                initNet();
-            }
-        });
+        RxView.clicks(bu1).throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+                        initNet();
+                    }
+                });
+
 
 
         findViewById(R.id.bu2).setOnClickListener(new View.OnClickListener() {
@@ -45,6 +51,10 @@ public class SecondActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Course content = new Course();
                 content.name = "hello";
+                //这边发出消息
+                /**
+                 * {@link MainActivity}
+                 */
                 RxBus.getInstance().post("---", content);
                // finish();
             }
