@@ -40,6 +40,7 @@ public class ThirdActivity extends AppCompatActivity {
     public void bindService(View view) {
         Intent intent = new Intent();
         intent.setAction("aidl.calc");
+        //5.0以后要加上这个方法，显示
         intent.setPackage("com.shixin.rxjava");
         bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE);
     }
@@ -62,9 +63,7 @@ public class ThirdActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "服务端未绑定或被异常杀死，请重新绑定服务端", Toast.LENGTH_SHORT)
                     .show();
-
         }
-
     }
 
     /**

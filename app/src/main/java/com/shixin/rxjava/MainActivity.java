@@ -43,6 +43,7 @@ import rx.functions.Func2;
 import rx.observables.GroupedObservable;
 import rx.schedulers.Schedulers;
 import rx.schedulers.TimeInterval;
+import utils.RxSchedulers;
 
 import static android.R.attr.x;
 import static android.R.attr.y;
@@ -79,7 +80,7 @@ public class MainActivity extends BaseActivity {
         mRxManager.on("---", new Action1<Course>() {
             @Override
             public void call(Course course) {
-                System.out.println("-------------"+course.name);
+                System.out.println("-------------" + course.name);
 
             }
         });
@@ -130,7 +131,7 @@ public class MainActivity extends BaseActivity {
                 initTimer();
                 break;
             case R.id.bu4:
-                startActivity(new Intent(this,SecondActivity.class));
+                startActivity(new Intent(this, SecondActivity.class));
                 break;
         }
 
@@ -273,38 +274,41 @@ public class MainActivity extends BaseActivity {
         final int drableRes = R.mipmap.ic_launcher;
 
 
-        Observable.create(new Observable.OnSubscribe<Drawable>() {
-            @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public void call(Subscriber<? super Drawable> subscriber) {
-                Drawable drable = getTheme().getDrawable(drableRes);
-                subscriber.onNext(drable);
-                subscriber.onCompleted();
-            }
-        }).subscribe(new Observer<Drawable>() {
-            @Override
-            public void onCompleted() {
+        Observable
+                .create(new Observable.OnSubscribe<Drawable>() {
+                    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+                    @Override
+                    public void call(Subscriber<? super Drawable> subscriber) {
+                        Drawable drable = getTheme().getDrawable(drableRes);
+                        subscriber.onNext(drable);
+                        subscriber.onCompleted();
+                    }
+                }).compose(RxSchedulers.<Drawable>io_main())
+                .subscribe(new Observer<Drawable>() {
+                    @Override
+                    public void onCompleted() {
 
-            }
+                    }
 
-            @Override
-            public void onError(Throwable e) {
-                Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
-            }
+                    @Override
+                    public void onError(Throwable e) {
+                        Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+                    }
 
-            @Override
-            public void onNext(Drawable drawable) {
-                img1.setImageDrawable(drawable);
+                    @Override
+                    public void onNext(Drawable drawable) {
+                        img1.setImageDrawable(drawable);
 
-            }
-        });
+                    }
+                });
 
 
     }
 
 
     private void init2() {
-        Observable.just(path) // 输入类型 String
+        Observable
+                .just(path) // 输入类型 String
                 .map(new Func1<String, Bitmap>() {
                     @Override
                     public Bitmap call(String filePath) { // 参数类型 String
@@ -404,7 +408,8 @@ public class MainActivity extends BaseActivity {
             }
 
         };
-        Observable.from(stus)
+        Observable
+                .from(stus)
                 .flatMap(new Func1<Stu, Observable<Course>>() {
                     @Override
                     public Observable<Course> call(Stu student) {
@@ -480,19 +485,22 @@ public class MainActivity extends BaseActivity {
      */
 
     private void initRang() {
-        Observable.range(5, 5).subscribe(new Action1<Integer>() {
-            @Override
-            public void call(Integer integer) {
-                Log.d(tag, "integer" + integer);//5,6,7,8,9
-            }
-        });
+        Observable.range(5, 5)
+                .subscribe(new Action1<Integer>() {
+                    @Override
+                    public void call(Integer integer) {
+                        Log.d(tag, "integer" + integer);//5,6,7,8,9
+                    }
+                });
     }
 
     /**
      * Repeat会将一个Observable对象重复发射，我们可以指定其发射的次数。
      */
     private void initRepeat() {
-        Observable.just(1, 2, 3).repeat().subscribe(new Action1<Integer>() {
+        Observable.just(1, 2, 3)
+                .repeat()
+                .subscribe(new Action1<Integer>() {
             @Override
             public void call(Integer integer) {
                 Log.d(tag, "integer=" + integer);// 1,2,3,1,2,3...重复5次
@@ -504,7 +512,9 @@ public class MainActivity extends BaseActivity {
      * 间隔时间为一秒；循环执行
      */
     private void initInterval() {
-        Observable.interval(1, TimeUnit.SECONDS, AndroidSchedulers.mainThread())
+        Observable
+                .interval(1, TimeUnit.SECONDS,
+                        AndroidSchedulers.mainThread())
                 .subscribe(new Action1<Long>() {
                     @Override
                     public void call(Long aLong) {
@@ -697,11 +707,11 @@ public class MainActivity extends BaseActivity {
         Observable.from(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9})
                 .take(2)
                 .subscribe(new Action1<Integer>() {
-            @Override
-            public void call(Integer integer) {
-                Log.d(tag, "integer+" + integer);
-            }
-        });
+                    @Override
+                    public void call(Integer integer) {
+                        Log.d(tag, "integer+" + integer);
+                    }
+                });
     }
 
 
