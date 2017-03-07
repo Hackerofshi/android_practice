@@ -39,5 +39,4 @@ Learning RxJava for Android by example
 ####5、实现了RxBus
 
 -注意需要解除绑定
-![朋友圈选择图片发布](https://mmbiz.qlogo.cn/mmbiz_jpg/2EhjCcceOmiacVsI4wE6cDpOYHc0grkibzAILAo5nkQhnsHkL3GyjbgEib8CFykAjXKn9SKwsD7PSzfQDBhOIsVFA/0?wx_fmt=jpeg)
 >持续更新
