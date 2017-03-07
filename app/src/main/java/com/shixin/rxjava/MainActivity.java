@@ -501,11 +501,11 @@ public class MainActivity extends BaseActivity {
         Observable.just(1, 2, 3)
                 .repeat()
                 .subscribe(new Action1<Integer>() {
-            @Override
-            public void call(Integer integer) {
-                Log.d(tag, "integer=" + integer);// 1,2,3,1,2,3...重复5次
-            }
-        });
+                    @Override
+                    public void call(Integer integer) {
+                        Log.d(tag, "integer=" + integer);// 1,2,3,1,2,3...重复5次
+                    }
+                });
     }
 
     /**
@@ -555,25 +555,28 @@ public class MainActivity extends BaseActivity {
      * 然后这些小的Observable分别发射其所包含的的数据。
      */
     private void initgroupBy() {
-        Observable.just(1, 2, 3, 4, 5).groupBy(new Func1<Integer, Boolean>() {
-            @Override
-            public Boolean call(Integer integer) {
-                return integer % 2 == 0;
-            }
-        }).subscribe(new Action1<GroupedObservable<Boolean, Integer>>() {
-            @Override
-            public void call(final GroupedObservable<Boolean, Integer> booleanIntegerGroupedObservable) {
-
-                booleanIntegerGroupedObservable.toList().subscribe(new Action1<List<Integer>>() {
+        Observable
+                .just(1, 2, 3, 4, 5, 6)
+                .groupBy(new Func1<Integer, Boolean>() {
                     @Override
-                    public void call(List<Integer> integers) {
-                        Log.d(tag, "key=" + booleanIntegerGroupedObservable.getKey() + ",values=" + integers);
-                        //key=false,values=[1, 3, 5]
-                        //key=true,values=[2, 4, 6]
+                    public Boolean call(Integer integer) {
+                        return integer % 2 == 0;
+                    }
+                })
+                .subscribe(new Action1<GroupedObservable<Boolean, Integer>>() {
+                    @Override
+                    public void call(final GroupedObservable<Boolean, Integer> booleanIntegerGroupedObservable) {
+
+                        booleanIntegerGroupedObservable.toList().subscribe(new Action1<List<Integer>>() {
+                            @Override
+                            public void call(List<Integer> integers) {
+                                Log.d(tag, "key=" + booleanIntegerGroupedObservable.getKey() + ",values=" + integers);
+                                //key=false,values=[1, 3, 5]
+                                //key=true,values=[2, 4, 6]
+                            }
+                        });
                     }
                 });
-            }
-        });
     }
 
 
@@ -584,12 +587,13 @@ public class MainActivity extends BaseActivity {
                     public Integer call(Integer integer, Integer integer2) {
                         return x + y;
                     }
-                }).subscribe(new Action1<Integer>() {
-            @Override
-            public void call(Integer integer) {
-                Log.d(tag, "integer" + integer);// 1,3,6,10,15,21,28,36,45,55
-            }
-        });
+                })
+                .subscribe(new Action1<Integer>() {
+                    @Override
+                    public void call(Integer integer) {
+                        Log.d(tag, "integer" + integer);// 1,3,6,10,15,21,28,36,45,55
+                    }
+                });
     }
 
     /**
@@ -1100,18 +1104,22 @@ public class MainActivity extends BaseActivity {
      * （发射的数据相同，数据的序列相同，结束的状态相同），如果相同返回true，否则返回false。
      */
     private void initSequenceEqual() {
-        Observable.sequenceEqual(Observable.just(1, 2, 3), Observable.just(1, 2, 3)).subscribe(new Action1<Boolean>() {
-            @Override
-            public void call(Boolean aBoolean) {
-                Log.d(tag, "result is " + aBoolean);//result is true
-            }
-        });
-        Observable.sequenceEqual(Observable.just(1, 2), Observable.just(1, 2, 3)).subscribe(new Action1<Boolean>() {
-            @Override
-            public void call(Boolean aBoolean) {
-                Log.d(tag, "result is " + aBoolean);//result is false
-            }
-        });
+        Observable
+                .sequenceEqual(Observable.just(1, 2, 3), Observable.just(1, 2, 3))
+                .subscribe(new Action1<Boolean>() {
+                    @Override
+                    public void call(Boolean aBoolean) {
+                        Log.d(tag, "result is " + aBoolean);//result is true
+                    }
+                });
+        Observable
+                .sequenceEqual(Observable.just(1, 2), Observable.just(1, 2, 3))
+                .subscribe(new Action1<Boolean>() {
+                    @Override
+                    public void call(Boolean aBoolean) {
+                        Log.d(tag, "result is " + aBoolean);//result is false
+                    }
+                });
     }
 
     /**
@@ -1136,7 +1144,8 @@ public class MainActivity extends BaseActivity {
      */
 
     private void initSkipWhile() {
-        Observable.from(new Integer[]{1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1})
+        Observable.from(new
+                Integer[]{1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1})
                 .skipWhile(new Func1<Integer, Boolean>() {
                     @Override
                     public Boolean call(Integer integer) {
