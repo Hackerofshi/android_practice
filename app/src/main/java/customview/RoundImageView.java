@@ -13,7 +13,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.TypedValue;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.shixin.rxjava.R;
@@ -35,26 +34,26 @@ public class RoundImageView extends ImageView {
     /**
      * 圆角的大小
      */
-    private int mBorderRadius;
+    private int _BorderRadius;
     /**
      * 绘图的Paint
      */
-    private Paint mBitmapPaint;
+    private Paint _BitmapPaint;
 
 
     /**
      * 圆角的半径
      */
-    private int mRadius;
+    private int _Radius;
     /**
      * 3X3矩阵   主要用于缩小放大
      */
-    private Matrix mMatrix;
+    private Matrix _Matrix;
 
     /**
      * 渲染图像，使用图像为绘制图形着色
      */
-    private BitmapShader mBitmapShader;
+    private BitmapShader _BitmapShader;
 
     /**
      * view 的宽度
@@ -65,11 +64,11 @@ public class RoundImageView extends ImageView {
     private RectF mRoundRect;
     public RoundImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        mMatrix = new Matrix();
-        mBitmapPaint = new Paint();
-        mBitmapPaint.setAntiAlias(true);
+        _Matrix = new Matrix();
+        _BitmapPaint = new Paint();
+        _BitmapPaint.setAntiAlias(true);
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.RoundImageView);
-        mBorderRadius = a.getDimensionPixelOffset
+        _BorderRadius = a.getDimensionPixelOffset
                 (R.styleable.RoundImageView_borderRadius, (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, BODER_RADIUS_DEFAULT,
                         getResources().getDisplayMetrics()));
         type = a.getInt(R.styleable.RoundImageView_type, TYPE_CIRCLE);
@@ -87,7 +86,7 @@ public class RoundImageView extends ImageView {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         if (type == TYPE_CIRCLE) {
             mWidth = Math.min(getMeasuredWidth(), getMeasuredHeight());
-            mRadius = mWidth / 2;
+            _Radius = mWidth / 2;
             setMeasuredDimension(mWidth, mWidth);
         }
     }
@@ -102,10 +101,10 @@ public class RoundImageView extends ImageView {
         setUpShader();
 
         if (type == TYPE_ROUND) {
-            canvas.drawRoundRect(mRoundRect,mRadius,mBorderRadius,mBitmapPaint);
+            canvas.drawRoundRect(mRoundRect, _Radius, _BorderRadius, _BitmapPaint);
 
         }else {
-            canvas.drawCircle(mRadius, mRadius, mRadius, mBitmapPaint);
+            canvas.drawCircle(_Radius, _Radius, _Radius, _BitmapPaint);
             // drawSomeThing(canvas);
         }
 
@@ -128,7 +127,7 @@ public class RoundImageView extends ImageView {
         }
         Bitmap bmp = drableToBitmap(drawable);
 
-        mBitmapShader = new BitmapShader(bmp, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+        _BitmapShader = new BitmapShader(bmp, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
         float scale = 1.0f;
         if (type == TYPE_CIRCLE) {
             int bSize = Math.min(bmp.getWidth(), bmp.getHeight());
@@ -139,11 +138,11 @@ public class RoundImageView extends ImageView {
             scale = Math.max(getWidth() * 1.0f / bmp.getWidth(), getHeight() * 1.0f / bmp.getHeight());
         }
         //shader的变换矩阵  我们这里主要用于放大或缩小
-        mMatrix.setScale(scale, scale);
+        _Matrix.setScale(scale, scale);
         //设置变换矩阵
-        mBitmapShader.setLocalMatrix(mMatrix);
+        _BitmapShader.setLocalMatrix(_Matrix);
         //设置shader
-        mBitmapPaint.setShader(mBitmapShader);
+        _BitmapPaint.setShader(_BitmapShader);
     }
 
     private Bitmap drableToBitmap(Drawable drawable) {
@@ -163,9 +162,9 @@ public class RoundImageView extends ImageView {
     public void setBorderRadius(int borderRadius)
     {
         int pxVal = dp2px(borderRadius);
-        if (this.mBorderRadius != pxVal)
+        if (this._BorderRadius != pxVal)
         {
-            this.mBorderRadius = pxVal;
+            this._BorderRadius = pxVal;
             invalidate();
         }
     }
