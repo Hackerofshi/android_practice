@@ -39,4 +39,13 @@ Learning RxJava for Android by example
 ####5、实现了RxBus
 
 -注意需要解除绑定
+
+####6、自定义ViewGroup CircleMenuLayout模仿建行圆形菜单
+
+-重写dispatchTouchEvent
+
+####7、自定义ViewGroup FlowLayout
+
+-viewGroup的测量方式
+
 >持续更新

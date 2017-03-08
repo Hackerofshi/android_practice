@@ -9,6 +9,7 @@ import android.support.annotation.PluralsRes;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -99,7 +100,6 @@ public class CircleMenuLayout extends ViewGroup {
     }
 
 
-
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 
@@ -188,7 +188,7 @@ public class CircleMenuLayout extends ViewGroup {
                     .cos(Math.toRadians(mStartAngle)) - 1 / 2f * cWidth);
             // tmp sina 即menu item的纵坐标
             top = layoutRadius / 2 + (int) Math.round(tmp * Math
-                    .sin(Math.toRadians(mStartAngle)) - 1 / 2f* cWidth);
+                    .sin(Math.toRadians(mStartAngle)) - 1 / 2f * cWidth);
             child.layout(left, top, left + cWidth, top + cWidth);
             // 叠加尺寸
             mStartAngle += angleDelay;
@@ -317,6 +317,27 @@ public class CircleMenuLayout extends ViewGroup {
 
     }
 
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        int action = ev.getAction();
+        switch (action) {
+            case MotionEvent.ACTION_DOWN:
+                Log.e("-------", "onInterceptTouchEvent ACTION_DOWN");
+                break;
+            case MotionEvent.ACTION_MOVE:
+                Log.e("-------", "onInterceptTouchEvent ACTION_MOVE");
+                break;
+            case MotionEvent.ACTION_UP:
+                Log.e("-------", "onInterceptTouchEvent ACTION_UP");
+                break;
+
+            default:
+                break;
+        }
+        return super.onInterceptTouchEvent(ev);
+
+    }
+
     /**
      * 根据当前位置计算象限
      *
@@ -351,6 +372,22 @@ public class CircleMenuLayout extends ViewGroup {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        int action = event.getAction();
+        switch (action) {
+            case MotionEvent.ACTION_DOWN:
+                Log.e("-------", "TouchEvent ACTION_DOWN");
+                break;
+            case MotionEvent.ACTION_MOVE:
+                Log.e("-------", "TouchEvent ACTION_MOVE");
+                break;
+            case MotionEvent.ACTION_UP:
+                Log.e("-------", "TouchEvent ACTION_UP");
+                break;
+
+            default:
+                break;
+        }
+        //返回true将onTouchEvent拦截
         return true;
 
     }
