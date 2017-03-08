@@ -6,13 +6,102 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.shixin.rxjava.CustomViewActivity">
+
     <customview.RoundImageView
         android:id="@+id/id_meinv"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_margin="10dp"
         android:src="@mipmap/hello"
+        android:visibility="gone"
         zhy:borderRadius="10dp"
-        zhy:type="circle" >
-    </customview.RoundImageView>
+        zhy:type="circle" />
+
+    <customview.FlowLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/id_meinv"
+        android:gravity="start|bottom"
+        android:visibility="gone">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="Lorem ipsum" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:text="dolor" />
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="sit amet, consectetur" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:text="adipisicing" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="elit, sed do eiusmod" />
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="tempor incididunt" />
+
+
+    </customview.FlowLayout>
+
+    <customview.CircleMenuLayout
+        android:id="@+id/id_menulayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/circle_bg3"
+        android:padding="100dp">
+
+        <RelativeLayout
+            android:id="@id/id_circle_menu_item_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="104.0dip"
+                android:layout_height="104.0dip"
+                android:layout_centerInParent="true"
+
+                android:background="@drawable/turnplate_center_unlogin" />
+
+            <ImageView
+                android:layout_width="116.0dip"
+                android:layout_height="116.0dip"
+                android:layout_centerInParent="true"
+
+                android:background="@drawable/turnplate_mask_unlogin_normal" />
+        </RelativeLayout>
+    </customview.CircleMenuLayout>
+
+    <event.MyLinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/id_menulayout"
+        android:orientation="vertical">
+
+        <event.MyButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="事件分发" />
+    </event.MyLinearLayout>
 </RelativeLayout>
