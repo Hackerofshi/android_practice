@@ -1,13 +1,18 @@
 package com.shixin.rxjava;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import customDrawable.CircleImageDrawable;
+import customDrawable.RoundImageDrawable;
 import customview.CircleMenuLayout;
 
 public class CustomViewActivity extends AppCompatActivity {
@@ -19,6 +24,7 @@ public class CustomViewActivity extends AppCompatActivity {
             R.drawable.home_mbank_2_normal, R.drawable.home_mbank_3_normal,
             R.drawable.home_mbank_4_normal, R.drawable.home_mbank_5_normal,
             R.drawable.home_mbank_6_normal};
+    private ImageView image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +58,13 @@ public class CustomViewActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+
+        image = (ImageView) findViewById(R.id.image);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),
+                R.mipmap.hello);
+
+        image.setImageDrawable(new CircleImageDrawable(bitmap));
 
 
     }

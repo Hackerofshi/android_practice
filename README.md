@@ -48,4 +48,9 @@ Learning RxJava for Android by example
 
 -viewGroup的测量方式
 
+####8、自定义Drawable实现圆角 和背景点击变色
+
+-点击条目状态的变换
+
+
 >持续更新

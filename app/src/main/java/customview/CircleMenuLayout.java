@@ -56,9 +56,7 @@ public class CircleMenuLayout extends ViewGroup {
     /**
      * 但移动角°达到该值时，则屏蔽点击。
      */
-
     private static final int NOCLICK_VALUE = 3;
-
 
     private int mFlingableValue = FLINGABLE_VALUE;
 
@@ -434,8 +432,6 @@ public class CircleMenuLayout extends ViewGroup {
                 tv.setText(mItemTexts[i]);
 
             }
-
-
             addView(view);
         }
 
