@@ -94,35 +94,39 @@
 
     <event.MyLinearLayout
         android:id="@+id/ll"
-        android:background="@color/colorPrimary"
-        android:orientation="horizontal"
+        android:layout_below="@+id/id_menulayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/id_menulayout">
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <event.MyButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="事件分发" />
+
         <ImageView
-            android:layout_width="20dp"
             android:id="@+id/image"
+            android:layout_width="20dp"
             android:layout_height="20dp" />
 
-        <com.zhy.view.MessageListItem xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
+        <customDrawable.MessageListItem
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-          >
+            android:id="@+id/re"
+            android:background="@drawable/message_item_bg"
+            android:layout_height="50dp">
 
             <ImageView
                 android:id="@+id/id_msg_item_icon"
                 android:layout_width="30dp"
+                android:src="@drawable/message_read_status"
                 android:layout_height="wrap_content"
-                android:duplicateParentState="true"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
-                />
+                android:duplicateParentState="true" />
 
             <TextView
                 android:id="@+id/id_msg_item_text"
@@ -130,7 +134,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/id_msg_item_icon" />
-
-        </com.zhy.view.MessageListItem>
+        </customDrawable.MessageListItem>
     </event.MyLinearLayout>
 </RelativeLayout>

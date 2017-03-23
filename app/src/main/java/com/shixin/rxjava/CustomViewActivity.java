@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import customDrawable.CircleImageDrawable;
+import customDrawable.MessageListItem;
 import customDrawable.RoundImageDrawable;
 import customview.CircleMenuLayout;
 
@@ -25,6 +26,8 @@ public class CustomViewActivity extends AppCompatActivity {
             R.drawable.home_mbank_4_normal, R.drawable.home_mbank_5_normal,
             R.drawable.home_mbank_6_normal};
     private ImageView image;
+    private MessageListItem me;
+    private ImageView img1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +68,9 @@ public class CustomViewActivity extends AppCompatActivity {
                 R.mipmap.hello);
 
         image.setImageDrawable(new CircleImageDrawable(bitmap));
+        me = (MessageListItem) findViewById(R.id.re);
+        img1 = (ImageView) findViewById(R.id.id_msg_item_icon);
+        me.setMessageReaded(false);
 
 
     }
