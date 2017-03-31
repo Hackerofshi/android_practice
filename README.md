@@ -1,56 +1,60 @@
 Learning RxJava for Android by example
 ==============
 
-####1、RxJava 各种操作符
+##1、RxJava 各种操作符
 
--compose
+> compose
 
--map
+> map
 
--flatmap
+> flatmap
 
 
-####2、网络请求，RxJava和Retrofit结合，同时加上了缓存。
+##2、网络请求，RxJava和Retrofit结合，同时加上了缓存。
 
--@Query
+> @Query
 
--@path /{XX}/  代替中间的元素
+> @path /{XX}/  代替中间的元素
 
--QueryMap
+> QueryMap
 
--等等
+> 等等
 
--版本要一致
+> 版本要一致
 
--结合ok
+> 结合ok
 
-####3、自定义View的圆角
+##3、自定义View的圆角
 
--BitmapShader
+> BitmapShader
 
--Matrix
+>Matrix
 
-####4、进程之间的通讯aidl
+##4、进程之间的通讯aidl
 
--进程间通讯，还有messenger
+>进程间通讯，还有messenger
 
--可以自定义类集成IBinder实现其中的方法
+>可以自定义类集成IBinder实现其中的方法
 
-####5、实现了RxBus
+##5、实现了RxBus
 
--注意需要解除绑定
+>注意需要解除绑定
 
-####6、自定义ViewGroup CircleMenuLayout模仿建行圆形菜单
+##6、自定义ViewGroup CircleMenuLayout模仿建行圆形菜单
 
--重写dispatchTouchEvent
+>重写dispatchTouchEvent
 
-####7、自定义ViewGroup FlowLayout
+##7、自定义ViewGroup FlowLayout
 
--viewGroup的测量方式
+>viewGroup的测量方式
 
-####8、自定义Drawable实现圆角 和背景点击变色
+##8、自定义Drawable实现圆角 和背景点击变色
 
--点击条目状态的变换
+>点击条目状态的变换
+
+##9、自定义ListView
+
+>点击条目状态的变换
 
 
 >持续更新

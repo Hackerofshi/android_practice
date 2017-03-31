@@ -27,22 +27,28 @@
         <activity android:name=".BaseActivity" />
 
         <service android:name=".CalcService">
-            <intent-filter>
+           <!-- <intent-filter>
                 <action android:name="aidl.calc" />
 
                 <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
+            </intent-filter>-->
         </service>
 
-        <activity android:name=".ThirdActivity">
-
-        </activity>
+        <activity android:name=".ThirdActivity"></activity>
         <activity android:name=".CustomViewActivity">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+        <activity android:name=".ScrollTestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
     </application>
 
