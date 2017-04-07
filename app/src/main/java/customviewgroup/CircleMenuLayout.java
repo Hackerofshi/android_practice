@@ -1,4 +1,4 @@
-package customview;
+package customviewgroup;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -294,8 +294,6 @@ public class CircleMenuLayout extends ViewGroup {
                 requestLayout();
                 mLastY = y;
                 mLastX = x;
-
-
                 break;
             case MotionEvent.ACTION_UP:
                 float anglePersecond = mTempAngle * 1000 / (System.currentTimeMillis() - mDownTime);
@@ -449,23 +447,23 @@ public class CircleMenuLayout extends ViewGroup {
 
         @Override
         public void run() {
+
+            System.out.println("------------------"+angelPerSecond);
             // 如果小于20,则停止
             if ((int) Math.abs(angelPerSecond) < 20) {
                 isFling = false;
                 return;
             }
+
+
             isFling = true;
             // 不断改变mStartAngle，让其滚动，/30为了避免滚动太快
             mStartAngle += (angelPerSecond / 30);
             // 逐渐减小这个值
             angelPerSecond /= 1.0666F;
-            postDelayed(this, 30);
+            postDelayed(this, 30);  //不断的调用当前这个方法
             // 重新布局
             requestLayout();
-
-
         }
-
-
     }
 }

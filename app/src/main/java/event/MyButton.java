@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.Button;
 
+import static com.shixin.rxjava.R.id.re;
+
 /**
  * Created by admin on 2017/3/8 0008.
  */
@@ -46,10 +48,10 @@ public class MyButton extends Button {
     {
         int action = event.getAction();
 
-        switch (action)
-        {
+        switch (action) {
             case MotionEvent.ACTION_DOWN:
                 Log.e(TAG, "dispatchTouchEvent ACTION_DOWN");
+                //return true;
                 break;
             case MotionEvent.ACTION_MOVE:
                 Log.e(TAG, "dispatchTouchEvent ACTION_MOVE");
@@ -61,7 +63,9 @@ public class MyButton extends Button {
             default:
                 break;
         }
-        return super.dispatchTouchEvent(event);
+
+        //这里返回true  事件将不再分发onTouchListener也不在响应  onTouchEvent也不在响应
+        return true;
     }
 
 }

@@ -1,15 +1,13 @@
-package customview;
+package customviewgroup;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Point;
 import android.graphics.PointF;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import android.text.Layout;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
@@ -21,8 +19,6 @@ import android.view.animation.OvershootInterpolator;
 
 import com.shixin.rxjava.R;
 
-import static com.shixin.rxjava.R.id.re;
-
 /**
  * Created by shixin on 2017/3/31 0031.
  */
@@ -30,26 +26,26 @@ import static com.shixin.rxjava.R.id.re;
 public class SwipeMenuLayout extends ViewGroup {
 
     private static final String TAG = "shixin/SwipeMenuLayout";
-
-    private int mScaleTouchSlop; // 为了处理单击事件的冲突
+    /** 为了处理单击事件的冲突，判断屏幕上面最小的滑动距离*/
+    private int mScaleTouchSlop;
     private int mMaxVelocity;   // 计算滑动的速度用
     private int mPointerId; //多点触摸只算第一根手指的速度
     private int mHeight; // 计算自己的高度
-    //右侧菜单宽度总和 最大滑动距离
 
+    //右侧菜单宽度总和 最大滑动距离
     private int mRightMenuWidths;
 
 
     //滑动判定临界值（右侧菜单的40%） 手指抬起时候 超过了展开  没有超过收起menu
 
     private int mLimit;
-    private View mContentView;  //存储contentView （第一个View）
+    private View mContentView;  //存储contentView（第一个View）
 
-    //上一次的xy
+    //记录上一次的xy
     private PointF mLastP = new PointF();
-    // 仿QQ 侧滑菜单展开时，点击侧滑菜单之外的区域，关闭侧滑菜单。
-    //增加一个布尔值变量，dispatch函数里  每次down时，为true ，move时判断  如果是滑动动作设为false
-    // 在intercept 函数的up时判断这个变量  如果仍为true,说明是点击事件，则关闭菜单。
+    /** 仿QQ 侧滑菜单展开时，点击侧滑菜单之外的区域，关闭侧滑菜单。
+    增加一个布尔值变量，dispatch函数里  每次down时，为true ，move时判断  如果是滑动动作设为false
+     在intercept 函数的up时判断这个变量  如果仍为true,说明是点击事件，则关闭菜单。*/
     private boolean isUnMoved = true;
 
     //判断手指的起落点 如果距离属于滑动，就屏蔽一切点击事件。
@@ -154,8 +150,6 @@ public class SwipeMenuLayout extends ViewGroup {
 
 
     private void init(Context context, AttributeSet attrs, int defStyleAttr) {
-
-
         mScaleTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         mMaxVelocity = ViewConfiguration.get(context).getScaledMaximumFlingVelocity();
 
@@ -167,8 +161,6 @@ public class SwipeMenuLayout extends ViewGroup {
 
         TypedArray ta = context.getTheme().obtainStyledAttributes
                 (attrs, R.styleable.SwipeMenuLayout, defStyleAttr, 0);
-
-
         int count = ta.getIndexCount();
         for (int i = 0; i < count; i++) {
 
@@ -181,12 +173,8 @@ public class SwipeMenuLayout extends ViewGroup {
             } else if (attr == R.styleable.SwipeMenuLayout_leftSwipe) {
                 isLeftSwipe = ta.getBoolean(attr, true);
             }
-
-
         }
         ta.recycle();
-
-
     }
 
 
@@ -211,7 +199,7 @@ public class SwipeMenuLayout extends ViewGroup {
                 measureChild(childView, widthMeasureSpec, heightMeasureSpec);
                 final MarginLayoutParams lp = (MarginLayoutParams) childView.getLayoutParams();
                 mHeight = Math.max(mHeight, childView.getMeasuredHeight()/* + lp.topMargin + lp.bottomMargin*/);
-                if (measureMatchParentChildren && lp.height == LayoutParams.MATCH_PARENT) {
+                if (measureMatchParentChildren && lp.height == LayoutParams.MATCH_PARENT) {  //父布局没有设置EXACTLY 同时子布局是MATCH_PARENT
                     isNeedMeasureChildHeight = true;
                 }
 
@@ -223,10 +211,7 @@ public class SwipeMenuLayout extends ViewGroup {
                     mContentView = childView;
                     contentWidth = childView.getMeasuredWidth();
                 }
-
             }
-
-
         }
 
         setMeasuredDimension(getPaddingLeft() + getPaddingRight() + contentWidth, mHeight + getPaddingBottom() + getPaddingTop());
@@ -252,7 +237,8 @@ public class SwipeMenuLayout extends ViewGroup {
         // ourselves. The measured height should be the max height of the children, changed
         // to accommodate the heightMeasureSpec from the parent
 
-        int uniformMeasureSpec = MeasureSpec.makeMeasureSpec(getMeasuredHeight(), MeasureSpec.EXACTLY);
+        int uniformMeasureSpec = MeasureSpec.makeMeasureSpec
+                (getMeasuredHeight(), MeasureSpec.EXACTLY);//以父布局高度构建一个Exactly的测量参数
 
 
         for (int i = 0; i < childCount; i++) {
@@ -261,8 +247,11 @@ public class SwipeMenuLayout extends ViewGroup {
             if (child.getVisibility() != GONE) {
                 MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
                 if (lp.height == LayoutParams.MATCH_PARENT) {
-                    int oldWidth = lp.width;
+                    // Temporarily force children to reuse their old measured width
+                    // FIXME: this may not be right for something like wrapping text?
+                    int oldWidth = lp.width;//measureChildWithMargins 这个函数会用到宽，所以要保存一下
                     lp.width = child.getMeasuredWidth();
+                    // Remeasure with new dimensions
                     measureChildWithMargins(child, widthMeasureSpec, 0, uniformMeasureSpec, 0);
                     lp.width = oldWidth;
                 }
@@ -316,12 +305,10 @@ public class SwipeMenuLayout extends ViewGroup {
                     isUserSwiped = false;
                     isUnMoved = true;
                     iosInterceptFlag = false;
-
                     if (isTouching) {
                         return false;
                     } else {
                         isTouching = true;
-
                     }
                     mLastP.set(ev.getRawX(), ev.getRawY());
                     mFirstP.set(ev.getRawX(), ev.getRawY());
@@ -329,17 +316,14 @@ public class SwipeMenuLayout extends ViewGroup {
                     if (mViewCache != null) {
                         if (mViewCache != this) {
                             mViewCache.smoothClose();
-                            iosInterceptFlag = isIos;//add by 2016 09 11 ，IOS模式开启的话，且当前有侧滑菜单的View，且不是自己的，就该拦截事件咯。
+                            iosInterceptFlag = isIos;//IOS模式开启的话，且当前有侧滑菜单的View，且不是自己的，就该拦截事件咯。
                         }
                         getParent().requestDisallowInterceptTouchEvent(true);
-
                     }
-                    mPointerId = ev.getPointerId(0)
-                    ;
+                    mPointerId = ev.getPointerId(0);
                     break;
 
                 case MotionEvent.ACTION_MOVE:
-
                     if (iosInterceptFlag) {
                         break;
                     }
@@ -354,7 +338,6 @@ public class SwipeMenuLayout extends ViewGroup {
                     //仿QQ 侧滑菜单展开时，点击内容区域，关闭侧滑菜单，begin
                     if (Math.abs(gap) > mScaleTouchSlop) {
                         isUnMoved = false;
-
                     }
                     //2016 10 22 add , 仿QQ，侧滑菜单展开时，点击内容区域，关闭侧滑菜单。end
                     //如果scroller还没有滑动结束 停止滑动动画
@@ -370,7 +353,6 @@ public class SwipeMenuLayout extends ViewGroup {
                         }
                         if (getScrollX() > mRightMenuWidths) {
                             scrollTo(mRightMenuWidths, 0);
-
                         }
                     } else {
                         if (getScrollX() < -mRightMenuWidths) {

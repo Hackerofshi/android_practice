@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package customview;
+package customviewgroup;
 
 import android.annotation.TargetApi;
 import android.content.Context;

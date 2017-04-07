@@ -17,7 +17,7 @@
         zhy:borderRadius="10dp"
         zhy:type="circle" />
 
-    <customview.FlowLayout
+    <customviewgroup.FlowLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
@@ -62,9 +62,9 @@
             android:text="tempor incididunt" />
 
 
-    </customview.FlowLayout>
+    </customviewgroup.FlowLayout>
 
-    <customview.CircleMenuLayout
+    <customviewgroup.CircleMenuLayout
         android:id="@+id/id_menulayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -90,7 +90,7 @@
 
                 android:background="@drawable/turnplate_mask_unlogin_normal" />
         </RelativeLayout>
-    </customview.CircleMenuLayout>
+    </customviewgroup.CircleMenuLayout>
 
     <event.MyLinearLayout
         android:id="@+id/ll"
