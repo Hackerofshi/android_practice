@@ -39,11 +39,14 @@
 
         <activity android:name=".ThirdActivity" />
         <activity android:name=".CustomViewActivity">
-          <!--  <intent-filter>
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
         <activity android:name=".ScrollTestActivity">
 
@@ -56,7 +59,19 @@
             -->
 
         </activity>
-        <activity android:name=".EventActivity">
+        <activity android:name=".EventActivity"></activity>
+        <activity
+            android:name=".DrawBitmapAvtivity"
+            android:label="@string/title_activity_draw_bitmap_avtivity"
+            android:theme="@style/AppTheme.NoActionBar">
+           <!-- <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+        <activity android:name=".DaggerActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
