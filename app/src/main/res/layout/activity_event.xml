@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.shixin.rxjava.EventActivity">
-    <event.MyButton
+    <com.shixin.event.MyButton
         android:text="event"
         android:id="@+id/event"
         android:layout_width="wrap_content"

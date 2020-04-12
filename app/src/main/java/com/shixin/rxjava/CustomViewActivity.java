@@ -9,9 +9,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import customDrawable.CircleImageDrawable;
-import customDrawable.MessageListItem;
-import customviewgroup.CircleMenuLayout;
+import com.shixin.customDrawable.CircleImageDrawable;
+import com.shixin.customDrawable.MessageListItem;
+import com.shixin.customviewgroup.CircleMenuLayout;
 
 public class CustomViewActivity extends AppCompatActivity {
     private CircleMenuLayout mCircleMenuLayout;

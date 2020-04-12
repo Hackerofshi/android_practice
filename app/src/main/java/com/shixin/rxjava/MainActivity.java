@@ -7,7 +7,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,9 +26,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import basex.RxManager;
-import bean.Course;
-import bean.Stu;
+import com.shixin.bean.Course;
+import com.shixin.bean.Stu;
 import rx.Notification;
 import rx.Observable;
 import rx.Observer;
@@ -43,7 +41,7 @@ import rx.functions.Func2;
 import rx.observables.GroupedObservable;
 import rx.schedulers.Schedulers;
 import rx.schedulers.TimeInterval;
-import utils.RxSchedulers;
+import com.shixin.utils.RxSchedulers;
 
 import static android.R.attr.x;
 import static android.R.attr.y;

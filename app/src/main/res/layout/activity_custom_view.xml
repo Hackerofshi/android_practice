@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context="com.shixin.rxjava.CustomViewActivity">
 
-    <customview.RoundImageView
+    <com.shixin.customview.RoundImageView
         android:id="@+id/id_meinv"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -17,7 +17,7 @@
         zhy:borderRadius="10dp"
         zhy:type="circle" />
 
-    <customviewgroup.FlowLayout
+    <com.shixin.customviewgroup.FlowLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
@@ -62,9 +62,9 @@
             android:text="tempor incididunt" />
 
 
-    </customviewgroup.FlowLayout>
+    </com.shixin.customviewgroup.FlowLayout>
 
-    <customviewgroup.CircleMenuLayout
+    <com.shixin.customviewgroup.CircleMenuLayout
         android:id="@+id/id_menulayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -90,9 +90,9 @@
 
                 android:background="@drawable/turnplate_mask_unlogin_normal" />
         </RelativeLayout>
-    </customviewgroup.CircleMenuLayout>
+    </com.shixin.customviewgroup.CircleMenuLayout>
 
-    <event.MyLinearLayout
+    <com.shixin.event.MyLinearLayout
         android:id="@+id/ll"
         android:layout_below="@+id/id_menulayout"
         android:layout_width="match_parent"
@@ -103,7 +103,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
-        <event.MyButton
+        <com.shixin.event.MyButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="事件分发" />
@@ -113,16 +113,14 @@
             android:layout_width="20dp"
             android:layout_height="20dp" />
 
-        <customDrawable.MessageListItem
+        <com.shixin.customDrawable.MessageListItem
             android:layout_width="match_parent"
             android:id="@+id/re"
-            android:background="@drawable/message_item_bg"
             android:layout_height="50dp">
 
             <ImageView
                 android:id="@+id/id_msg_item_icon"
                 android:layout_width="30dp"
-                android:src="@drawable/message_read_status"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
@@ -134,6 +132,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/id_msg_item_icon" />
-        </customDrawable.MessageListItem>
-    </event.MyLinearLayout>
+        </com.shixin.customDrawable.MessageListItem>
+    </com.shixin.event.MyLinearLayout>
 </RelativeLayout>

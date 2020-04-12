@@ -1,6 +1,5 @@
 package com.shixin.rxjava;
 
-import android.net.Network;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,11 +10,11 @@ import com.jakewharton.rxbinding.view.RxView;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import basex.RxBus;
-import bean.Course;
-import model.Newsbean;
-import network.NetWork;
-import network.api.News;
+import com.shixin.basex.RxBus;
+import com.shixin.bean.Course;
+import com.shixin.model.Newsbean;
+import com.shixin.network.NetWork;
+import com.shixin.network.api.News;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;

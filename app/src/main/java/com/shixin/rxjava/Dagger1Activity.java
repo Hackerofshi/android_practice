@@ -7,9 +7,9 @@ import com.google.gson.Gson;
 
 import javax.inject.Inject;
 
-import dagger.Car;
-import dagger.Poetry;
-import dagger.component.DaggerMainComponent;
+import com.shixin.dagger.Car;
+import com.shixin.dagger.Poetry;
+import com.shixin.dagger.component.DaggerMainComponent;
 
 public class Dagger1Activity extends AppCompatActivity {
 

@@ -1,6 +1,5 @@
 package com.shixin.rxjava;
 
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,10 +7,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
-import task.MultiAsynctaskNetwork;
-import task.NetworkInterface;
-
-import static android.R.attr.action;
+import com.shixin.task.MultiAsynctaskNetwork;
+import com.shixin.task.NetworkInterface;
 
 public class EventActivity extends AppCompatActivity implements NetworkInterface{
 

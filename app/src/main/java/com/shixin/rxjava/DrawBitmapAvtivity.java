@@ -8,7 +8,7 @@ import android.widget.ImageView;
 
 import org.xutils.x;
 
-import customview.BitmapCanvasView;
+import com.shixin.customview.BitmapCanvasView;
 
 public class DrawBitmapAvtivity extends AppCompatActivity {
 
