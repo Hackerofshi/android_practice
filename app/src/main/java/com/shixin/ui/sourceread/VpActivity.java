@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.shixin.rxjava.R;
 
@@ -17,6 +18,7 @@ public class VpActivity extends AppCompatActivity {
     private ViewPager vp;
     private ArrayList<View> aList;
     private MyPagerAdapter mAdapter;
+    private Button btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public class VpActivity extends AppCompatActivity {
 
     private void initView() {
         vp = (ViewPager) findViewById(R.id.ViewPager);
+        btn = (Button) findViewById(R.id.btn);
 
         aList = new ArrayList<View>();
         LayoutInflater li = getLayoutInflater();
@@ -38,6 +41,12 @@ public class VpActivity extends AppCompatActivity {
         mAdapter = new MyPagerAdapter(aList);
 
         vp.setAdapter(mAdapter);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                vp.setCurrentItem(2);
+            }
+        });
 
     }
 
