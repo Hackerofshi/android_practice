@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.shixin.rxjava.R;
 import com.shixin.ui.sourceread.LLActivity;
+import com.shixin.ui.sourceread.RLActivity;
 import com.shixin.ui.sourceread.VpActivity;
 
 public class HomeActivity extends AppCompatActivity {
@@ -26,6 +27,13 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HomeActivity.this, LLActivity.class));
+            }
+        });
+
+        findViewById(R.id.btn3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, RLActivity.class));
             }
         });
     }
