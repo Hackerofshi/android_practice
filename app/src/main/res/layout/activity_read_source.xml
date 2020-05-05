@@ -12,13 +12,13 @@
         <Button
             android:layout_width="match_parent"
             android:id="@+id/btn1"
-            android:text="源码解读"
+            android:text="ViewPager源码解读"
             android:layout_height="wrap_content" />
 
         <Button
             android:layout_width="match_parent"
             android:id="@+id/btn2"
-            android:text="自定义View"
+            android:text="LL源码解读"
             android:layout_height="wrap_content" />
 
         <Button

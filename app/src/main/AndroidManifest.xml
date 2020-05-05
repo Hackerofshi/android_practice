@@ -85,6 +85,8 @@
             -->
 
         </activity>
+        <activity android:name="com.shixin.ui.sourceread.ReadSourceActivity" />
+        <activity android:name="com.shixin.ui.customview.RVActivity" />
     </application>
 
 </manifest>
