@@ -12,34 +12,54 @@
 
         <TextView
             android:id="@+id/tv1"
-            android:textSize="18sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="测试1" />
+            android:text="测试1"
+            android:textSize="18sp" />
 
         <TextView
-            android:layout_toRightOf="@+id/tv1"
             android:id="@+id/tv2"
-            android:textSize="18sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="测试2" />
+            android:layout_toRightOf="@+id/tv1"
+            android:text="测试2"
+            android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/tv2"
             android:layout_toRightOf="@+id/tv1"
-            android:id="@+id/tv3"
-            android:textSize="18sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="测试3" />
+            android:text="测试3"
+            android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/tv5"
             android:layout_width="wrap_content"
-            android:textSize="18sp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv3"
+            android:layout_toRightOf="@+id/tv1"
+            android:text="测试5"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv3"
+            android:layout_toRightOf="@+id/tv5"
+            android:text="测试6"
+            android:textSize="18sp" />
+
+       <!-- <TextView
+            android:id="@+id/tv4"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="测试4" />
+            android:text="测试4"
+            android:textSize="18sp" />-->
 
     </RelativeLayout>
 
