@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Android-Android_Pratice.iml" filepath="$PROJECT_DIR$/Android-Android_Pratice.iml" group="Android_Pratice" />
       <module fileurl="file://$PROJECT_DIR$/Android_Pratice.iml" filepath="$PROJECT_DIR$/Android_Pratice.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/Android_Pratice-app.iml" filepath="$PROJECT_DIR$/app/Android_Pratice-app.iml" group="Android_Pratice/app" />
-      <module fileurl="file://$PROJECT_DIR$/volley/Android_Pratice-volley.iml" filepath="$PROJECT_DIR$/volley/Android_Pratice-volley.iml" group="Android_Pratice/volley" />
       <module fileurl="file://$PROJECT_DIR$/Rxjava.iml" filepath="$PROJECT_DIR$/Rxjava.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/volley/volley.iml" filepath="$PROJECT_DIR$/volley/volley.iml" />
