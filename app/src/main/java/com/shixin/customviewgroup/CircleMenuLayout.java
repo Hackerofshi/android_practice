@@ -24,7 +24,7 @@ public class CircleMenuLayout extends ViewGroup {
     private int mRadius;
 
     /**
-     * 该容器内的child  item 的默认尺寸
+     * 该容器内的child  item_rv 的默认尺寸
      */
     private static final float RADIO_DEFAULT_CHILD_DIMENSION = 1 / 4f;
 

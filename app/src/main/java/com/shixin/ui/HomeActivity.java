@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.shixin.rxjava.R;
+import com.shixin.ui.customview.RVActivity;
 import com.shixin.ui.sourceread.LLActivity;
 import com.shixin.ui.sourceread.RLActivity;
 import com.shixin.ui.sourceread.ReadSourceActivity;
@@ -27,7 +28,7 @@ public class HomeActivity extends AppCompatActivity {
         findViewById(R.id.btn2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeActivity.this, LLActivity.class));
+                startActivity(new Intent(HomeActivity.this, RVActivity.class));
             }
         });
     }
