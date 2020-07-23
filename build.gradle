@@ -23,6 +23,7 @@ buildscript {
 
 allprojects {
     repositories {
+        google()//新增这一行
         maven {
             url'https://maven.aliyun.com/repository/google'
         }
