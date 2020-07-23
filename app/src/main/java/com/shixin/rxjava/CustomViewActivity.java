@@ -2,12 +2,13 @@ package com.shixin.rxjava;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.shixin.customDrawable.CircleImageDrawable;
 import com.shixin.customDrawable.MessageListItem;

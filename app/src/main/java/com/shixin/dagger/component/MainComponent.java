@@ -29,7 +29,7 @@ import dagger.Component;
     //void inject(DaggerActivity activity);
 
 }*/
-@Component(modules = {MainModule.class, PoetryModule.class})
+//@Component(modules = {MainModule.class, PoetryModule.class})
 public abstract class MainComponent {
 
     /**
@@ -45,7 +45,7 @@ public abstract class MainComponent {
     private static MainComponent sComponent;
     public static MainComponent getInstance(){
         if (sComponent == null){
-            sComponent = DaggerMainComponent.builder().build();
+           // sComponent = DaggerMainComponent.builder().build();
         }
         return sComponent;
     }

@@ -1,13 +1,14 @@
 package com.shixin.ui.sourceread;
 
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.shixin.rxjava.R;
 
@@ -15,7 +16,7 @@ import java.util.ArrayList;
 
 public class VpActivity extends AppCompatActivity {
 
-    private ViewPager vp;
+    private ViewPager       vp;
     private ArrayList<View> aList;
     private MyPagerAdapter mAdapter;
     private Button btn;

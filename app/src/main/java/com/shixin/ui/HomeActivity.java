@@ -1,9 +1,10 @@
 package com.shixin.ui;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.shixin.rxjava.R;
 import com.shixin.ui.customview.RVActivity;

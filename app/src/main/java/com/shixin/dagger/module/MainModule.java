@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 
 import dagger.Module;
 import dagger.Provides;
+import dagger.hilt.InstallIn;
 
 /**
  * Created by shixin on 2017/8/29 0029.
@@ -24,7 +25,7 @@ import dagger.Provides;
 
 
 
-@Module
+
 public class MainModule {
 
     /**
@@ -32,7 +33,7 @@ public class MainModule {
      * 方法名随便，一般用provideXXX结构
      * @return 返回注入对象
      */
-    @Provides
+   // @Provides
     public Gson provideGson(){
         return new Gson();
     }

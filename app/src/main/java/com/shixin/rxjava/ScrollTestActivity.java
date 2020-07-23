@@ -1,9 +1,10 @@
 package com.shixin.rxjava;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.widget.LinearLayout;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import javax.xml.transform.Source;
 
