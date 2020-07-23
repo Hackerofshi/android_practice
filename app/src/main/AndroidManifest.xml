@@ -87,6 +87,8 @@
         </activity>
         <activity android:name="com.shixin.ui.sourceread.ReadSourceActivity" />
         <activity android:name="com.shixin.ui.customview.RVActivity" />
+        <activity android:name="com.shixin.hilt.ui.main.MainActivity" />
+        <activity android:name="com.github.vitaviva.hilt.ui.second.SecondActivity" />
     </application>
 
 </manifest>
