@@ -76,6 +76,20 @@
         <activity android:name="com.shixin.ui.customview.RVActivity" />
         <activity android:name="com.shixin.hilt.ui.main.MainActivity" />
         <activity android:name="com.github.vitaviva.hilt.ui.second.SecondActivity" />
+        <activity android:name="com.shixin.databinding.MainActivity" />
+        <activity android:name="com.shixin.databinding.MainActivity2" />
+        <activity android:name="com.shixin.databinding.MainActivity3" />
+        <activity android:name="com.shixin.databinding.MainActivity4" />
+        <activity android:name="com.shixin.databinding.MainActivity5" />
+        <activity android:name="com.shixin.databinding.MainActivity6" />
+        <activity android:name="com.shixin.databinding.MainActivity7" />
+        <activity android:name="com.shixin.databinding.MainActivity8" />
+        <activity android:name="com.shixin.databinding.MainActivity9" />
+        <activity android:name="com.shixin.databinding.MainActivity10" />
+        <activity android:name="com.shixin.databinding.MainActivity11" />
+        <activity android:name="com.shixin.databinding.MainActivity12" />
+        <activity android:name="com.shixin.databinding.MainActivity13" />
+
         <service android:name=".CalcService">
 
             <!--
