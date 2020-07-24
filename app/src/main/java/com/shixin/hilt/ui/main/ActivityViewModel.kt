@@ -10,4 +10,9 @@ import com.shixin.hilt.repo.Repository
 class ActivityViewModel @ViewModelInject constructor(
         val repository: Repository,
         @Assisted private val savedState: SavedStateHandle
-) : ViewModel()
+) : ViewModel(){
+
+    fun test(){
+
+    }
+}

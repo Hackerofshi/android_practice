@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main_kx) {
         Log.v(TAG, "activity : $activityHash")
         Log.v(TAG, "activity vm: $viewModel")
         Log.v(TAG, "activity vm repo: ${viewModel.repository}")
+        viewModel.test()
     }
 
 }
