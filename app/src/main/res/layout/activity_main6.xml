@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="com.shixin.databinding.UserBean" />
+
+        <import type="com.shixin.databinding.MainActivity6.UserPresenter" />
+
+        <import type="com.shixin.databinding.StringUtils" />
+
+        <variable
+            name="userInfo"
+            type="UserBean" />
+
+        <variable
+            name="userPresenter"
+            type="UserPresenter" />
+    </data>
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        tools:context=".MainActivity6">
+
+        <TextView
+            style="@style/TextViewStyle"
+            android:onClick="@{()->userPresenter.onUserNameClick(userInfo)}"
+            android:text="@{StringUtils.INSTANCE.toUpperCase(userInfo.name)}" />
+
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@{userInfo.password}" />
+
+        <EditText
+            style="@style/EditTextStyle"
+            android:afterTextChanged="@{userPresenter.afterTextChanged}"
+            android:hint="用户名" />
+
+        <EditText
+            style="@style/EditTextStyle"
+            android:afterTextChanged="@{userPresenter.afterUserPasswordChanged}"
+            android:hint="密码" />
+
+    </LinearLayout>
+
+</layout>

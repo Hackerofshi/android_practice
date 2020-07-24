@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="com.shixin.databinding.ObservableGoodsBean" />
+
+        <import type="com.shixin.databinding.MainActivity4.ObservableGoodsHandler" />
+
+        <variable
+            name="observableGoods"
+            type="ObservableGoodsBean" />
+
+        <variable
+            name="observableGoodsHandler"
+            type="ObservableGoodsHandler" />
+    </data>
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp"
+        tools:context=".MainActivity4">
+
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@{observableGoods.name}" />
+
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@{String.valueOf(observableGoods.price)}" />
+
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@{observableGoods.details}" />
+
+        <Button
+            style="@style/BtnStyle"
+            android:onClick="@{()->observableGoodsHandler.changeGoodsName()}"
+            android:text="改变属性 name 和 price" />
+
+        <Button
+            style="@style/BtnStyle"
+            android:onClick="@{()->observableGoodsHandler.changeGoodsDetails()}"
+            android:text="改变属性 details 和 price" />
+
+    </LinearLayout>
+</layout>

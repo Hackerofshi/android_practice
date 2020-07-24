@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="com.shixin.databinding.GoodsBean" />
+
+        <import type="com.shixin.databinding.MainActivity3.GoodsHandler" />
+
+        <variable
+            name="goods"
+            type="GoodsBean" />
+
+        <variable
+            name="goodsHandler"
+            type="GoodsHandler" />
+    </data>
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp"
+        tools:context=".MainActivity3">
+
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@{goods.name}" />
+
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@{goods.details}" />
+
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@{String.valueOf(goods.price)}" />
+
+        <Button
+            style="@style/BtnStyle"
+            android:onClick="@{()->goodsHandler.changeGoodsName()}"
+            android:text="改变属性 name" />
+
+        <Button
+            style="@style/BtnStyle"
+            android:onClick="@{()->goodsHandler.changeGoodsDetails()}"
+            android:text="改变属性 details 和 price" />
+
+    </LinearLayout>
+</layout>

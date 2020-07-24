@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.shixin.databinding.MainActivity7.Handler" />
+
+        <import type="com.shixin.databinding.UserBean" />
+
+        <variable
+            name="handler"
+            type="Handler" />
+
+        <variable
+            name="userInfo"
+            type="UserBean" />
+    </data>
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity7">
+
+        <Button
+            android:id="@+id/btn_show"
+            style="@style/BtnStyle"
+            android:onClick="@{handler::onClick}"
+            android:text="显示" />
+
+        <include
+            layout="@layout/view_include"
+            bind:userInfo="@{userInfo}" />
+
+        <ViewStub
+            android:id="@+id/view_stub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout="@layout/view_stub"
+            bind:userInfo="@{userInfo}" />
+
+    </LinearLayout>
+</layout>

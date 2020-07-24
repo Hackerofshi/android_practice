@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="com.shixin.databinding.UserBean" />
+
+        <import type="com.shixin.databinding.ObservableGoodsBean" />
+
+        <variable
+            name="userInfo"
+            type="UserBean" />
+
+        <variable
+            name="goods"
+            type="ObservableGoodsBean" />
+    </data>
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        tools:context=".MainActivity2">
+
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="单向数据绑定：" />
+
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@{userInfo.name}" />
+
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@{userInfo.password}" />
+
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="双向数据绑定：" />
+
+        <TextView
+            style="@style/TextViewStyle"
+            android:text="@{goods.name}" />
+
+        <EditText
+            style="@style/EditTextStyle"
+            android:text="@={goods.name}" />
+
+    </LinearLayout>
+
+</layout>

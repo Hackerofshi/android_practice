@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="flag"
+            type="boolean" />
+    </data>
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".MainActivity10">
+
+        <Button
+            style="@style/BtnStyle"
+            android:paddingLeft="@{flag ? @dimen/paddingBig:@dimen/paddingSmall}"
+            android:text='@{@string/format("leavesC", "Ye")}' />
+
+    </LinearLayout>
+</layout>

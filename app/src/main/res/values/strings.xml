@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Rxjava</string>
     <string name="title_activity_draw_bitmap_avtivity">DrawBitmapAvtivity</string>
+    <string name="format">%s is %s</string>
 </resources>

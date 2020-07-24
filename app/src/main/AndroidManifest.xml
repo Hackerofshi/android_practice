@@ -2,10 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.shixin.rxjava">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:name="com.shixin.base.BaseApplication"
         android:allowBackup="true"
@@ -13,7 +9,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.shixin.ui.sourceread.RLActivity"></activity>
+        <activity android:name="com.shixin.databinding.DatabingTestActivity"></activity>
+        <activity android:name="com.shixin.ui.sourceread.RLActivity" />
         <activity android:name="com.shixin.ui.sourceread.LLActivity" />
         <activity android:name="com.shixin.ui.sourceread.VpActivity" />
         <activity android:name="com.shixin.ui.HomeActivity">
@@ -27,18 +24,8 @@
         <activity android:name=".SecondActivity" />
         <activity android:name=".BaseActivity" />
 
-        <service android:name=".CalcService">
-
-            <!--
-            <intent-filter>
-                <action android:name="aidl.calc" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-            -->
-        </service>
-
         <activity android:name=".ThirdActivity" />
+
         <activity android:name=".CustomViewActivity">
 
             <!--
@@ -89,6 +76,20 @@
         <activity android:name="com.shixin.ui.customview.RVActivity" />
         <activity android:name="com.shixin.hilt.ui.main.MainActivity" />
         <activity android:name="com.github.vitaviva.hilt.ui.second.SecondActivity" />
+        <service android:name=".CalcService">
+
+            <!--
+            <intent-filter>
+                <action android:name="aidl.calc" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            -->
+        </service>
     </application>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 </manifest>

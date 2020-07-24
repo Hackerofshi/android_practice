@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="user"
+            type="com.shixin.databinding.modle.User" />
+
+        <!--<import type="com.leavesc.databinding_demo.model.User" />
+        <import
+            alias="TempUser"
+            type="com.leavesc.databinding_demo.model2.User" />
+        <variable
+            name="userInfo"
+            type="User" />
+        <variable
+            name="tempUserInfo"
+            type="TempUser" />-->
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.shixin.databinding.DatabingTestActivity">
+
+        <TextView
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/tvName"
+            android:layout_width="match_parent"
+            android:text="@{user.name}"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            app:layout_constraintTop_toBottomOf="@+id/tvName"
+            android:id="@+id/tvPwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
