@@ -9,7 +9,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.shixin.databinding.DatabingTestActivity"></activity>
+        <activity android:name="com.shixin.koin.ui.MySimpleKoinActivity"></activity>
+        <activity android:name="com.shixin.databinding.DatabingTestActivity" />
         <activity android:name="com.shixin.ui.sourceread.RLActivity" />
         <activity android:name="com.shixin.ui.sourceread.LLActivity" />
         <activity android:name="com.shixin.ui.sourceread.VpActivity" />
@@ -23,9 +24,7 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".SecondActivity" />
         <activity android:name=".BaseActivity" />
-
         <activity android:name=".ThirdActivity" />
-
         <activity android:name=".CustomViewActivity">
 
             <!--
@@ -101,9 +100,9 @@
             -->
         </service>
     </application>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>
