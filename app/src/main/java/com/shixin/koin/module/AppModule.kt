@@ -15,9 +15,8 @@ object AppModule {
     val appModule = module {
 
 
-
         //datasource实例化，单例
-        single { RetrofitClient.instance }
+        single { RetrofitClient.instance.create(RemoteDatasource::class.java) }
 
         // single instance of HelloRepository
         single<HelloRepository> { HelloRepositoryImpl() }
