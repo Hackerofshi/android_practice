@@ -223,3 +223,54 @@ FileProperties用来存储文本数据，就是一个普通的Properties文件�
 ```
 val testModule =module{   factory{TestModel(getProperty("test"))}}
 ```
+
+## hilt
+
+
+### Qualifier
+
+要提供同一个接口的不同实现, 可以用不同的注解来标记. (dagger之前用的是@Named).
+
+A qualifier is an annotation used to identify a binding.
+
+举例: LoggerDataSource接口提供了内存和数据库两种实现.
+
+定义两个注解:
+```
+@Qualifier
+annotation class InMemoryLogger
+
+@Qualifier
+annotation class DatabaseLogger
+module中提供的时候用来标记相应的依赖:
+
+@InstallIn(ApplicationComponent::class)
+@Module
+abstract class LoggingDatabaseModule {
+
+    @DatabaseLogger
+    @Singleton
+    @Binds
+    abstract fun bindDatabaseLogger(impl: LoggerLocalDataSource): LoggerDataSource
+}
+```
+```
+@InstallIn(ActivityComponent::class)
+@Module
+abstract class LoggingInMemoryModule {
+
+    @InMemoryLogger
+    @ActivityScoped
+    @Binds
+    abstract fun bindInMemoryLogger(impl: LoggerInMemoryDataSource): LoggerDataSource
+}
+```
+这里用了两个module因为它们对应两个不同的component, 一个是application一个是activity, 依赖也是相应的scope.
+
+注入的时候也对应加上: 根据注解就可以自动注入某一种实现
+```
+@InMemoryLogger
+@Inject
+lateinit var logger: LoggerDataSource
+```
+
