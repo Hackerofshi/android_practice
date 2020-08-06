@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main_kx) {
     @Inject
     lateinit var activityHash: String
 
+
     private val viewModel by viewModels<ActivityViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
