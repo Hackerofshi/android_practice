@@ -1,6 +1,7 @@
 package com.hi.dhl.paging3.network.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
@@ -15,6 +16,7 @@ import kotlinx.coroutines.launch
 import org.jetbrains.anko.AnkoLogger
 import org.jetbrains.anko.error
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.logging.Logger
 
 /**
  * <pre>
@@ -29,6 +31,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  */
 
 class MainPagingActivity : DataBindingAppCompatActivity(), AnkoLogger {
+    val t: String = "dd"
 
     // 通过 koin 依赖注入 MainViewModel
     private val mMainViewModel: MainViewModel by viewModel()
@@ -40,10 +43,12 @@ class MainPagingActivity : DataBindingAppCompatActivity(), AnkoLogger {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        counter = -1
+
         // bind view
         mBinding.apply {
             rvList.adapter = mAdapter.withLoadStateFooter(
-                footer = FooterAdapter(mAdapter)
+                    footer = FooterAdapter(mAdapter)
             )
             swipeRefresh.setOnRefreshListener {
                 mAdapter.refresh()
@@ -91,4 +96,11 @@ class MainPagingActivity : DataBindingAppCompatActivity(), AnkoLogger {
             }
         }
     }
+    var counter = 0 // Note: the initializer assigns the backing field directly
+        set(value) {
+            if (value >= 0) field = value
+        }
+
+
 }
+
