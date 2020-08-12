@@ -25,5 +25,4 @@ class GitHubRepositoryImpl(
             pagingData.map { mapper2Person.map(it) }
         }
     }
-
 }

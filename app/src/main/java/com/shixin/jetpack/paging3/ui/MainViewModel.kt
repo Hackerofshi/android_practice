@@ -14,8 +14,7 @@ import com.shixin.jetpack.paging3.data.repository.Repository
  *     desc  :
  * </pre>
  */
-class MainViewModel(val repository: Repository) :
-    ViewModel() {
+class MainViewModel(val repository: Repository) : ViewModel() {
 
 
     /**
