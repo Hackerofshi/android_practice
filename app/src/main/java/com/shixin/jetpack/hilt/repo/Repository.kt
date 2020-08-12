@@ -8,6 +8,7 @@ import javax.inject.Singleton
 
 @Singleton
 class Repository @Inject constructor(
-        @ApplicationContext appContext: Context,
-        @ActivityContext actContext: Context) {
+//        @ApplicationContext appContext: Context,
+//        @ActivityContext actContext: Context
+) {
 }

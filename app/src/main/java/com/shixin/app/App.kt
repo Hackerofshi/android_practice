@@ -1,6 +1,7 @@
 package com.shixin.app
 
 import com.shixin.base.BaseApplication
+import com.shixin.jetpack.paging3.di.appModule
 import com.shixin.koin.module.AppModule
 import dagger.hilt.android.HiltAndroidApp
 import org.koin.android.ext.koin.androidContext
@@ -16,7 +17,7 @@ class App : BaseApplication() {
             // declare used Android context
             androidContext(this@App)
             // declare modules
-            modules(AppModule.appModule)
+            modules(appModule)
         }
     }
 }

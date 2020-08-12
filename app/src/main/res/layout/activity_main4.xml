@@ -3,9 +3,9 @@
 
     <data>
 
-        <import type="com.shixin.databinding.ObservableGoodsBean" />
+        <import type="com.shixin.jetpack.databinding.ObservableGoodsBean" />
 
-        <import type="com.shixin.databinding.MainActivity4.ObservableGoodsHandler" />
+        <import type="com.shixin.jetpack.databinding.MainActivity4.ObservableGoodsHandler" />
 
         <variable
             name="observableGoods"

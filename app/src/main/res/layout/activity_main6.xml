@@ -3,11 +3,11 @@
 
     <data>
 
-        <import type="com.shixin.databinding.UserBean" />
+        <import type="com.shixin.jetpack.databinding.UserBean" />
 
-        <import type="com.shixin.databinding.MainActivity6.UserPresenter" />
+        <import type="com.shixin.jetpack.databinding.MainActivity6.UserPresenter" />
 
-        <import type="com.shixin.databinding.StringUtils" />
+        <import type="com.shixin.jetpack.databinding.StringUtils" />
 
         <variable
             name="userInfo"

@@ -3,9 +3,9 @@
 
     <data>
 
-        <import type="com.shixin.databinding.GoodsBean" />
+        <import type="com.shixin.jetpack.databinding.GoodsBean" />
 
-        <import type="com.shixin.databinding.MainActivity3.GoodsHandler" />
+        <import type="com.shixin.jetpack.databinding.MainActivity3.GoodsHandler" />
 
         <variable
             name="goods"
