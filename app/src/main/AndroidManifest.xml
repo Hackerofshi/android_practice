@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name="com.shixin.koin.ui.MySimpleKoinActivity"></activity>
-        <activity android:name="com.shixin.databinding.DatabingTestActivity" />
+        <activity android:name="com.shixin.jetpack.databinding.DatabingTestActivity" />
         <activity android:name="com.shixin.ui.sourceread.RLActivity" />
         <activity android:name="com.shixin.ui.sourceread.LLActivity" />
         <activity android:name="com.shixin.ui.sourceread.VpActivity" />
@@ -73,21 +73,21 @@
         </activity>
         <activity android:name="com.shixin.ui.sourceread.ReadSourceActivity" />
         <activity android:name="com.shixin.ui.customview.RVActivity" />
-        <activity android:name="com.shixin.hilt.ui.main.MainActivity" />
+        <activity android:name="com.shixin.jetpack.hilt.ui.main.MainActivity" />
         <activity android:name="com.github.vitaviva.hilt.ui.second.SecondActivity" />
-        <activity android:name="com.shixin.databinding.MainActivity" />
-        <activity android:name="com.shixin.databinding.MainActivity2" />
-        <activity android:name="com.shixin.databinding.MainActivity3" />
-        <activity android:name="com.shixin.databinding.MainActivity4" />
-        <activity android:name="com.shixin.databinding.MainActivity5" />
-        <activity android:name="com.shixin.databinding.MainActivity6" />
-        <activity android:name="com.shixin.databinding.MainActivity7" />
-        <activity android:name="com.shixin.databinding.MainActivity8" />
-        <activity android:name="com.shixin.databinding.MainActivity9" />
-        <activity android:name="com.shixin.databinding.MainActivity10" />
-        <activity android:name="com.shixin.databinding.MainActivity11" />
-        <activity android:name="com.shixin.databinding.MainActivity12" />
-        <activity android:name="com.shixin.databinding.MainActivity13" />
+        <activity android:name="com.shixin.jetpack.databinding.MainActivity" />
+        <activity android:name="com.shixin.jetpack.databinding.MainActivity2" />
+        <activity android:name="com.shixin.jetpack.databinding.MainActivity3" />
+        <activity android:name="com.shixin.jetpack.databinding.MainActivity4" />
+        <activity android:name="com.shixin.jetpack.databinding.MainActivity5" />
+        <activity android:name="com.shixin.jetpack.databinding.MainActivity6" />
+        <activity android:name="com.shixin.jetpack.databinding.MainActivity7" />
+        <activity android:name="com.shixin.jetpack.databinding.MainActivity8" />
+        <activity android:name="com.shixin.jetpack.databinding.MainActivity9" />
+        <activity android:name="com.shixin.jetpack.databinding.MainActivity10" />
+        <activity android:name="com.shixin.jetpack.databinding.MainActivity11" />
+        <activity android:name="com.shixin.jetpack.databinding.MainActivity12" />
+        <activity android:name="com.shixin.jetpack.databinding.MainActivity13" />
 
         <service android:name=".CalcService">
 

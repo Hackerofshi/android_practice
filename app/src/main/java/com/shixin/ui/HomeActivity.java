@@ -6,14 +6,10 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.shixin.databinding.DatabingTestActivity;
-import com.shixin.databinding.MainActivity;
+import com.shixin.jetpack.databinding.MainActivity;
 import com.shixin.rxjava.R;
 import com.shixin.ui.customview.RVActivity;
-import com.shixin.ui.sourceread.LLActivity;
-import com.shixin.ui.sourceread.RLActivity;
 import com.shixin.ui.sourceread.ReadSourceActivity;
-import com.shixin.ui.sourceread.VpActivity;
 
 public class HomeActivity extends AppCompatActivity {
 
