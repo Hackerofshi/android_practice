@@ -14,7 +14,6 @@ import org.koin.dsl.module
  *     desc  :
  * </pre>
  */
-
 val viewModele = module {
     viewModel { MainViewModel(get()) }
 }

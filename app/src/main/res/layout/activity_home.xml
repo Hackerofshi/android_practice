@@ -42,6 +42,11 @@
             android:id="@+id/btn_Paging"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+        <Button
+            android:text="ndk"
+            android:id="@+id/btn_ndk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

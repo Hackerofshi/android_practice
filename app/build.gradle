@@ -4,33 +4,28 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: 'kotlin-kapt'
 
-buildscript {
-    repositories {
-//        mavenCentral()
-        jcenter()
-    }
-    dependencies {
-        classpath 'me.tatarka:gradle-retrolambda:3.2.5'
-        // can be removed with android-gradle plugin is upgraded to 2.2
-        // https://twitter.com/JakeWharton/status/760836175586267136
-        classpath 'me.tatarka.retrolambda.projectlombok:lombok.ast:0.2.3.a2'
-    }
 
-    // Exclude the lombok version that the android plugin depends on.
-    configurations.classpath.exclude group: 'com.android.tools.external.lombok'
-}
 
 android {
     buildToolsVersion "29.0.2"
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.shixin.rxjava"
-        minSdkVersion 15
-        targetSdkVersion 28
+        minSdkVersion 16
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+        ndk {
+            //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
+            abiFilters  "arm64-v8a", "x86"//,"armeabi", "arm64-v8a","arm64-v8a","x86_64"
+        }
+        externalNativeBuild {
+            cmake {
+                cppFlags ""
+            }
+        }
     }
     buildTypes {
         release {
@@ -52,6 +47,19 @@ android {
         enabled = true
     }
 
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+            version "3.10.2"
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
 }
 
 dependencies {

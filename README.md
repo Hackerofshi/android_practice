@@ -59,7 +59,7 @@ Learning RxJava for Android by example
 
 >持续更新
 
-# Koin
+# 《Koin》
 
 ## example 
 
