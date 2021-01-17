@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.shixin.rxjava">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:name="com.shixin.app.App"
         android:allowBackup="true"
@@ -14,6 +18,8 @@
         <activity android:name="com.shixin.jetpack.livedata.ui.NameActivity" />
         <activity android:name="com.shixin.koin.ui.MySimpleKoinActivity" />
         <activity android:name="com.shixin.jetpack.databinding.DatabingTestActivity" />
+        <activity android:name="com.shixin.ui.constraint.ConstraintActivity"></activity>
+        <activity android:name="com.shixin.databinding.DatabingTestActivity" />
         <activity android:name="com.shixin.ui.sourceread.RLActivity" />
         <activity android:name="com.shixin.ui.sourceread.LLActivity" />
         <activity android:name="com.shixin.ui.sourceread.VpActivity" />
