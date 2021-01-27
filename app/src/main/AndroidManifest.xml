@@ -3,6 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.shixin.rxjava">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-sdk
+        android:minSdkVersion="15"
+        tools:overrideLibrary="com.hi.dhl.jdatabinding" />
+
     <application
         android:name="com.shixin.app.App"
         android:allowBackup="true"
@@ -10,7 +18,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.shixin.ui.ndktest.NdkTestActivity"></activity>
+        <activity android:name="com.shixin.ui.ndktest.NdkTestActivity"/>
         <activity android:name="com.shixin.jetpack.livedata.ui.NameActivity" />
         <activity android:name="com.shixin.koin.ui.MySimpleKoinActivity" />
         <activity android:name="com.shixin.jetpack.databinding.DatabingTestActivity" />
@@ -104,13 +112,4 @@
             -->
         </service>
     </application>
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-    <uses-sdk
-        android:minSdkVersion="15"
-        tools:overrideLibrary="com.hi.dhl.jdatabinding" />
-
 </manifest>
