@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.hi.dhl.paging3.network.ui.MainPagingActivity;
 import com.shixin.jetpack.databinding.MainActivity;
 import com.shixin.rxjava.R;
+import com.shixin.ui.constraint.ConstraintActivity;
 import com.shixin.ui.customview.RVActivity;
 import com.shixin.ui.ndktest.NdkTestActivity;
 import com.shixin.ui.sourceread.ReadSourceActivity;
@@ -35,6 +36,9 @@ public class HomeActivity extends AppCompatActivity {
 
         findViewById(R.id.btn_ndk).setOnClickListener(v->{
             startActivity(new Intent(HomeActivity.this, NdkTestActivity.class));
+        });
+        findViewById(R.id.btn_constraint).setOnClickListener(v -> {
+            startActivity(new Intent(HomeActivity.this, ConstraintActivity.class));
         });
     }
 }

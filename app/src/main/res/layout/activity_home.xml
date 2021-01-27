@@ -47,6 +47,12 @@
             android:id="@+id/btn_ndk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
+        <Button
+            android:text="ConstraintLayout2"
+            android:id="@+id/btn_constraint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>
