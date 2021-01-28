@@ -36,13 +36,10 @@ class ProgressImageView(context: Context?, attrs: AttributeSet?, defStyleAttr: I
             canvas.save()
             if (imageMatrix != null) {
                 canvas.concat(imageMatrix)
-
             }
             canvas.clipRect(createClipRect())
-
             pDrawable!!.draw(canvas)
             canvas.restore()
-
         }
     }
 
