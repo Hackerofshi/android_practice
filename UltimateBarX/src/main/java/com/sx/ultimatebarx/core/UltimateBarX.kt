@@ -23,7 +23,7 @@ import com.sx.ultimatebarx.view.FrameLayoutCreator
 import com.sx.ultimatebarx.view.RelativeLayoutCreator
 import com.sx.ultimatebarx.view.Tag
 
-private const val tag_parent = "activity_root_root_view_parent"
+private const val TAG_PARENT = "activity_root_view_parent"
 
 private val manager: UltimateBarXManager by lazy { UltimateBarXManager.getInstance() }
 
@@ -132,10 +132,10 @@ internal fun LifecycleOwner.addObserver() {
 @RequiresApi(Build.VERSION_CODES.KITKAT)
 private fun FragmentActivity.barInitialization() {
     val decorView = window?.decorView
-    var parentView: ViewGroup? = decorView?.findViewWithTag(tag_parent)
+    var parentView: ViewGroup? = decorView?.findViewWithTag(TAG_PARENT)
     if (parentView == null) {
         parentView = findViewById(android.R.id.content)
-        parentView?.tag = tag_parent
+        parentView?.tag = TAG_PARENT
         parentView?.clipToPadding = false
     }
     parentView?.getChildAt(0)?.fitsSystemWindows = false
@@ -145,7 +145,7 @@ private fun FragmentActivity.barInitialization() {
 @RequiresApi(Build.VERSION_CODES.KITKAT)
 private fun FragmentActivity.updateStatusBarView(config: BarConfig) {
     val decorView = window.decorView as FrameLayout?
-    val parentView: ViewGroup? = decorView?.findViewWithTag(tag_parent)
+    val parentView: ViewGroup? = decorView?.findViewWithTag(TAG_PARENT)
     parentView?.setStatusBarPadding(this, config.fitWindow)
 }
 
@@ -153,7 +153,7 @@ private fun FragmentActivity.updateStatusBarView(config: BarConfig) {
 private fun FragmentActivity.updateNavigationBarView(config: BarConfig) {
     if (!manager.rom.navigationBarExist(this)) return
     val decorView = window.decorView as FrameLayout?
-    val parentView: ViewGroup? = decorView?.findViewWithTag(tag_parent)
+    val parentView: ViewGroup? = decorView?.findViewWithTag(TAG_PARENT)
     parentView?.setNavigationBarPadding(this, config.fitWindow)
     val navigationBar = parentView?.getCreator(ActivityTag.getInstance())?.getNavigationBarView(this, config.fitWindow)
     navigationBar?.updateBackground(config)

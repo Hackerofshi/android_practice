@@ -4,7 +4,8 @@ import android.os.Build
 import android.view.View
 import com.sx.ultimatebarx.extension.navigationHeight
 import com.sx.ultimatebarx.extension.statusBarHeight
-
+import com.sx.ultimatebarx.core.addNavigationBarBottomPadding
+import com.sx.ultimatebarx.core.addStatusBarTopPadding
 
 val statusBarHeight: Int
     get() = UltimateBarXManager.getInstance().context.statusBarHeight
