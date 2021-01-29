@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Android_Pratice.iml" filepath="$PROJECT_DIR$/Android_Pratice.iml" group="Android_Pratice" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="Android_Pratice/app" />
+      <module fileurl="file://$PROJECT_DIR$/Android_Pratice.iml" filepath="$PROJECT_DIR$/Android_Pratice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/UltimateBarX/Android_Pratice.UltimateBarX.iml" filepath="$PROJECT_DIR$/.idea/modules/UltimateBarX/Android_Pratice.UltimateBarX.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Android_Pratice.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Android_Pratice.app.iml" />
     </modules>
   </component>
 </project>

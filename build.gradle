@@ -1,5 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
+    ext.kotlin_version = '1.4.21'
     ext.koin_version = '2.1.6'
     repositories {
         maven {
@@ -27,6 +28,7 @@ buildscript {
         // can be removed with android-gradle plugin is upgraded to 2.2
         // https://twitter.com/JakeWharton/status/760836175586267136
         classpath 'me.tatarka.retrolambda.projectlombok:lombok.ast:0.2.3.a2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 
     // Exclude the lombok version that the android plugin depends on.
