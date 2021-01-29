@@ -9,8 +9,8 @@ import com.sx.ultimatebarx.core.ultimateBarXInitialization
 import com.sx.ultimatebarx.core.updateStatusBar
 import com.sx.ultimatebarx.extension.setSystemUiFlagWithLight
 
-internal class ActivityOperator private constructor(val activity: FragmentActivity, config: BarConfig
-) : BaseOperator(config) {
+internal class ActivityOperator private
+constructor(private val activity: FragmentActivity, config: BarConfig) : BaseOperator(config) {
 
     companion object {
         internal fun newInstance(activity: FragmentActivity, config: BarConfig = BarConfig.newInstance()) = ActivityOperator(activity, config)
