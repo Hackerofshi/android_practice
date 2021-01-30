@@ -16,10 +16,13 @@ constructor(private val activity: FragmentActivity, config: BarConfig) : BaseOpe
         internal fun newInstance(activity: FragmentActivity, config: BarConfig = BarConfig.newInstance()) = ActivityOperator(activity, config)
     }
 
+    /**
+     * 应用到状态栏
+     */
     override fun applyStatusBar() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return
         activity.ultimateBarXInitialization()
-        val navLight = manager.getNavigationBarConfig(activity).light
+        val navLight = manager.getStatusBarConfig(activity).light
         activity.setSystemUiFlagWithLight(config.light, navLight)
         activity.updateStatusBar(config)
         activity.defaultNavigationBar()
@@ -27,5 +30,12 @@ constructor(private val activity: FragmentActivity, config: BarConfig) : BaseOpe
     }
 
     override fun applyNavigationBar() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return
+        activity.ultimateBarXInitialization()
+        val navLight = manager.getNavigationBarConfig(activity).light
+        activity.setSystemUiFlagWithLight(config.light, navLight)
+        activity.updateStatusBar(config)
+        activity.defaultNavigationBar()
+        activity.addObserver()
     }
 }
