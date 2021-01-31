@@ -4,8 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Android.Android_Pratice.iml" filepath="$PROJECT_DIR$/.idea/modules/Android.Android_Pratice.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/UltimateBarX/Android.Android_Pratice.UltimateBarX.iml" filepath="$PROJECT_DIR$/.idea/modules/UltimateBarX/Android.Android_Pratice.UltimateBarX.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Android_Pratice.iml" filepath="$PROJECT_DIR$/Android_Pratice.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/UltimateBarX/Android_Pratice.UltimateBarX.iml" filepath="$PROJECT_DIR$/.idea/modules/UltimateBarX/Android_Pratice.UltimateBarX.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Android_Pratice.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Android_Pratice.app.iml" />
     </modules>
   </component>
