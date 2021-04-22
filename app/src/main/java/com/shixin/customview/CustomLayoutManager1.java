@@ -1,9 +1,12 @@
 package com.shixin.customview;
 
+import android.util.Log;
 import android.view.View;
 
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
+
+import org.xutils.common.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +35,6 @@ public class CustomLayoutManager1 extends RecyclerView.LayoutManager {
     private boolean mHasChild;
 
 
-
     private final SnapHelper mSnapHelper = new CustomSnapHelper();
 
     public CustomLayoutManager1(float itemHeightWidthRatio, float scale) {
@@ -45,6 +47,7 @@ public class CustomLayoutManager1 extends RecyclerView.LayoutManager {
         super.onAttachedToWindow(view);
         mSnapHelper.attachToRecyclerView(view);
     }
+
     @Override
     public RecyclerView.LayoutParams generateDefaultLayoutParams() {
         return new RecyclerView.LayoutParams(RecyclerView.LayoutParams.WRAP_CONTENT, RecyclerView.LayoutParams.WRAP_CONTENT);
@@ -68,17 +71,18 @@ public class CustomLayoutManager1 extends RecyclerView.LayoutManager {
     private void fill(RecyclerView.Recycler recycler) {
         // 1.初始化基本变量
         int bottomVisiblePosition = mScrollOffset / mItemViewWidth;
-        final int bottomItemVisibleSize = mScrollOffset % mItemViewWidth;
-        final float offsetPercent = bottomItemVisibleSize * 1.0f / mItemViewWidth;
-        final int space = getHorizontalSpace();
-        int remainSpace = space;
-        final int defaultOffset = mItemViewWidth / 2;
-        final List<ItemViewInfo> itemViewInfos = new ArrayList<>();
+        //取余数，
+        final int                bottomItemVisibleSize = mScrollOffset % mItemViewWidth;
+        final float              offsetPercent         = bottomItemVisibleSize * 1.0f / mItemViewWidth;
+        final int                space                 = getHorizontalSpace();
+        int                      remainSpace           = space;
+        final int                defaultOffset         = mItemViewWidth / 2;
+        final List<ItemViewInfo> itemViewInfos         = new ArrayList<>();
         // 2.计算每个ItemView的位置信息(left和scale)
         for (int i = bottomVisiblePosition - 1, j = 1; i >= 0; i--, j++) {
-            double maxOffset = defaultOffset * Math.pow(mScale, j - 1);
-            int start = (int) (remainSpace - offsetPercent * maxOffset - mItemViewWidth);
-            ItemViewInfo info = new ItemViewInfo(start, (float) (Math.pow(mScale, j - 1) * (1 - offsetPercent * (1 - mScale))));
+            double       maxOffset = defaultOffset * Math.pow(mScale, j - 1);
+            int          start     = (int) (remainSpace - offsetPercent * maxOffset - mItemViewWidth);
+            ItemViewInfo info      = new ItemViewInfo(start, (float) (Math.pow(mScale, j - 1) * (1 - offsetPercent * (1 - mScale))));
             itemViewInfos.add(0, info);
             remainSpace -= maxOffset;
             if (remainSpace < 0) {
@@ -95,13 +99,13 @@ public class CustomLayoutManager1 extends RecyclerView.LayoutManager {
             bottomVisiblePosition -= 1;
         }
         // 4.回收其他位置的View
-        final int layoutCount = itemViewInfos.size();
+        final int layoutCount   = itemViewInfos.size();
         final int startPosition = bottomVisiblePosition - (layoutCount - 1);
-        final int endPosition = bottomVisiblePosition;
-        final int childCount = getChildCount();
+        final int endPosition   = bottomVisiblePosition;
+        final int childCount    = getChildCount();
         for (int i = childCount - 1; i >= 0; i--) {
             final View childView = getChildAt(i);
-            final int position = convert2LayoutPosition(i);
+            final int  position  = convert2LayoutPosition(i);
             if (position > endPosition || position < startPosition) {
                 detachAndScrapView(childView, recycler);
             }
@@ -125,9 +129,9 @@ public class CustomLayoutManager1 extends RecyclerView.LayoutManager {
 
 
     private void measureChildWithExactlySize(View child) {
-        RecyclerView.LayoutParams lp = (RecyclerView.LayoutParams) child.getLayoutParams();
-        final int widthSpec = View.MeasureSpec.makeMeasureSpec(mItemViewWidth - lp.leftMargin - lp.rightMargin, View.MeasureSpec.EXACTLY);
-        final int heightSpec = View.MeasureSpec.makeMeasureSpec(mItemViewHeight - lp.topMargin - lp.bottomMargin, View.MeasureSpec.EXACTLY);
+        RecyclerView.LayoutParams lp         = (RecyclerView.LayoutParams) child.getLayoutParams();
+        final int                 widthSpec  = View.MeasureSpec.makeMeasureSpec(mItemViewWidth - lp.leftMargin - lp.rightMargin, View.MeasureSpec.EXACTLY);
+        final int                 heightSpec = View.MeasureSpec.makeMeasureSpec(mItemViewHeight - lp.topMargin - lp.bottomMargin, View.MeasureSpec.EXACTLY);
         child.measure(widthSpec, heightSpec);
     }
 
@@ -137,10 +141,13 @@ public class CustomLayoutManager1 extends RecyclerView.LayoutManager {
     }
 
     public int scrollHorizontallyBy(int dx, RecyclerView.Recycler recycler, RecyclerView.State state) {
+        //记录滑动的距离  从左往右滑动dx是负数  反之则是正数
         int pendingScrollOffset = mScrollOffset + dx;
         mScrollOffset = makeScrollOffsetWithinRange(pendingScrollOffset);
         fill(recycler);
-        return mScrollOffset - pendingScrollOffset + dx;
+        int i = mScrollOffset - pendingScrollOffset + dx;
+        Log.i("滑动标记：", " i = " + i);
+        return i;
     }
 
     private int convert2LayoutPosition(int adapterPosition) {
@@ -152,7 +159,9 @@ public class CustomLayoutManager1 extends RecyclerView.LayoutManager {
     }
 
     private int makeScrollOffsetWithinRange(int scrollOffset) {
-        return Math.min(Math.max(mItemViewWidth, scrollOffset), mItemCount * mItemViewWidth);
+        //返回需要显示的总长度
+        int min = Math.min(Math.max(mItemViewWidth, scrollOffset), mItemCount * mItemViewWidth);
+        return min;
     }
 
     public int getVerticalSpace() {

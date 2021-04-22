@@ -78,7 +78,6 @@ public class CustomLayoutManager extends RecyclerView.LayoutManager {
      */
     @Override
     public int scrollVerticallyBy(int dy, RecyclerView.Recycler recycler, RecyclerView.State state) {
-
         int travel = dy;
         //如果滑动到最顶部
         if (mSumDy + dy < 0) {
