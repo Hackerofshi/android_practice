@@ -19,7 +19,7 @@ ext {
 
             // 官方支持库
             appcompat                 : "androidx.appcompat:appcompat:1.1.0",
-            recyclerView              : "androidx.recyclerview:recyclerview:1.1.0",
+            recyclerView              : "androidx.recyclerview:recyclerview:1.2.0",
             material                  : "com.google.android.material:material:1.1.0",
             swipeRefreshLayout        : "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-rc01",
 

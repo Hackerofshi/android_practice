@@ -274,3 +274,5 @@ abstract class LoggingInMemoryModule {
 lateinit var logger: LoggerDataSource
 ```
 
+
+## 状态栏仿写

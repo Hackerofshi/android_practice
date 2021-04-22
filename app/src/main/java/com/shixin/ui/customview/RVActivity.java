@@ -8,9 +8,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shixin.customview.CustomLayoutManager;
+import com.shixin.customview.CustomLayoutManager1;
 import com.shixin.rxjava.R;
 
 import java.util.ArrayList;
@@ -27,7 +29,8 @@ public class RVActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rv);
         recyclerView = (RecyclerView) findViewById(R.id.rv);
         getDatas();
-        recyclerView.setLayoutManager(new CustomLayoutManager());
+
+        recyclerView.setLayoutManager(new CustomLayoutManager1(1.5f,0.85f));
         recyclerView.setAdapter(new RvAdapter());
     }
 
