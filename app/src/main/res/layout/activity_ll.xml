@@ -205,6 +205,9 @@
                 android:layout_weight="0.5"
                 android:text="1/2 width" />
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
         </LinearLayout>
 
         <LinearLayout
@@ -242,6 +245,5 @@
             android:width="10000dp"
             android:layout_height="wrap_content"/>
     </LinearLayout>
-
 
 </ScrollView>

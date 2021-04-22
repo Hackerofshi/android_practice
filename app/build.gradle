@@ -10,7 +10,7 @@ android {
     buildToolsVersion "29.0.2"
     compileSdkVersion 29
     defaultConfig {
-        applicationId "com.shixin.rxjava"
+        applicationId "com.shixin.pratice"
         minSdkVersion 16
         targetSdkVersion 29
         versionCode 1

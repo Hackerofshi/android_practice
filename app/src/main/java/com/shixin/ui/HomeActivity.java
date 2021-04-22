@@ -13,6 +13,7 @@ import com.shixin.ui.constraint.ConstraintActivity;
 import com.shixin.ui.customview.RVActivity;
 import com.shixin.ui.ndktest.NdkTestActivity;
 import com.shixin.ui.sourceread.ReadSourceActivity;
+import com.shixin.ui.sourceread.TestMeasureSpecActivity;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -39,6 +40,9 @@ public class HomeActivity extends AppCompatActivity {
         });
         findViewById(R.id.btn_constraint).setOnClickListener(v -> {
             startActivity(new Intent(HomeActivity.this, ConstraintActivity.class));
+        });
+        findViewById(R.id.ll).setOnClickListener(v -> {
+            startActivity(new Intent(HomeActivity.this, TestMeasureSpecActivity.class));
         });
     }
 }

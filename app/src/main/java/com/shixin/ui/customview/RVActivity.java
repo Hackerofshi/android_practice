@@ -63,8 +63,7 @@ public class RVActivity extends AppCompatActivity {
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View inflate = LayoutInflater.from(getApplicationContext())
-                    .inflate(R.layout.item_rv,
-                            parent, false);
+                    .inflate(R.layout.item_rv, parent, false);
             return new ViewHolder(inflate);
         }
 
