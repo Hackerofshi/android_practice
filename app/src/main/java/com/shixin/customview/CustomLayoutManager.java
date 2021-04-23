@@ -34,7 +34,7 @@ public class CustomLayoutManager extends RecyclerView.LayoutManager {
 
     * */
     private int mTotalHeight = 0;
-
+    private int mSumDy = 0;
     @Override
     public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
         int offsetY = 0;
@@ -42,10 +42,8 @@ public class CustomLayoutManager extends RecyclerView.LayoutManager {
             View view = recycler.getViewForPosition(i);
             addView(view);
             measureChildWithMargins(view, 0, 0);
-
             int width  = getDecoratedMeasuredWidth(view);
             int height = getDecoratedMeasuredHeight(view);
-
             layoutDecorated(view, 0, offsetY, width, offsetY + height);
             offsetY += height;
         }
@@ -63,7 +61,7 @@ public class CustomLayoutManager extends RecyclerView.LayoutManager {
     }
 
 
-    private int mSumDy = 0;
+
 
     /**
      * 2.2 添加异常判断
@@ -86,7 +84,7 @@ public class CustomLayoutManager extends RecyclerView.LayoutManager {
             travel = mTotalHeight - getVerticalSpace() - mSumDy;
         }
         mSumDy += travel;
-        android.util.Log.i("mSumDy", "scrollVerticallyBy: " + mSumDy);
+        Log.i("mSumDy", "scrollVerticallyBy: " + mSumDy);
         Log.i("travel", "travel: " + travel);
         // 平移容器内的item
         offsetChildrenVertical(-travel);

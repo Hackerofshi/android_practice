@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.shixin.customview.CustomLayoutManager;
 import com.shixin.customview.CustomLayoutManager1;
+import com.shixin.customview.CustomLayoutManagerRemould1;
 import com.shixin.rxjava.R;
 
 import java.util.ArrayList;
@@ -30,7 +31,10 @@ public class RVActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.rv);
         getDatas();
 
-        recyclerView.setLayoutManager(new CustomLayoutManager1(1.5f,0.85f));
+        //recyclerView.setLayoutManager(new CustomLayoutManager1(1.5f,0.85f));
+        //recyclerView.setLayoutManager(new CustomLayoutManager());
+        recyclerView.setLayoutManager(new CustomLayoutManagerRemould1());
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new RvAdapter());
     }
 
