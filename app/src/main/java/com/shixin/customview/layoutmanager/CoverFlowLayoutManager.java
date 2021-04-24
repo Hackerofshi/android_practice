@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
  * @Version: 1.0
  */
 public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
-    private int mSumx       = 0;
+    private int mSumDx      = 0;
     private int mTotalWidth = 0;
     private int mItemWidth, mItemHeight;
     private SparseArray<Rect>  mItemRects        = new SparseArray<>();
@@ -42,11 +42,10 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
 
     @Override
     public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
-        if (getItemCount() == 0) {
+        if (getItemCount() == 0) {//没有Item，界面空着吧
             detachAndScrapAttachedViews(recycler);
             return;
         }
-
         mHasAttachedItems.clear();
         mItemRects.clear();
         detachAndScrapAttachedViews(recycler);
@@ -57,24 +56,23 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
         mItemWidth = getDecoratedMeasuredWidth(childView);
         mItemHeight = getDecoratedMeasuredHeight(childView);
 
-        //每一个item之间的间隔
         mIntervalWidth = getIntervalWidth();
 
         mStartX = getWidth() / 2 - mIntervalWidth;
 
-        //定义水平方向偏移量
+        //定义水平方向的偏移量
         int offsetX = 0;
+
         for (int i = 0; i < getItemCount(); i++) {
-            Rect rect = new Rect(mStartX + offsetX, 0,
-                    mStartX + offsetX + mItemWidth,
-                    mItemHeight);
+            Rect rect = new Rect(mStartX + offsetX,
+                    0, mStartX + offsetX + mItemWidth, mItemHeight);
             mItemRects.put(i, rect);
             mHasAttachedItems.put(i, false);
             offsetX += mIntervalWidth;
         }
 
-        int  visibleCount = getHorizontalSpace() / mIntervalWidth;
-        Rect visibleRect  = getVisibleArea();
+        int visibleCount = getHorizontalSpace() / mIntervalWidth;
+        Rect visibleRect = getVisibleArea();
         for (int i = 0; i < visibleCount; i++) {
             insertView(i, visibleRect, recycler, false);
         }
@@ -102,42 +100,40 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
         }
 
         int travel = dx;
-        //如果滑动到顶部
-        if (mSumx + dx < 0) {
-            travel = -mSumx;
-        } else if (mSumx + dx > getMaxOffset()) {
+        //如果滑动到最顶部
+        if (mSumDx + dx < 0) {
+            travel = -mSumDx;
+        } else if (mSumDx + dx > getMaxOffset()) {
             //如果滑动到最底部
-            travel = getMaxOffset() - mSumx;
+            travel = getMaxOffset() - mSumDx;
         }
-        mSumx += travel;
+
+        mSumDx += travel;
+
         Rect visibleRect = getVisibleArea();
 
+        //回收越界子View
         for (int i = getChildCount() - 1; i >= 0; i--) {
-            View child    = getChildAt(i);
-            int  position = getPosition(child);
-            Rect rect     = mItemRects.get(position);
-
+            View child = getChildAt(i);
+            int position = getPosition(child);
+            Rect rect = mItemRects.get(position);
 
             if (!Rect.intersects(rect, visibleRect)) {
                 removeAndRecycleView(child, recycler);
                 mHasAttachedItems.put(position, false);
             } else {
-                layoutDecoratedWithMargins(child,
-                        rect.left - mSumx, rect.top
-                        , rect.right - mSumx, rect.bottom
-                );
-                handChildView(child,
-                        rect.left - mStartX - mSumx);
+                layoutDecoratedWithMargins(child, rect.left - mSumDx, rect.top,
+                        rect.right - mSumDx, rect.bottom);
+                handleChildView(child, rect.left - mStartX - mSumDx);
                 mHasAttachedItems.put(position, true);
             }
         }
-
         //填充空白区域
-        View lastView  = getChildAt(getChildCount() - 1);
+        View lastView = getChildAt(getChildCount() - 1);
         View firstView = getChildAt(0);
         if (travel >= 0) {
-            int minPost = getPosition(firstView);
-            for (int i = minPost; i < getItemCount(); i++) {
+            int minPos = getPosition(firstView);
+            for (int i = minPos; i < getItemCount(); i++) {
                 insertView(i, visibleRect, recycler, false);
             }
         } else {
@@ -150,27 +146,25 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
     }
 
 
-    private void insertView(int i, Rect visibleRect,
-                            RecyclerView.Recycler recycler,
-                            boolean firstPos) {
-        Rect rect = mItemRects.get(i);
-        if (Rect.intersects(visibleRect, rect) && !mHasAttachedItems.get(i)) {
-            View child = recycler.getViewForPosition(i);
+    private void insertView(int pos, Rect visibleRect, RecyclerView.Recycler recycler, boolean firstPos) {
+        Rect rect = mItemRects.get(pos);
+        if (Rect.intersects(visibleRect, rect) && !mHasAttachedItems.get(pos)) {
+            View child = recycler.getViewForPosition(pos);
             if (firstPos) {
                 addView(child, 0);
             } else {
                 addView(child);
             }
             measureChildWithMargins(child, 0, 0);
-            layoutDecoratedWithMargins(child,
-                    rect.left - mSumx, rect.top,
-                    rect.right - mSumx, rect.bottom);
-            mHasAttachedItems.put(i, true);
-            handChildView(child, rect.left - mSumx - mStartX);
+            layoutDecoratedWithMargins(child, rect.left - mSumDx, rect.top,
+                    rect.right - mSumDx, rect.bottom);
+
+            mHasAttachedItems.put(pos, true);
+            handleChildView(child, rect.left - mSumDx - mStartX);
         }
     }
 
-    private void handChildView(View child, int moveX) {
+    private void handleChildView(View child, int moveX) {
         float radio    = computeScale(moveX);
         float rotation = computeRotationY(moveX);
 
@@ -188,8 +182,8 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
     }
 
     private Rect getVisibleArea() {
-        return new Rect(getPaddingLeft() + mSumx, getPaddingTop(),
-                getWidth() - getPaddingRight() + mSumx,
+        return new Rect(getPaddingLeft() + mSumDx, getPaddingTop(),
+                getWidth() - getPaddingRight() + mSumDx,
                 getHeight() - getPaddingBottom());
     }
 
@@ -203,19 +197,24 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
     }
 
     public int getCenterPosition() {
-        //mSumx 是移动的距离，布局完成的时候mSumx是0
-        int pos  = (int) (mSumx / getIntervalWidth());
-        int more = (int) (mSumx % getIntervalWidth());
+        int pos = (int) (mSumDx / getIntervalWidth());
+        int more = (int) (mSumDx % getIntervalWidth());
         if (more > getIntervalWidth() * 0.5f) pos++;
         return pos;
     }
 
+
+    /**
+     * 获取第一个可见的Item位置
+     * <p>Note:该Item为绘制在可见区域的第一个Item，有可能被第二个Item遮挡
+     */
     public int getFirstVisiblePosition() {
         if (getChildCount() <= 0) {
             return 0;
         }
-        View vi  = getChildAt(0);
-        int  pos = getPosition(vi);
+        View view = getChildAt(0);
+        int pos = getPosition(view);
+
         return pos;
     }
 
@@ -227,7 +226,7 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
      * @return
      */
     public double calculateDistance(int velocityX, double distance) {
-        int    extra = mSumx % getIntervalWidth();
+        int    extra = mSumDx % getIntervalWidth();
         double realDistance;
         if (velocityX > 0) {
             if (distance < getIntervalWidth()) {
@@ -247,15 +246,20 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
 
     private float M_MAX_ROTATION_Y = 30.0f;
 
+    /**
+     * 计算转动
+     * @param x
+     * @return
+     */
     private float computeRotationY(int x) {
         float rotationY;
         rotationY = -M_MAX_ROTATION_Y * x / getIntervalWidth();
         if (Math.abs(rotationY) > M_MAX_ROTATION_Y) {
             if (rotationY > 0) {
                 rotationY = M_MAX_ROTATION_Y;
+            } else {
+                rotationY = -M_MAX_ROTATION_Y;
             }
-        } else {
-            rotationY = -M_MAX_ROTATION_Y;
         }
         return rotationY;
     }
