@@ -22,9 +22,9 @@ import com.shixin.rxjava.R;
  */
 
 public class RoundImageView extends ImageView {
-    private int type;
+    private              int type;
     private static final int TYPE_CIRCLE = 0;
-    private static final int TYPE_ROUND = 1;
+    private static final int TYPE_ROUND  = 1;
 
     /**
      * 圆角大小的默认值
@@ -34,7 +34,7 @@ public class RoundImageView extends ImageView {
     /**
      * 圆角的大小
      */
-    private int _BorderRadius;
+    private int   _BorderRadius;
     /**
      * 绘图的Paint
      */
@@ -44,7 +44,7 @@ public class RoundImageView extends ImageView {
     /**
      * 圆角的半径
      */
-    private int _Radius;
+    private int    _Radius;
     /**
      * 3X3矩阵   主要用于缩小放大
      */
@@ -62,6 +62,7 @@ public class RoundImageView extends ImageView {
     private int mWidth;
 
     private RectF mRoundRect;
+
     public RoundImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
         _Matrix = new Matrix();
@@ -93,8 +94,7 @@ public class RoundImageView extends ImageView {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        if (getDrawable() == null)
-        {
+        if (getDrawable() == null) {
             return;
         }
 
@@ -103,7 +103,7 @@ public class RoundImageView extends ImageView {
         if (type == TYPE_ROUND) {
             canvas.drawRoundRect(mRoundRect, _Radius, _BorderRadius, _BitmapPaint);
 
-        }else {
+        } else {
             canvas.drawCircle(_Radius, _Radius, _Radius, _BitmapPaint);
             // drawSomeThing(canvas);
         }
@@ -150,8 +150,8 @@ public class RoundImageView extends ImageView {
             BitmapDrawable bd = (BitmapDrawable) drawable;
             return bd.getBitmap();
         }
-        int w = drawable.getIntrinsicWidth();
-        int h = drawable.getIntrinsicHeight();
+        int    w      = drawable.getIntrinsicWidth();
+        int    h      = drawable.getIntrinsicHeight();
         Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         drawable.setBounds(0, 0, w, h);
@@ -159,32 +159,25 @@ public class RoundImageView extends ImageView {
         return bitmap;
     }
 
-    public void setBorderRadius(int borderRadius)
-    {
+    public void setBorderRadius(int borderRadius) {
         int pxVal = dp2px(borderRadius);
-        if (this._BorderRadius != pxVal)
-        {
+        if (this._BorderRadius != pxVal) {
             this._BorderRadius = pxVal;
             invalidate();
         }
     }
 
-    public void setType(int type)
-    {
-        if (this.type != type)
-        {
+    public void setType(int type) {
+        if (this.type != type) {
             this.type = type;
-            if (this.type != TYPE_ROUND && this.type != TYPE_CIRCLE)
-            {
+            if (this.type != TYPE_ROUND && this.type != TYPE_CIRCLE) {
                 this.type = TYPE_CIRCLE;
             }
             requestLayout();
         }
-
     }
 
-    public int dp2px(int dpVal)
-    {
+    public int dp2px(int dpVal) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,
                 dpVal, getResources().getDisplayMetrics());
     }

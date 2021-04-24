@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Scroller;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,9 +32,9 @@ public class RVActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.rv);
         getDatas();
 
-        //recyclerView.setLayoutManager(new CustomLayoutManager1(1.5f,0.85f));
+        recyclerView.setLayoutManager(new CustomLayoutManager1(1.5f,0.85f));
         //recyclerView.setLayoutManager(new CustomLayoutManager());
-        recyclerView.setLayoutManager(new CustomLayoutManagerRemould1());
+        //recyclerView.setLayoutManager(new CustomLayoutManagerRemould1());
         //recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new RvAdapter());
     }
