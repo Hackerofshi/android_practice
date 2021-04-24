@@ -11,6 +11,7 @@ import com.shixin.jetpack.databinding.MainActivity;
 import com.shixin.rxjava.R;
 import com.shixin.ui.constraint.ConstraintActivity;
 import com.shixin.ui.customview.RVActivity;
+import com.shixin.ui.customview.RVCoverActivity;
 import com.shixin.ui.ndktest.NdkTestActivity;
 import com.shixin.ui.sourceread.ReadSourceActivity;
 import com.shixin.ui.sourceread.TestMeasureSpecActivity;
@@ -25,7 +26,7 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(HomeActivity.this, ReadSourceActivity.class)));
 
         findViewById(R.id.btn2).setOnClickListener(view ->
-                startActivity(new Intent(HomeActivity.this, RVActivity.class)));
+                startActivity(new Intent(HomeActivity.this, RVCoverActivity.class)));
 
         findViewById(R.id.btn_databinding).setOnClickListener(v -> {
             startActivity(new Intent(HomeActivity.this, MainActivity.class));

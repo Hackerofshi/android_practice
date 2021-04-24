@@ -101,6 +101,7 @@
         <activity android:name="com.shixin.jetpack.databinding.MainActivity13" />
         <activity android:name="com.hi.dhl.paging3.network.ui.MainPagingActivity" />
         <activity android:name="com.shixin.ui.sourceread.TestMeasureSpecActivity" />
+        <activity android:name="com.shixin.ui.customview.RVCoverActivity" />
 
         <service android:name=".CalcService">
 
