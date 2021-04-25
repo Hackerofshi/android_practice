@@ -12,21 +12,16 @@
         <Button
             android:layout_width="match_parent"
             android:id="@+id/btn1"
-            android:text="源码解读"
+            android:text="源码解读Guide"
             android:background="#00FFFF"
             android:layout_height="wrap_content" />
 
         <Button
             android:layout_width="match_parent"
             android:id="@+id/btn2"
-            android:text="自定义View"
+            android:text="自定义ViewGuide"
             android:layout_height="wrap_content" />
 
-        <Button
-            android:layout_width="match_parent"
-            android:id="@+id/btn3"
-            android:text="RL源码解读"
-            android:layout_height="wrap_content" />
         <Button
             android:text="DataBinding"
             android:id="@+id/btn_databinding"

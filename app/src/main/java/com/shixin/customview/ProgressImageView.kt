@@ -9,13 +9,13 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatImageView
 
-class ProgressImageView(context: Context?, attrs: AttributeSet?, defStyleAttr: Int)
+class ProgressImageView(context: Context, attrs: AttributeSet?, defStyleAttr: Int)
     : AppCompatImageView(context, attrs, defStyleAttr
 ) {
 
-    constructor(context: Context?) : this(context, null, 0)
+    constructor(context: Context) : this(context, null, 0)
 
-    constructor(context: Context?, attrs: AttributeSet?) : this(context, attrs, 0)
+    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
 
     private var pWidht = 0
     private var pHeight = 0

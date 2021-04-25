@@ -159,7 +159,8 @@ dependencies {
 
     implementation 'com.android.support:multidex:1.0.3'
 
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-rc1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
 
 
 }

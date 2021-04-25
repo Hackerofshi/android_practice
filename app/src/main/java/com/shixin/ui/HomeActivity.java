@@ -10,6 +10,7 @@ import com.hi.dhl.paging3.network.ui.MainPagingActivity;
 import com.shixin.jetpack.databinding.MainActivity;
 import com.shixin.rxjava.R;
 import com.shixin.ui.constraint.ConstraintActivity;
+import com.shixin.ui.customview.CustomViewGuideActivity;
 import com.shixin.ui.customview.RVActivity;
 import com.shixin.ui.customview.RVCoverActivity;
 import com.shixin.ui.ndktest.NdkTestActivity;
@@ -26,7 +27,7 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(HomeActivity.this, ReadSourceActivity.class)));
 
         findViewById(R.id.btn2).setOnClickListener(view ->
-                startActivity(new Intent(HomeActivity.this, RVCoverActivity.class)));
+                startActivity(new Intent(HomeActivity.this, CustomViewGuideActivity.class)));
 
         findViewById(R.id.btn_databinding).setOnClickListener(v -> {
             startActivity(new Intent(HomeActivity.this, MainActivity.class));
