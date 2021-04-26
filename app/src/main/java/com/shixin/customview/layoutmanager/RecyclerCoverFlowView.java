@@ -50,6 +50,24 @@ public class RecyclerCoverFlowView extends RecyclerView {
         return ((CoverFlowLayoutManager) getLayoutManager());
     }
 
+
+
+    /**
+     *
+     * -------------------------------------
+     * |  0 |  1 |  2 |  6 |  5 |  4 |  3 |
+     * |  0 |  1 |  2 |  3 |  4 |  5 |  6 |
+     * -------------------------------------
+     * 上面是按照正常的规则显示，后显示的则会覆盖先显示的，这样就无法达到中间显示在最上面的效果，所以需要改变绘制的顺序
+     * 中间的最先绘制
+     * 先绘制6 再绘制 2，5 依次绘制
+     *
+     * 中间 order = childCount - 1;
+     * 左侧的依次绘制
+     * 右侧的 center + childCount - 1 - i;
+     *
+     * @return
+     */
     @Override
     protected int getChildDrawingOrder(int childCount, int i) {
         int center =

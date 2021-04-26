@@ -20,6 +20,9 @@ import androidx.recyclerview.widget.RecyclerView;
  * @Version: 1.0
  */
 public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
+    /**
+     * 滑动的总距离
+     */
     private int mSumDx      = 0;
     private int mTotalWidth = 0;
     private int mItemWidth, mItemHeight;
@@ -196,6 +199,15 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
         return (getItemCount() - 1) * getIntervalWidth();
     }
 
+    /**
+     * 获取视图中显示中位于中间的item的下标
+     * -------------------------------------
+     * |  0 |  1 |  2 |  6 |  5 |  4 |  3 |
+     * |  0 |  1 |  2 |  3 |  4 |  5 |  6 |
+     *
+     *
+     * @return
+     */
     public int getCenterPosition() {
         int pos = (int) (mSumDx / getIntervalWidth());
         int more = (int) (mSumDx % getIntervalWidth());
