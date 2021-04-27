@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
- * @ProjectName: Android_Pratice
+ * @ProjectName: Android_Practice
  * @Package: com.shixin.customview.layoutmanager
  * @ClassName: RecyclerCoverFlowView
  * @Description: java类作用描述
