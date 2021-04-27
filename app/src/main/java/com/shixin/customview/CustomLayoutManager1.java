@@ -69,21 +69,24 @@ public class CustomLayoutManager1 extends RecyclerView.LayoutManager {
     }
 
     private void fill(RecyclerView.Recycler recycler) {
-        // 1.初始化基本变量
+        // 1.初始化基本变量，bottomVisiblePosition 为item的总数
         int bottomVisiblePosition = mScrollOffset / mItemViewWidth;
-        //取余数，
+        //取余数，mScrollOffset初始值为所有item的总长度，取余的初始值为0
         final int                bottomItemVisibleSize = mScrollOffset % mItemViewWidth;
         final float              offsetPercent         = bottomItemVisibleSize * 1.0f / mItemViewWidth;
         final int                space                 = getHorizontalSpace();
         int                      remainSpace           = space;
         final int                defaultOffset         = mItemViewWidth / 2;
         final List<ItemViewInfo> itemViewInfos         = new ArrayList<>();
-        // 2.计算每个ItemView的位置信息(left和scale)
+        // 2.计算每个ItemView的位置信息(left和scale)  从倒数第一个开始计算。
         for (int i = bottomVisiblePosition - 1, j = 1; i >= 0; i--, j++) {
+            //缩放以后的宽度
             double       maxOffset = defaultOffset * Math.pow(mScale, j - 1);
+            //计算左侧开始的位置，从倒数第一个开始
             int          start     = (int) (remainSpace - offsetPercent * maxOffset - mItemViewWidth);
             ItemViewInfo info      = new ItemViewInfo(start, (float) (Math.pow(mScale, j - 1) * (1 - offsetPercent * (1 - mScale))));
             itemViewInfos.add(0, info);
+            //减去剩余占用的宽度
             remainSpace -= maxOffset;
             if (remainSpace < 0) {
                 info.setLeft((int) (remainSpace + maxOffset - mItemViewWidth));
@@ -99,10 +102,10 @@ public class CustomLayoutManager1 extends RecyclerView.LayoutManager {
             bottomVisiblePosition -= 1;
         }
         // 4.回收其他位置的View
-        final int layoutCount   = itemViewInfos.size();
-        final int startPosition = bottomVisiblePosition - (layoutCount - 1);
-        final int endPosition   = bottomVisiblePosition;
-        final int childCount    = getChildCount();
+        final int layoutCount   = itemViewInfos.size(); //屏幕上可以绘制的item的个数
+        final int startPosition = bottomVisiblePosition - (layoutCount - 1); //从左到右，左侧开始的index
+        final int endPosition   = bottomVisiblePosition;//右侧的最后一个的位置
+        final int childCount    = getChildCount(); //第一次绘制时候childCount数量是0，因为itemview还没有绘制到屏幕上
         for (int i = childCount - 1; i >= 0; i--) {
             final View childView = getChildAt(i);
             final int  position  = convert2LayoutPosition(i);
@@ -113,7 +116,9 @@ public class CustomLayoutManager1 extends RecyclerView.LayoutManager {
         // 5.先回收再布局
         detachAndScrapAttachedViews(recycler);
         for (int i = 0; i < layoutCount; i++) {
-            fillChild(recycler.getViewForPosition(convert2AdapterPosition(startPosition + i)), itemViewInfos.get(i));
+            int  position = convert2AdapterPosition(startPosition + i);
+            View child    = recycler.getViewForPosition(position);
+            fillChild(child, itemViewInfos.get(i));
         }
     }
 
@@ -154,10 +159,21 @@ public class CustomLayoutManager1 extends RecyclerView.LayoutManager {
         return mItemCount - 1 - adapterPosition;
     }
 
+    /**
+     * 转换为adapter中的位置
+     * @param layoutPosition
+     * @return
+     */
     public int convert2AdapterPosition(int layoutPosition) {
+        //itemCount为所有item的总数
         return mItemCount - 1 - layoutPosition;
     }
 
+    /**
+     * 获取所有item的总长度
+     * @param scrollOffset
+     * @return
+     */
     private int makeScrollOffsetWithinRange(int scrollOffset) {
         //返回需要显示的总长度
         int min = Math.min(Math.max(mItemViewWidth, scrollOffset), mItemCount * mItemViewWidth);

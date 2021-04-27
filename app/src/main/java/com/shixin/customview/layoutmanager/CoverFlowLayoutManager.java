@@ -172,7 +172,7 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
         float rotation = computeRotationY(moveX);
 
         child.setScaleX(radio);
-        child.setScaleX(radio);
+        child.setScaleY(radio);
         child.setRotationY(rotation);
     }
 

@@ -34,10 +34,11 @@ public class RVActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.rv);
         getDatas();
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        PagerSnapHelper helper = new PagerSnapHelper();
-        helper.attachToRecyclerView(recyclerView);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //PagerSnapHelper helper = new PagerSnapHelper();
+        //helper.attachToRecyclerView(recyclerView);
 
+        recyclerView.setLayoutManager(new CustomLayoutManager1(1.5f,0.85f));
         //recyclerView.setLayoutManager(new CustomLayoutManager());
         //recyclerView.setLayoutManager(new CustomLayoutManagerRemould1());
         //recyclerView.setLayoutManager(new LinearLayoutManager(this));
