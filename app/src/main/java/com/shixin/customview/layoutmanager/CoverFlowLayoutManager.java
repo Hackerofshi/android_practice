@@ -1,10 +1,15 @@
 package com.shixin.customview.layoutmanager;
 
 import android.graphics.Rect;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.SparseArray;
 import android.util.SparseBooleanArray;
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
@@ -36,6 +41,28 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
     //绘制第一个view时的起点
     private int mStartX;
 
+    private final int mOrientation;
+
+    public static final int HORIZONTAL          = OrientationHelper.HORIZONTAL;
+    public static final int VERTICAL            = OrientationHelper.VERTICAL;
+    private             int mPendingScrollPosition;
+    private             int mCenterItemPosition = INVALID_POSITION;
+
+    public static final int                INVALID_POSITION  = -1;
+    public static final int                MAX_VISIBLE_ITEMS = 3;
+    private final       LayoutHelper       mLayoutHelper     = new LayoutHelper(MAX_VISIBLE_ITEMS);
+    @Nullable
+    private             CarouselSavedState mPendingCarouselSavedState;
+
+    public CoverFlowLayoutManager(int orientation) {
+        if (HORIZONTAL != orientation && VERTICAL != orientation) {
+            throw new IllegalArgumentException("orientation should be HORIZONTAL or VERTICAL");
+        }
+        this.mOrientation = orientation;
+
+        //初始化为-1
+        mPendingScrollPosition = INVALID_POSITION;
+    }
 
     @Override
     public RecyclerView.LayoutParams generateDefaultLayoutParams() {
@@ -74,8 +101,25 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
             offsetX += mIntervalWidth;
         }
 
-        int visibleCount = getHorizontalSpace() / mIntervalWidth;
-        Rect visibleRect = getVisibleArea();
+
+        if (INVALID_POSITION != mPendingScrollPosition) {
+            final int itemsCount = state.getItemCount();
+            mPendingScrollPosition = 0 == itemsCount ? INVALID_POSITION : Math.max(0, Math.min(itemsCount - 1, mPendingScrollPosition));
+        }
+
+        if (INVALID_POSITION != mPendingScrollPosition) {
+            mLayoutHelper.mScrollOffset = calculateScrollForSelectingPosition(mPendingScrollPosition, state);
+            mPendingScrollPosition = INVALID_POSITION;
+            mPendingCarouselSavedState = null;
+        } else if (null != mPendingCarouselSavedState) {
+            mLayoutHelper.mScrollOffset = calculateScrollForSelectingPosition(mPendingCarouselSavedState.mCenterItemPosition, state);
+            mPendingCarouselSavedState = null;
+        } else if (state.didStructureChange() && INVALID_POSITION != mCenterItemPosition) {
+            mLayoutHelper.mScrollOffset = calculateScrollForSelectingPosition(mCenterItemPosition, state);
+        }
+
+        int  visibleCount = getHorizontalSpace() / mIntervalWidth;
+        Rect visibleRect  = getVisibleArea();
         for (int i = 0; i < visibleCount; i++) {
             insertView(i, visibleRect, recycler, false);
         }
@@ -83,8 +127,16 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
         //如果所有子View的宽度和没有填满RecyclerView的宽度，
         // 则将宽度设置为RecyclerView的宽度
         mTotalWidth = Math.max(offsetX, getHorizontalSpace());
-
     }
+
+    private int calculateScrollForSelectingPosition(final int itemPosition, final RecyclerView.State state) {
+        if (itemPosition == INVALID_POSITION) {
+            return 0;
+        }
+        final int fixedItemPosition = itemPosition < state.getItemCount() ? itemPosition : state.getItemCount() - 1;
+        return fixedItemPosition * (VERTICAL == mOrientation ? mItemHeight : mItemWidth);
+    }
+
 
     private int getHorizontalSpace() {
         return getWidth() - getPaddingLeft() - getPaddingRight();
@@ -104,35 +156,35 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
 
         int travel = dx;
         //如果滑动到最顶部
-        if (mSumDx + dx < 0) {
-            travel = -mSumDx;
-        } else if (mSumDx + dx > getMaxOffset()) {
+        if (mLayoutHelper.mScrollOffset + dx < 0) {
+            travel = -mLayoutHelper.mScrollOffset;
+        } else if (mLayoutHelper.mScrollOffset + dx > getMaxOffset()) {
             //如果滑动到最底部
-            travel = getMaxOffset() - mSumDx;
+            travel = getMaxOffset() - mLayoutHelper.mScrollOffset;
         }
 
-        mSumDx += travel;
+        mLayoutHelper.mScrollOffset += travel;
 
         Rect visibleRect = getVisibleArea();
 
         //回收越界子View
         for (int i = getChildCount() - 1; i >= 0; i--) {
-            View child = getChildAt(i);
-            int position = getPosition(child);
-            Rect rect = mItemRects.get(position);
+            View child    = getChildAt(i);
+            int  position = getPosition(child);
+            Rect rect     = mItemRects.get(position);
 
             if (!Rect.intersects(rect, visibleRect)) {
                 removeAndRecycleView(child, recycler);
                 mHasAttachedItems.put(position, false);
             } else {
-                layoutDecoratedWithMargins(child, rect.left - mSumDx, rect.top,
-                        rect.right - mSumDx, rect.bottom);
-                handleChildView(child, rect.left - mStartX - mSumDx);
+                layoutDecoratedWithMargins(child, rect.left - mLayoutHelper.mScrollOffset, rect.top,
+                        rect.right - mLayoutHelper.mScrollOffset, rect.bottom);
+                handleChildView(child, rect.left - mStartX - mLayoutHelper.mScrollOffset);
                 mHasAttachedItems.put(position, true);
             }
         }
         //填充空白区域
-        View lastView = getChildAt(getChildCount() - 1);
+        View lastView  = getChildAt(getChildCount() - 1);
         View firstView = getChildAt(0);
         if (travel >= 0) {
             int minPos = getPosition(firstView);
@@ -159,11 +211,11 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
                 addView(child);
             }
             measureChildWithMargins(child, 0, 0);
-            layoutDecoratedWithMargins(child, rect.left - mSumDx, rect.top,
-                    rect.right - mSumDx, rect.bottom);
+            layoutDecoratedWithMargins(child, rect.left - mLayoutHelper.mScrollOffset, rect.top,
+                    rect.right - mLayoutHelper.mScrollOffset, rect.bottom);
 
             mHasAttachedItems.put(pos, true);
-            handleChildView(child, rect.left - mSumDx - mStartX);
+            handleChildView(child, rect.left - mLayoutHelper.mScrollOffset - mStartX);
         }
     }
 
@@ -185,8 +237,8 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
     }
 
     private Rect getVisibleArea() {
-        return new Rect(getPaddingLeft() + mSumDx, getPaddingTop(),
-                getWidth() - getPaddingRight() + mSumDx,
+        return new Rect(getPaddingLeft() + mLayoutHelper.mScrollOffset, getPaddingTop(),
+                getWidth() - getPaddingRight() + mLayoutHelper.mScrollOffset,
                 getHeight() - getPaddingBottom());
     }
 
@@ -205,12 +257,11 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
      * |  0 |  1 |  2 |  6 |  5 |  4 |  3 |
      * |  0 |  1 |  2 |  3 |  4 |  5 |  6 |
      *
-     *
      * @return
      */
     public int getCenterPosition() {
-        int pos = (int) (mSumDx / getIntervalWidth());
-        int more = (int) (mSumDx % getIntervalWidth());
+        int pos  = (int) (mLayoutHelper.mScrollOffset / getIntervalWidth());
+        int more = (int) (mLayoutHelper.mScrollOffset % getIntervalWidth());
         if (more > getIntervalWidth() * 0.5f) pos++;
         return pos;
     }
@@ -225,7 +276,7 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
             return 0;
         }
         View view = getChildAt(0);
-        int pos = getPosition(view);
+        int  pos  = getPosition(view);
 
         return pos;
     }
@@ -238,7 +289,7 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
      * @return
      */
     public double calculateDistance(int velocityX, double distance) {
-        int    extra = mSumDx % getIntervalWidth();
+        int    extra = mLayoutHelper.mScrollOffset % getIntervalWidth();
         double realDistance;
         if (velocityX > 0) {
             if (distance < getIntervalWidth()) {
@@ -260,6 +311,7 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
 
     /**
      * 计算转动
+     *
      * @param x
      * @return
      */
@@ -275,4 +327,81 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
         }
         return rotationY;
     }
+
+    private static class LayoutHelper {
+        private int mMaxVisibleItems;
+
+        private int mScrollOffset;
+
+        LayoutHelper(final int maxVisibleItems) {
+            mMaxVisibleItems = maxVisibleItems;
+        }
+    }
+
+    @Override
+    public Parcelable onSaveInstanceState() {
+        if (null != mPendingCarouselSavedState) {
+            return new CarouselSavedState(mPendingCarouselSavedState);
+        }
+        final CarouselSavedState savedState = new CarouselSavedState(super.onSaveInstanceState());
+        savedState.mCenterItemPosition = mCenterItemPosition;
+        return savedState;
+    }
+
+    @Override
+    public void onRestoreInstanceState(final Parcelable state) {
+        if (state instanceof CarouselSavedState) {
+            mPendingCarouselSavedState = (CarouselSavedState) state;
+
+            super.onRestoreInstanceState(mPendingCarouselSavedState.mSuperState);
+        } else {
+            super.onRestoreInstanceState(state);
+        }
+    }
+
+
+    protected static class CarouselSavedState implements Parcelable {
+
+        private final Parcelable mSuperState;
+        private       int        mCenterItemPosition;
+
+        protected CarouselSavedState(@Nullable final Parcelable superState) {
+            mSuperState = superState;
+        }
+
+        private CarouselSavedState(@NonNull final Parcel in) {
+            mSuperState = in.readParcelable(Parcelable.class.getClassLoader());
+            mCenterItemPosition = in.readInt();
+        }
+
+        protected CarouselSavedState(@NonNull final CarouselSavedState other) {
+            mSuperState = other.mSuperState;
+            mCenterItemPosition = other.mCenterItemPosition;
+        }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(final Parcel parcel, final int i) {
+            parcel.writeParcelable(mSuperState, i);
+            parcel.writeInt(mCenterItemPosition);
+        }
+
+        public static final Parcelable.Creator<CarouselSavedState> CREATOR
+                = new Parcelable.Creator<CarouselSavedState>() {
+            @Override
+            public CarouselSavedState createFromParcel(final Parcel parcel) {
+                return new CarouselSavedState(parcel);
+            }
+
+            @Override
+            public CarouselSavedState[] newArray(final int i) {
+                return new CarouselSavedState[i];
+            }
+        };
+    }
+
 }
