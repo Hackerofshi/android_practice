@@ -47,6 +47,7 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
     public static final int VERTICAL            = OrientationHelper.VERTICAL;
     private             int mPendingScrollPosition;
     private             int mCenterItemPosition = INVALID_POSITION;
+    private             int mItemsCount;
 
     public static final int                INVALID_POSITION  = -1;
     public static final int                MAX_VISIBLE_ITEMS = 3;
@@ -123,10 +124,28 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
         for (int i = 0; i < visibleCount; i++) {
             insertView(i, visibleRect, recycler, false);
         }
-
+        mItemsCount = state.getItemCount();
         //如果所有子View的宽度和没有填满RecyclerView的宽度，
         // 则将宽度设置为RecyclerView的宽度
         mTotalWidth = Math.max(offsetX, getHorizontalSpace());
+    }
+
+    /**
+     * @return maximum scroll value to fill up all items in layout. Generally this is only needed for non cycle layouts.
+     */
+    private int getMaxScrollOffset() {
+        return getScrollItemSize() * (mItemsCount - 1);
+    }
+
+    /**
+     * @return full item size
+     */
+    protected int getScrollItemSize() {
+        if (VERTICAL == mOrientation) {
+            return mItemHeight;
+        } else {
+            return mItemWidth;
+        }
     }
 
     private int calculateScrollForSelectingPosition(final int itemPosition, final RecyclerView.State state) {
@@ -141,7 +160,6 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
     private int getHorizontalSpace() {
         return getWidth() - getPaddingLeft() - getPaddingRight();
     }
-
 
     @Override
     public boolean canScrollHorizontally() {
@@ -170,6 +188,7 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
         //回收越界子View
         for (int i = getChildCount() - 1; i >= 0; i--) {
             View child    = getChildAt(i);
+            
             int  position = getPosition(child);
             Rect rect     = mItemRects.get(position);
 
