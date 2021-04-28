@@ -87,47 +87,52 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
         mItemWidth = getDecoratedMeasuredWidth(childView);
         mItemHeight = getDecoratedMeasuredHeight(childView);
 
-        mIntervalWidth = getIntervalWidth();
 
-        mStartX = getWidth() / 2 - mIntervalWidth;
+        if (mOrientation == OrientationHelper.VERTICAL) {
+            mIntervalWidth = getIntervalWidth();
 
-        //定义水平方向的偏移量
-        int offsetX = 0;
 
-        for (int i = 0; i < getItemCount(); i++) {
-            Rect rect = new Rect(mStartX + offsetX,
-                    0, mStartX + offsetX + mItemWidth, mItemHeight);
-            mItemRects.put(i, rect);
-            mHasAttachedItems.put(i, false);
-            offsetX += mIntervalWidth;
+            mStartX = getWidth() / 2 - mIntervalWidth;
+
+            //定义水平方向的偏移量
+            int offsetX = 0;
+
+            for (int i = 0; i < getItemCount(); i++) {
+                Rect rect = new Rect(mStartX + offsetX,
+                        0, mStartX + offsetX + mItemWidth, mItemHeight);
+                mItemRects.put(i, rect);
+                mHasAttachedItems.put(i, false);
+                offsetX += mIntervalWidth;
+            }
+
+
+            if (INVALID_POSITION != mPendingScrollPosition) {
+                final int itemsCount = state.getItemCount();
+                mPendingScrollPosition = 0 == itemsCount ? INVALID_POSITION : Math.max(0, Math.min(itemsCount - 1, mPendingScrollPosition));
+            }
+
+            if (INVALID_POSITION != mPendingScrollPosition) {
+                mLayoutHelper.mScrollOffset = calculateScrollForSelectingPosition(mPendingScrollPosition, state);
+                mPendingScrollPosition = INVALID_POSITION;
+                mPendingCarouselSavedState = null;
+            } else if (null != mPendingCarouselSavedState) {
+                mLayoutHelper.mScrollOffset = calculateScrollForSelectingPosition(mPendingCarouselSavedState.mCenterItemPosition, state);
+                mPendingCarouselSavedState = null;
+            } else if (state.didStructureChange() && INVALID_POSITION != mCenterItemPosition) {
+                mLayoutHelper.mScrollOffset = calculateScrollForSelectingPosition(mCenterItemPosition, state);
+            }
+
+            int  visibleCount = getHorizontalSpace() / mIntervalWidth;
+            Rect visibleRect  = getVisibleArea();
+            for (int i = 0; i < visibleCount; i++) {
+                insertView(i, visibleRect, recycler, false);
+            }
+            mItemsCount = state.getItemCount();
+            //如果所有子View的宽度和没有填满RecyclerView的宽度，
+            // 则将宽度设置为RecyclerView的宽度
+            mTotalWidth = Math.max(offsetX, getHorizontalSpace());
         }
 
-
-        if (INVALID_POSITION != mPendingScrollPosition) {
-            final int itemsCount = state.getItemCount();
-            mPendingScrollPosition = 0 == itemsCount ? INVALID_POSITION : Math.max(0, Math.min(itemsCount - 1, mPendingScrollPosition));
-        }
-
-        if (INVALID_POSITION != mPendingScrollPosition) {
-            mLayoutHelper.mScrollOffset = calculateScrollForSelectingPosition(mPendingScrollPosition, state);
-            mPendingScrollPosition = INVALID_POSITION;
-            mPendingCarouselSavedState = null;
-        } else if (null != mPendingCarouselSavedState) {
-            mLayoutHelper.mScrollOffset = calculateScrollForSelectingPosition(mPendingCarouselSavedState.mCenterItemPosition, state);
-            mPendingCarouselSavedState = null;
-        } else if (state.didStructureChange() && INVALID_POSITION != mCenterItemPosition) {
-            mLayoutHelper.mScrollOffset = calculateScrollForSelectingPosition(mCenterItemPosition, state);
-        }
-
-        int  visibleCount = getHorizontalSpace() / mIntervalWidth;
-        Rect visibleRect  = getVisibleArea();
-        for (int i = 0; i < visibleCount; i++) {
-            insertView(i, visibleRect, recycler, false);
-        }
-        mItemsCount = state.getItemCount();
-        //如果所有子View的宽度和没有填满RecyclerView的宽度，
-        // 则将宽度设置为RecyclerView的宽度
-        mTotalWidth = Math.max(offsetX, getHorizontalSpace());
     }
 
     /**
