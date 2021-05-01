@@ -3,6 +3,7 @@ package com.shixin.customview.layoutmanager;
 import android.graphics.Rect;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 import android.util.SparseArray;
 import android.util.SparseBooleanArray;
 import android.view.View;
@@ -11,6 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
+
+import com.shixin.customview.CustomSnapHelper;
 
 import java.time.Instant;
 
@@ -47,11 +51,13 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
     private       int mStartY;
     private final int mOrientation;
 
-    public static final int HORIZONTAL          = OrientationHelper.HORIZONTAL;
-    public static final int VERTICAL            = OrientationHelper.VERTICAL;
-    private             int mPendingScrollPosition;
-    private             int mCenterItemPosition = INVALID_POSITION;
-    private             int mItemsCount;
+
+    public static final int     HORIZONTAL          = OrientationHelper.HORIZONTAL;
+    public static final int     VERTICAL            = OrientationHelper.VERTICAL;
+    private             int     mPendingScrollPosition;
+    private             int     mCenterItemPosition = INVALID_POSITION;
+    private             int     mItemsCount;
+    private             boolean mHasChild;
 
     public static final int                INVALID_POSITION  = -1;
     public static final int                MAX_VISIBLE_ITEMS = 3;
@@ -70,6 +76,11 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
     }
 
     @Override
+    public void onAttachedToWindow(RecyclerView view) {
+        super.onAttachedToWindow(view);
+    }
+
+    @Override
     public RecyclerView.LayoutParams generateDefaultLayoutParams() {
         return new RecyclerView.LayoutParams(RecyclerView.LayoutParams.WRAP_CONTENT,
                 RecyclerView.LayoutParams.WRAP_CONTENT);
@@ -80,6 +91,9 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
         if (getItemCount() == 0) {//没有Item，界面空着吧
             detachAndScrapAttachedViews(recycler);
             return;
+        }
+        if (!mHasChild) {
+            mHasChild = true;
         }
         mHasAttachedItems.clear();
         mItemRects.clear();
@@ -143,6 +157,7 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
             // 则将宽度设置为RecyclerView的高度
             mTotalHeight = Math.max(offsetY, getVerticalSpace());
         }
+
     }
 
     private void insertViewVertical(int pos, Rect visibleRect, RecyclerView.Recycler recycler, boolean firstPos) {
@@ -230,7 +245,7 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
         //如果滑动到最顶部
         if (mLayoutHelper.mScrollOffset + diff < 0) {
             resultScroll = -mLayoutHelper.mScrollOffset;
-        } else if (mLayoutHelper.mScrollOffset + diff > getMaxOffset()) {
+        } else if (mLayoutHelper.mScrollOffset + diff > getMaxScrollOffset()) {
             //如果滑动到最底部
             resultScroll = getMaxScrollOffset() - mLayoutHelper.mScrollOffset;
         }
@@ -283,7 +298,7 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
         //如果滑动到最顶部
         if (mLayoutHelper.mScrollOffset + diff < 0) {
             resultScroll = -mLayoutHelper.mScrollOffset;
-        } else if (mLayoutHelper.mScrollOffset + diff > getMaxOffset()) {
+        } else if (mLayoutHelper.mScrollOffset + diff > getMaxScrollOffset()) {
             //如果滑动到最底部
             resultScroll = getMaxScrollOffset() - mLayoutHelper.mScrollOffset;
         }
@@ -354,7 +369,11 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
 
         child.setScaleX(radio);
         child.setScaleY(radio);
-        child.setRotationY(rotation);
+        if (mOrientation == OrientationHelper.HORIZONTAL) {
+            child.setRotationY(rotation);
+        } else {
+            child.setRotationX(-rotation);
+        }
     }
 
 
@@ -395,6 +414,43 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
         return mItemHeight / 2;
     }
 
+    public int calculateDistanceToPosition(int targetPos) {
+        return mLayoutHelper.mScrollOffset;
+    }
+
+    public int getFixedScrollPosition() {
+        if (mHasChild) {
+            if (mOrientation == OrientationHelper.HORIZONTAL) {
+                if (mLayoutHelper.mScrollOffset % getIntervalWidth() == 0) {
+                    return RecyclerView.NO_POSITION;
+                }
+                float position = mLayoutHelper.mScrollOffset * 1.0f / getIntervalWidth();
+                return convert2AdapterPosition((int) (position - 0.5f));
+            } else {
+                if (mLayoutHelper.mScrollOffset % getIntervalHeight() == 0) {
+                    return RecyclerView.NO_POSITION;
+                }
+                float position = mLayoutHelper.mScrollOffset * 1.0f / getIntervalHeight();
+                return convert2AdapterPosition((int) (position - 0.5f));
+            }
+        }
+        return RecyclerView.NO_POSITION;
+    }
+
+    /**
+     * 转换为adapter中的位置
+     *
+     * @param layoutPosition
+     * @return
+     */
+    public int convert2AdapterPosition(int layoutPosition) {
+        //itemCount为所有item的总数
+        return mItemsCount - 1 - layoutPosition;
+    }
+
+    private int convert2LayoutPosition(int adapterPosition) {
+        return mItemsCount - 1 - adapterPosition;
+    }
 
     /**
      * @return maximum scroll value to fill up all items in layout. Generally this is only needed for non cycle layouts.
@@ -428,10 +484,17 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
      * @return
      */
     public int getCenterPosition() {
-        int pos  = (int) (mLayoutHelper.mScrollOffset / getIntervalWidth());
-        int more = (int) (mLayoutHelper.mScrollOffset % getIntervalWidth());
-        if (more > getIntervalWidth() * 0.5f) pos++;
-        return pos;
+        if (mOrientation == OrientationHelper.HORIZONTAL) {
+            int pos  = (int) (mLayoutHelper.mScrollOffset / getIntervalWidth());
+            int more = (int) (mLayoutHelper.mScrollOffset % getIntervalWidth());
+            if (more > getIntervalWidth() * 0.5f) pos++;
+            return pos;
+        } else {
+            int pos  = (int) (mLayoutHelper.mScrollOffset / getIntervalHeight());
+            int more = (int) (mLayoutHelper.mScrollOffset % getIntervalHeight());
+            if (more > getIntervalHeight() * 0.5f) pos++;
+            return pos;
+        }
     }
 
 
@@ -474,23 +537,53 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
     }
 
     /**
+     * 计算滑动时候某一个item是否滑动超过一半，超过一半就全部滑动过去
+     *
+     * @param velocityY
+     * @param distance
+     * @return
+     */
+    public double calculateDistanceY(int velocityY, double distance) {
+        int    extra = mLayoutHelper.mScrollOffset % getIntervalHeight();
+        double realDistance;
+        if (velocityY > 0) {
+            if (distance < getIntervalHeight()) {
+                realDistance = getIntervalHeight() - extra;
+            } else {
+                realDistance = distance - distance % getIntervalHeight() - extra;
+            }
+        } else {
+            if (distance < getIntervalHeight()) {
+                realDistance = extra;
+            } else {
+                realDistance = distance - distance % getIntervalHeight() + extra;
+            }
+        }
+        return realDistance;
+    }
+
+    /**
      * 计算转动
      *
      * @param x
      * @return
      */
     private float computeRotationY(int x) {
-        float rotationY;
-        float m_MAX_ROTATION_Y = 30.0f;
-        rotationY = -m_MAX_ROTATION_Y * x / getIntervalWidth();
-        if (Math.abs(rotationY) > m_MAX_ROTATION_Y) {
-            if (rotationY > 0) {
-                rotationY = m_MAX_ROTATION_Y;
+        float rotation;
+        float m_MAX_ROTATION = 30.0f;
+        if (mOrientation == OrientationHelper.HORIZONTAL) {
+            rotation = -m_MAX_ROTATION * x / getIntervalWidth();
+        } else {
+            rotation = -m_MAX_ROTATION * x / getIntervalHeight();
+        }
+        if (Math.abs(rotation) > m_MAX_ROTATION) {
+            if (rotation > 0) {
+                rotation = m_MAX_ROTATION;
             } else {
-                rotationY = -m_MAX_ROTATION_Y;
+                rotation = -m_MAX_ROTATION;
             }
         }
-        return rotationY;
+        return rotation;
     }
 
     private static class LayoutHelper {

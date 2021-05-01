@@ -177,6 +177,7 @@ public class CustomLayoutManager1 extends RecyclerView.LayoutManager {
     private int makeScrollOffsetWithinRange(int scrollOffset) {
         //返回需要显示的总长度
         int min = Math.min(Math.max(mItemViewWidth, scrollOffset), mItemCount * mItemViewWidth);
+        Log.i("mScrollOffset：", " min = " + min);
         return min;
     }
 

@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
+import com.shixin.customview.layoutmanager.CoverFlowLayoutManager;
+
 /**
  * @ProjectName: Android_Pratice
  * @Package: com.shixin.customview
@@ -24,15 +26,15 @@ public class CustomSnapHelper extends SnapHelper {
     public int[] calculateDistanceToFinalSnap(
             @NonNull RecyclerView.LayoutManager layoutManager, @NonNull View targetView) {
 
-        if (layoutManager instanceof CustomLayoutManager1) {
+        if (layoutManager instanceof CoverFlowLayoutManager) {
             int[] out = new int[2];
             if (layoutManager.canScrollHorizontally()) {
-                out[0] = ((CustomLayoutManager1) layoutManager).calculateDistanceToPosition(
+                out[0] = ((CoverFlowLayoutManager) layoutManager).calculateDistanceToPosition(
                         layoutManager.getPosition(targetView));
                 out[1] = 0;
             } else {
                 out[0] = 0;
-                out[1] = ((CustomLayoutManager1) layoutManager).calculateDistanceToPosition(
+                out[1] = ((CoverFlowLayoutManager) layoutManager).calculateDistanceToPosition(
                         layoutManager.getPosition(targetView));
             }
             return out;
@@ -48,8 +50,8 @@ public class CustomSnapHelper extends SnapHelper {
 
     @Override
     public View findSnapView(RecyclerView.LayoutManager layoutManager) {
-        if (layoutManager instanceof CustomLayoutManager1) {
-            int pos = ((CustomLayoutManager1) layoutManager).getFixedScrollPosition();
+        if (layoutManager instanceof CoverFlowLayoutManager) {
+            int pos = ((CoverFlowLayoutManager) layoutManager).getFixedScrollPosition();
             if (pos != RecyclerView.NO_POSITION) {
                 return layoutManager.findViewByPosition(pos);
             }

@@ -51,9 +51,7 @@ public class RecyclerCoverFlowView extends RecyclerView {
     }
 
 
-
     /**
-     *
      * -------------------------------------
      * |  0 |  1 |  2 |  6 |  5 |  4 |  3 |
      * |  0 |  1 |  2 |  3 |  4 |  5 |  6 |
@@ -61,7 +59,7 @@ public class RecyclerCoverFlowView extends RecyclerView {
      * 上面是按照正常的规则显示，后显示的则会覆盖先显示的，这样就无法达到中间显示在最上面的效果，所以需要改变绘制的顺序
      * 中间的最先绘制
      * 先绘制6 再绘制 2，5 依次绘制
-     *
+     * <p>
      * 中间 order = childCount - 1;
      * 左侧的依次绘制
      * 右侧的 center + childCount - 1 - i;
@@ -88,6 +86,7 @@ public class RecyclerCoverFlowView extends RecyclerView {
     @Override
     public boolean fling(int velocityX, int velocityY) {
 
+
         //缩小滚动距离
         int                    flingX       = (int) (velocityX * 0.04f);
         CoverFlowLayoutManager manager      = getCoverFlowLayout();
@@ -99,7 +98,17 @@ public class RecyclerCoverFlowView extends RecyclerView {
         } else {
             flingX = -fixVelocityX;
         }
-        return super.fling(flingX, velocityY);
+
+        int    flingY       = (int) (velocityY * 0.04f);
+        double distanceY    = getSplineFlingDistance(flingY);
+        double newDistanceY = manager.calculateDistanceY(velocityY, distanceY);
+        int    fixVelocityY = getVelocity(newDistanceY);
+        if (velocityY > 0) {
+            flingY = fixVelocityY;
+        } else {
+            flingY = -fixVelocityY;
+        }
+        return super.fling(flingX, flingY);
     }
 
     private int getVelocity(double newDistance) {
@@ -134,8 +143,6 @@ public class RecyclerCoverFlowView extends RecyclerView {
                 * 39.37f // inch/meter
                 * ppi
                 * 0.84f; // look and feel tuning
-
-
         return Math.log(INFLEXION * Math.abs(velocity) / (mFlingFriction * mPhysicalCoeff));
     }
 
