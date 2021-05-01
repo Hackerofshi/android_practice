@@ -37,7 +37,7 @@ public class RVCoverActivity extends AppCompatActivity {
 
         //recyclerView.setLayoutManager(new CustomLayoutManager1(1.5f,0.85f));
         //recyclerView.setLayoutManager(new CustomLayoutManager());
-        recyclerView.setLayoutManager(new CoverFlowLayoutManager(OrientationHelper.HORIZONTAL));
+        recyclerView.setLayoutManager(new CoverFlowLayoutManager(OrientationHelper.VERTICAL));
         //recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new RvAdapter());
     }

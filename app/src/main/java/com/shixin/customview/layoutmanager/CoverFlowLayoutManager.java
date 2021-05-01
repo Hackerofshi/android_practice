@@ -12,6 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.time.Instant;
+
 /**
  * @ProjectName: Android_Pratice
  * @Package: com.shixin.customview.layoutmanager
@@ -90,14 +92,13 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
         mItemHeight = getDecoratedMeasuredHeight(childView);
 
 
-        if (mOrientation == OrientationHelper.VERTICAL) {
+        if (mOrientation == OrientationHelper.HORIZONTAL) {
             mIntervalWidth = getIntervalWidth();
 
             mStartX = getWidth() / 2 - mIntervalWidth;
 
             //定义水平方向的偏移量
             int offsetX = 0;
-
             for (int i = 0; i < getItemCount(); i++) {
                 Rect rect = new Rect(mStartX + offsetX,
                         0, mStartX + offsetX + mItemWidth, mItemHeight);
@@ -105,10 +106,7 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
                 mHasAttachedItems.put(i, false);
                 offsetX += mIntervalWidth;
             }
-
-
             calcScrollOffset(state);
-
             int  visibleCount = getHorizontalSpace() / mIntervalWidth;
             Rect visibleRect  = getVisibleArea();
             for (int i = 0; i < visibleCount; i++) {
@@ -120,7 +118,7 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
             mTotalWidth = Math.max(offsetX, getHorizontalSpace());
         } else {
             mIntervalHeight = getIntervalHeight();
-            mStartY = getHeight() - mIntervalHeight;
+            mStartY = getHeight() / 2 - mIntervalHeight;
             //定义竖直方向偏移量
             int offsetY = 0;
             for (int i = 0; i < getItemCount(); i++) {
@@ -167,9 +165,6 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
         }
     }
 
-    private int getVerticalSpace() {
-        return getHeight() - getPaddingTop() - getPaddingBottom();
-    }
 
     private void calcScrollOffset(RecyclerView.State state) {
         if (INVALID_POSITION != mPendingScrollPosition) {
@@ -189,23 +184,6 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
         }
     }
 
-    /**
-     * @return maximum scroll value to fill up all items in layout. Generally this is only needed for non cycle layouts.
-     */
-    private int getMaxScrollOffset() {
-        return getScrollItemSize() * (mItemsCount - 1);
-    }
-
-    /**
-     * @return full item size
-     */
-    protected int getScrollItemSize() {
-        if (VERTICAL == mOrientation) {
-            return mItemHeight;
-        } else {
-            return mItemWidth;
-        }
-    }
 
     private int calculateScrollForSelectingPosition(final int itemPosition, final RecyclerView.State state) {
         if (itemPosition == INVALID_POSITION) {
@@ -215,10 +193,6 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
         return fixedItemPosition * (VERTICAL == mOrientation ? mItemHeight : mItemWidth);
     }
 
-
-    private int getHorizontalSpace() {
-        return getWidth() - getPaddingLeft() - getPaddingRight();
-    }
 
     @Override
     public boolean canScrollHorizontally() {
@@ -235,7 +209,7 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
         if (HORIZONTAL == mOrientation) {
             return 0;
         }
-        return scrollBy(dy, recycler, state);
+        return scrollByVertical(dy, recycler, state);
     }
 
 
@@ -244,24 +218,24 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
         if (VERTICAL == mOrientation) {
             return 0;
         }
-        return scrollBy(dx, recycler, state);
+        return scrollByHorizontal(dx, recycler, state);
     }
 
-    private int scrollBy(int dx, RecyclerView.Recycler recycler, @NonNull final RecyclerView.State state) {
+    private int scrollByHorizontal(int diff, RecyclerView.Recycler recycler, @NonNull final RecyclerView.State state) {
         if (getChildCount() <= 0) {
-            return dx;
+            return diff;
         }
 
-        int travel = dx;
+        int resultScroll = diff;
         //如果滑动到最顶部
-        if (mLayoutHelper.mScrollOffset + dx < 0) {
-            travel = -mLayoutHelper.mScrollOffset;
-        } else if (mLayoutHelper.mScrollOffset + dx > getMaxOffset()) {
+        if (mLayoutHelper.mScrollOffset + diff < 0) {
+            resultScroll = -mLayoutHelper.mScrollOffset;
+        } else if (mLayoutHelper.mScrollOffset + diff > getMaxOffset()) {
             //如果滑动到最底部
-            travel = getMaxOffset() - mLayoutHelper.mScrollOffset;
+            resultScroll = getMaxScrollOffset() - mLayoutHelper.mScrollOffset;
         }
 
-        mLayoutHelper.mScrollOffset += travel;
+        mLayoutHelper.mScrollOffset += resultScroll;
 
         Rect visibleRect = getVisibleArea();
 
@@ -276,7 +250,9 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
                 removeAndRecycleView(child, recycler);
                 mHasAttachedItems.put(position, false);
             } else {
-                layoutDecoratedWithMargins(child, rect.left - mLayoutHelper.mScrollOffset, rect.top,
+                layoutDecoratedWithMargins(child,
+                        rect.left - mLayoutHelper.mScrollOffset,
+                        rect.top,
                         rect.right - mLayoutHelper.mScrollOffset, rect.bottom);
                 handleChildView(child, rect.left - mStartX - mLayoutHelper.mScrollOffset);
                 mHasAttachedItems.put(position, true);
@@ -285,7 +261,7 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
         //填充空白区域
         View lastView  = getChildAt(getChildCount() - 1);
         View firstView = getChildAt(0);
-        if (travel >= 0) {
+        if (resultScroll >= 0) {
             int minPos = getPosition(firstView);
             for (int i = minPos; i < getItemCount(); i++) {
                 insertViewHorizontal(i, visibleRect, recycler, false);
@@ -296,7 +272,58 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
                 insertViewHorizontal(i, visibleRect, recycler, true);
             }
         }
-        return travel;
+        return resultScroll;
+    }
+
+    private int scrollByVertical(int diff, RecyclerView.Recycler recycler, RecyclerView.State state) {
+        if (getChildCount() <= 0) {
+            return diff;
+        }
+        int resultScroll = diff;
+        //如果滑动到最顶部
+        if (mLayoutHelper.mScrollOffset + diff < 0) {
+            resultScroll = -mLayoutHelper.mScrollOffset;
+        } else if (mLayoutHelper.mScrollOffset + diff > getMaxOffset()) {
+            //如果滑动到最底部
+            resultScroll = getMaxScrollOffset() - mLayoutHelper.mScrollOffset;
+        }
+
+        mLayoutHelper.mScrollOffset += resultScroll;
+        Rect visibleRect = getVisibleArea();
+
+        //回收越界子View
+        for (int i = getChildCount() - 1; i >= 0; i--) {
+            View child    = getChildAt(i);
+            int  position = getPosition(child);
+            Rect rect     = mItemRects.get(position);
+            if (!Rect.intersects(rect, visibleRect)) {
+                removeAndRecycleView(child, recycler);
+                mHasAttachedItems.put(position, false);
+            } else {
+                layoutDecoratedWithMargins(child,
+                        rect.left, rect.top - mLayoutHelper.mScrollOffset,
+                        rect.right,
+                        rect.bottom - mLayoutHelper.mScrollOffset);
+                handleChildView(child, rect.top - mStartY - mLayoutHelper.mScrollOffset);
+                mHasAttachedItems.put(position, true);
+            }
+        }
+
+        //填充空白区域
+        View lastView  = getChildAt(getChildCount() - 1);
+        View firstView = getChildAt(0);
+        if (resultScroll >= 0) {
+            int minPos = getPosition(firstView);
+            for (int i = minPos; i < getItemCount(); i++) {
+                insertViewVertical(i, visibleRect, recycler, false);
+            }
+        } else {
+            int maxPos = getPosition(lastView);
+            for (int i = maxPos; i >= 0; i--) {
+                insertViewVertical(i, visibleRect, recycler, true);
+            }
+        }
+        return resultScroll;
     }
 
 
@@ -338,23 +365,58 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
         return scale;
     }
 
+
     private Rect getVisibleArea() {
-        return new Rect(getPaddingLeft() + mLayoutHelper.mScrollOffset, getPaddingTop(),
-                getWidth() - getPaddingRight() + mLayoutHelper.mScrollOffset,
-                getHeight() - getPaddingBottom());
+        if (mOrientation == OrientationHelper.VERTICAL) {
+            return new Rect(getPaddingLeft(),
+                    getPaddingTop() + mLayoutHelper.mScrollOffset,
+                    getWidth() - getPaddingRight(),
+                    getHeight() - getPaddingBottom() + mLayoutHelper.mScrollOffset);
+        } else {
+            return new Rect(getPaddingLeft() + mLayoutHelper.mScrollOffset, getPaddingTop(),
+                    getWidth() - getPaddingRight() + mLayoutHelper.mScrollOffset,
+                    getHeight() - getPaddingBottom());
+        }
     }
 
+    private int getHorizontalSpace() {
+        return getWidth() - getPaddingLeft() - getPaddingRight();
+    }
+
+    private int getVerticalSpace() {
+        return getHeight() - getPaddingTop() - getPaddingBottom();
+    }
 
     private int getIntervalWidth() {
         return mItemWidth / 2;
     }
 
     private int getIntervalHeight() {
-        return mIntervalHeight / 2;
+        return mItemHeight / 2;
     }
+
+
+    /**
+     * @return maximum scroll value to fill up all items in layout. Generally this is only needed for non cycle layouts.
+     */
+    private int getMaxScrollOffset() {
+        return getScrollItemSize() * (mItemsCount - 1);
+    }
+
 
     private int getMaxOffset() {
         return (getItemCount() - 1) * getIntervalWidth();
+    }
+
+    /**
+     * @return full item size
+     */
+    protected int getScrollItemSize() {
+        if (VERTICAL == mOrientation) {
+            return getIntervalHeight();
+        } else {
+            return getIntervalWidth();
+        }
     }
 
     /**
