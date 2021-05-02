@@ -181,6 +181,28 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
     }
 
 
+    private void insertViewHorizontal(int pos, Rect visibleRect, RecyclerView.Recycler recycler, boolean firstPos) {
+        Rect rect = mItemRects.get(pos);
+        if (Rect.intersects(visibleRect, rect) && !mHasAttachedItems.get(pos)) {
+            View child = recycler.getViewForPosition(pos);
+            if (firstPos) {
+                addView(child, 0);
+            } else {
+                addView(child);
+            }
+            measureChildWithMargins(child, 0, 0);
+            layoutDecoratedWithMargins(child,
+                    rect.left - mLayoutHelper.mScrollOffset,
+                    rect.top,
+                    rect.right - mLayoutHelper.mScrollOffset,
+                    rect.bottom);
+
+            mHasAttachedItems.put(pos, true);
+            handleChildView(child, rect.left - mLayoutHelper.mScrollOffset - mStartX);
+        }
+    }
+
+
     private void calcScrollOffset(RecyclerView.State state) {
         if (INVALID_POSITION != mPendingScrollPosition) {
             final int itemsCount = state.getItemCount();
@@ -341,28 +363,6 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
         return resultScroll;
     }
 
-
-    private void insertViewHorizontal(int pos, Rect visibleRect, RecyclerView.Recycler recycler, boolean firstPos) {
-        Rect rect = mItemRects.get(pos);
-        if (Rect.intersects(visibleRect, rect) && !mHasAttachedItems.get(pos)) {
-            View child = recycler.getViewForPosition(pos);
-            if (firstPos) {
-                addView(child, 0);
-            } else {
-                addView(child);
-            }
-            measureChildWithMargins(child, 0, 0);
-            layoutDecoratedWithMargins(child,
-                    rect.left - mLayoutHelper.mScrollOffset,
-                    rect.top,
-                    rect.right - mLayoutHelper.mScrollOffset,
-                    rect.bottom);
-
-            mHasAttachedItems.put(pos, true);
-            handleChildView(child, rect.left - mLayoutHelper.mScrollOffset - mStartX);
-        }
-    }
-
     private void handleChildView(View child, int moveX) {
         float radio    = computeScale(moveX);
         float rotation = computeRotationY(moveX);
@@ -425,32 +425,18 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
                     return RecyclerView.NO_POSITION;
                 }
                 float position = mLayoutHelper.mScrollOffset * 1.0f / getIntervalWidth();
-                return convert2AdapterPosition((int) (position - 0.5f));
+                return (int) (position - 0.5f);
             } else {
                 if (mLayoutHelper.mScrollOffset % getIntervalHeight() == 0) {
                     return RecyclerView.NO_POSITION;
                 }
                 float position = mLayoutHelper.mScrollOffset * 1.0f / getIntervalHeight();
-                return convert2AdapterPosition((int) (position - 0.5f));
+                return (int) (position - 0.5f);
             }
         }
         return RecyclerView.NO_POSITION;
     }
 
-    /**
-     * 转换为adapter中的位置
-     *
-     * @param layoutPosition
-     * @return
-     */
-    public int convert2AdapterPosition(int layoutPosition) {
-        //itemCount为所有item的总数
-        return mItemsCount - 1 - layoutPosition;
-    }
-
-    private int convert2LayoutPosition(int adapterPosition) {
-        return mItemsCount - 1 - adapterPosition;
-    }
 
     /**
      * @return maximum scroll value to fill up all items in layout. Generally this is only needed for non cycle layouts.
@@ -459,10 +445,6 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
         return getScrollItemSize() * (mItemsCount - 1);
     }
 
-
-    private int getMaxOffset() {
-        return (getItemCount() - 1) * getIntervalWidth();
-    }
 
     /**
      * @return full item size
@@ -587,6 +569,7 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
     }
 
     private static class LayoutHelper {
+
         private int mMaxVisibleItems;
 
         private int mScrollOffset;
