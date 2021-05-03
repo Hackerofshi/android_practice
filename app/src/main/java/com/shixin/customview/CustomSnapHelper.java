@@ -26,16 +26,26 @@ public class CustomSnapHelper extends SnapHelper {
     public int[] calculateDistanceToFinalSnap(
             @NonNull RecyclerView.LayoutManager layoutManager, @NonNull View targetView) {
 
-        if (layoutManager instanceof CoverFlowLayoutManager) {
+        if (layoutManager instanceof CustomLayoutManager1) {
             int[] out = new int[2];
             if (layoutManager.canScrollHorizontally()) {
-                out[0] = ((CoverFlowLayoutManager) layoutManager).calculateDistanceToPosition(
+                out[0] = ((CustomLayoutManager1) layoutManager).calculateDistanceToPosition(
                         layoutManager.getPosition(targetView));
                 out[1] = 0;
             } else {
                 out[0] = 0;
-                out[1] = ((CoverFlowLayoutManager) layoutManager).calculateDistanceToPosition(
+                out[1] = ((CustomLayoutManager1) layoutManager).calculateDistanceToPosition(
                         layoutManager.getPosition(targetView));
+            }
+            return out;
+        }else if (layoutManager instanceof CoverFlowLayoutManager){
+            int[] out = new int[2];
+            if (layoutManager.canScrollHorizontally()) {
+                out[0] = ((CoverFlowLayoutManager) layoutManager).calculateDistanceToPosition();
+                out[1] = 0;
+            } else {
+                out[0] = 0;
+                out[1] = ((CoverFlowLayoutManager) layoutManager).calculateDistanceToPosition();
             }
             return out;
         }
@@ -50,7 +60,12 @@ public class CustomSnapHelper extends SnapHelper {
 
     @Override
     public View findSnapView(RecyclerView.LayoutManager layoutManager) {
-        if (layoutManager instanceof CoverFlowLayoutManager) {
+        if (layoutManager instanceof CustomLayoutManager1) {
+            int pos = ((CustomLayoutManager1) layoutManager).getFixedScrollPosition();
+            if (pos != RecyclerView.NO_POSITION) {
+                return layoutManager.findViewByPosition(pos);
+            }
+        }else if (layoutManager instanceof  CoverFlowLayoutManager){
             int pos = ((CoverFlowLayoutManager) layoutManager).getFixedScrollPosition();
             if (pos != RecyclerView.NO_POSITION) {
                 return layoutManager.findViewByPosition(pos);

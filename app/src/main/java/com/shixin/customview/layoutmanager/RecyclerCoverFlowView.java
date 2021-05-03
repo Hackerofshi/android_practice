@@ -83,10 +83,8 @@ public class RecyclerCoverFlowView extends RecyclerView {
 
     }
 
-    @Override
+    /*@Override
     public boolean fling(int velocityX, int velocityY) {
-
-
         //缩小滚动距离
         int                    flingX       = (int) (velocityX * 0.04f);
         CoverFlowLayoutManager manager      = getCoverFlowLayout();
@@ -109,7 +107,8 @@ public class RecyclerCoverFlowView extends RecyclerView {
             flingY = -fixVelocityY;
         }
         return super.fling(flingX, flingY);
-    }
+    }*/
+
 
     private int getVelocity(double newDistance) {
         final double decelMinusOne = DECELERATION_RATE - 1.0f;
