@@ -499,6 +499,7 @@ public class CoverFlowLayoutManager extends RecyclerView.LayoutManager {
      * 获取视图中显示中位于中间的item的下标
      * -------------------------------------
      * |  0 |  1 |  2 |  6 |  5 |  4 |  3 |
+     *
      * |  0 |  1 |  2 |  3 |  4 |  5 |  6 |
      *
      * @return 获取中间的下标

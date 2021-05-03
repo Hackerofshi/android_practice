@@ -2,27 +2,23 @@ package com.shixin.ui.customview;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Scroller;
+import android.view.ViewTreeObserver;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.paging.Pager;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.shixin.customview.CustomLayoutManager;
-import com.shixin.customview.CustomLayoutManager1;
-import com.shixin.customview.CustomLayoutManagerRemould1;
 import com.shixin.rxjava.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RVActivity extends AppCompatActivity {
+public class RV1Activity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private List<String> datas;
@@ -30,7 +26,7 @@ public class RVActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rv);
+        setContentView(R.layout.activity_rv1);
         recyclerView = (RecyclerView) findViewById(R.id.rv);
         getDatas();
 
@@ -43,7 +39,14 @@ public class RVActivity extends AppCompatActivity {
         //recyclerView.setLayoutManager(new CustomLayoutManagerRemould1());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new RvAdapter());
+        recyclerView.post(new Runnable() {
+            @Override
+            public void run() {
+                Log.i("height", recyclerView.getHeight() + "");
+            }
+        });
     }
+
 
     private void getDatas() {
         datas = new ArrayList<>();

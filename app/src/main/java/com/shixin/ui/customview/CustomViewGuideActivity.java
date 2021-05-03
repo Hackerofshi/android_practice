@@ -28,5 +28,11 @@ public class CustomViewGuideActivity extends AppCompatActivity {
                 startActivity(new Intent(CustomViewGuideActivity.this, RVCoverActivity.class));
             }
         });
+        findViewById(R.id.btn3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(CustomViewGuideActivity.this, RV1Activity.class));
+            }
+        });
     }
 }

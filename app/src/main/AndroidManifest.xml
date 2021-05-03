@@ -96,6 +96,7 @@
         <activity android:name="com.hi.dhl.paging3.network.ui.MainPagingActivity" />
         <activity android:name="com.shixin.ui.sourceread.TestMeasureSpecActivity" />
         <activity android:name="com.shixin.ui.customview.RVCoverActivity" />
+        <activity android:name="com.shixin.ui.customview.RV1Activity" />
 
         <service android:name=".CalcService">
 
