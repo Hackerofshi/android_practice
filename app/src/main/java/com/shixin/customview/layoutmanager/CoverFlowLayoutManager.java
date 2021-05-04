@@ -3,7 +3,6 @@ package com.shixin.customview.layoutmanager;
 import android.graphics.Rect;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
 import android.util.SparseArray;
 import android.util.SparseBooleanArray;
 import android.view.View;
@@ -13,8 +12,6 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
-
-import com.shixin.customview.CustomSnapHelper;
 
 
 /**

@@ -3,6 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.shixin.rxjava">
 
+    <uses-sdk
+        android:minSdkVersion="15"
+        tools:overrideLibrary="com.hi.dhl.jdatabinding" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <application
         android:name="com.shixin.app.App"
         android:allowBackup="true"
@@ -10,7 +19,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.shixin.ui.customview.CustomViewGuideActivity"></activity>
+        <activity android:name="com.shixin.ui.windowmanager.WindowManagerDemoActivity"/>
+        <activity android:name="com.shixin.ui.customview.CustomViewGuideActivity" />
         <activity android:name="com.shixin.ui.sourceread.ViewPager2Activity" />
         <activity android:name="com.shixin.ui.ndktest.NdkTestActivity" />
         <activity android:name="com.shixin.jetpack.livedata.ui.NameActivity" />
@@ -109,13 +119,5 @@
             -->
         </service>
     </application>
-
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <uses-sdk
-        android:minSdkVersion="15"
-        tools:overrideLibrary="com.hi.dhl.jdatabinding" />
 
 </manifest>

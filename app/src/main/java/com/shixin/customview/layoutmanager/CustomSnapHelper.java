@@ -1,4 +1,4 @@
-package com.shixin.customview;
+package com.shixin.customview.layoutmanager;
 
 import android.view.View;
 
@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
 import com.shixin.customview.layoutmanager.CoverFlowLayoutManager;
+import com.shixin.customview.layoutmanager.CustomLayoutManager1;
 
 /**
  * @ProjectName: Android_Pratice

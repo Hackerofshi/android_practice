@@ -5,18 +5,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Scroller;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.paging.Pager;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.shixin.customview.CustomLayoutManager;
-import com.shixin.customview.CustomLayoutManager1;
-import com.shixin.customview.CustomLayoutManagerRemould1;
 import com.shixin.rxjava.R;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.shixin.customview;
+package com.shixin.customview.layoutmanager;
 
 import android.util.Log;
 import android.view.View;
@@ -6,7 +6,7 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
-import org.xutils.common.util.LogUtil;
+import com.shixin.customview.ItemViewInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,8 +76,8 @@ public class CustomLayoutManager1 extends RecyclerView.LayoutManager {
         final float              offsetPercent         = bottomItemVisibleSize * 1.0f / mItemViewWidth;
         final int                space                 = getHorizontalSpace();
         int                      remainSpace           = space;
-        final int                defaultOffset         = mItemViewWidth / 2;
-        final List<ItemViewInfo> itemViewInfos         = new ArrayList<>();
+        final int                defaultOffset = mItemViewWidth / 2;
+        final List<ItemViewInfo> itemViewInfos = new ArrayList<>();
         // 2.计算每个ItemView的位置信息(left和scale)  从倒数第一个开始计算。
         for (int i = bottomVisiblePosition - 1, j = 1; i >= 0; i--, j++) {
             //缩放以后的宽度

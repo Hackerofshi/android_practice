@@ -1,4 +1,4 @@
-package com.shixin.customview;
+package com.shixin.customview.layoutmanager;
 
 import android.graphics.Rect;
 import android.util.SparseArray;

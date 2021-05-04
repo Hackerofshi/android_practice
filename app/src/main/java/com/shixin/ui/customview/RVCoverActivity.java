@@ -9,20 +9,13 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.shixin.customview.CustomLayoutManager1;
-import com.shixin.customview.CustomLayoutManagerRemould1;
-import com.shixin.customview.layoutmanager.CoverFlowLayoutManager;
-import com.shixin.customview.layoutmanager.CoverFlowLayoutManager1;
 import com.shixin.customview.layoutmanager.RecyclerCoverFlowView;
 import com.shixin.rxjava.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import io.reactivex.internal.operators.completable.CompletableDisposeOn;
 
 public class RVCoverActivity extends AppCompatActivity {
 
