@@ -21,6 +21,8 @@ import com.shixin.ui.HomeActivity;
 public class WindowManagerDemoActivity extends AppCompatActivity {
 
 
+    private LayoutParams mLayoutParams;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +33,7 @@ public class WindowManagerDemoActivity extends AppCompatActivity {
             if (!Settings.canDrawOverlays(WindowManagerDemoActivity.this)) {
                 Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
                         Uri.parse("package:" + getPackageName()));
-                startActivityForResult(intent,10);
+                startActivityForResult(intent, 10);
             }
         }
 
@@ -39,19 +41,24 @@ public class WindowManagerDemoActivity extends AppCompatActivity {
 
         Button btn = new Button(this);
         btn.setText("btn");
-        LayoutParams layoutParams = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,
-                0, 0, PixelFormat.TRANSPARENT
-        );
-        layoutParams.flags = LayoutParams.FLAG_NOT_TOUCH_MODAL | LayoutParams.FLAG_NOT_FOCUSABLE
-                | LayoutParams.FLAG_SHOW_WHEN_LOCKED;
-        layoutParams.gravity = Gravity.LEFT | Gravity.TOP;
-        //添加到（100,300） 坐标的位置上
-        layoutParams.x = 100;
-        layoutParams.y = 300;
-        //layoutParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;
+        mLayoutParams = new WindowManager.LayoutParams();
+        mLayoutParams.format = PixelFormat.TRANSLUCENT; //图片之外其他地方透明
+        mLayoutParams.gravity = Gravity.TOP | Gravity.LEFT; //左 上
+        //指定位置 其实就是 该 item 对应的 rawX rawY 因为Window 添加View是需要知道 raw x ,y的
+        mLayoutParams.x = 100;
+        mLayoutParams.y = 300;
+        //指定布局大小
+        mLayoutParams.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        mLayoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        //透明度
+        mLayoutParams.alpha = 0.4f;
+        //指定标志 不能获取焦点和触摸
+        //指定标志 不能获取焦点和触摸
+        mLayoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE;
 
 
-        mWindowManager.addView(btn, layoutParams);
+        mWindowManager.addView(btn, mLayoutParams);
         //Flags 参数表示window属性，他有很多选项，通过这些选项可以控制Window的显示特性，以下是比较常用的选项
 
         //FLAG_NOT_FOCUSABLE 表示window不需要获取焦点，也不需要接收各种输入事件，此标记同时会启用
@@ -77,7 +84,6 @@ public class WindowManagerDemoActivity extends AppCompatActivity {
         //如果想要Window位于所有window的最顶层，那么采用最大层级即可。
 
     }
-
 
 
 }

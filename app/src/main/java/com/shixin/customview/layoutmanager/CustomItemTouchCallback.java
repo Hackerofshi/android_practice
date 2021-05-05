@@ -25,7 +25,8 @@ public class CustomItemTouchCallback  extends ItemTouchHelper.Callback{
     }
 
     /**
-     * 在此方法里面我们需要构建两个flag，一个是dragFlags，表示拖动效果支持的方向，另一个是swipeFlags，表示侧滑效果支持的方向。在我们的Demo中，拖动执行上下两个方向，侧滑执行左右两个方向，这些操作我们都可以在此方法里面定义。
+     * 在此方法里面我们需要构建两个flag，一个是dragFlags，表示拖动效果支持的方向，另一个是swipeFlags，
+     * 表示侧滑效果支持的方向。在我们的Demo中，拖动执行上下两个方向，侧滑执行左右两个方向，这些操作我们都可以在此方法里面定义。
      *
      * @param recyclerView
      * @param viewHolder
