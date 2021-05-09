@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.shixin.rxjava.R;
 import com.shixin.ui.HomeActivity;
+import com.shixin.ui.customview.touchevent.ActionPointActivity;
 
 public class CustomViewGuideActivity extends AppCompatActivity {
 
@@ -34,5 +35,8 @@ public class CustomViewGuideActivity extends AppCompatActivity {
                 startActivity(new Intent(CustomViewGuideActivity.this, RV1Activity.class));
             }
         });
+
+        findViewById(R.id.btn4).setOnClickListener(v ->
+                startActivity(new Intent(CustomViewGuideActivity.this, ActionPointActivity.class)));
     }
 }
