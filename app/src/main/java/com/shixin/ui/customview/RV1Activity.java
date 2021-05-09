@@ -7,11 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.shixin.rxjava.R;
 
@@ -28,7 +30,16 @@ public class RV1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rv1);
         recyclerView = (RecyclerView) findViewById(R.id.rv);
+        SwipeRefreshLayout refreshLayout = findViewById(R.id.srl);
+
         getDatas();
+
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+               // refreshLayout.setRefreshing(false);
+            }
+        });
 
         //recyclerView.setLayoutManager(new LinearLayoutManager(this));
         //PagerSnapHelper helper = new PagerSnapHelper();
