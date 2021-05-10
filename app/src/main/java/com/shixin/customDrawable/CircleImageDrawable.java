@@ -16,13 +16,12 @@ import android.graphics.drawable.Drawable;
 
 public class CircleImageDrawable extends Drawable {
 
-    private Paint mPaint;
-    private int mWidth;
-    private Bitmap mBitmap ;
+    private Paint  mPaint;
+    private int    mWidth;
+    private Bitmap mBitmap;
 
-    public CircleImageDrawable(Bitmap bitmap)
-    {
-        mBitmap = bitmap ;
+    public CircleImageDrawable(Bitmap bitmap) {
+        mBitmap = bitmap;
         BitmapShader bitmapShader = new BitmapShader(bitmap, Shader.TileMode.CLAMP,
                 Shader.TileMode.CLAMP);
         mPaint = new Paint();
@@ -32,38 +31,32 @@ public class CircleImageDrawable extends Drawable {
     }
 
     @Override
-    public void draw(Canvas canvas)
-    {
+    public void draw(Canvas canvas) {
         canvas.drawCircle(mWidth / 2, mWidth / 2, mWidth / 2, mPaint);
     }
 
     @Override
-    public int getIntrinsicWidth()
-    {
+    public int getIntrinsicWidth() {
         return mWidth;
     }
 
     @Override
-    public int getIntrinsicHeight()
-    {
+    public int getIntrinsicHeight() {
         return mWidth;
     }
 
     @Override
-    public void setAlpha(int alpha)
-    {
+    public void setAlpha(int alpha) {
         mPaint.setAlpha(alpha);
     }
 
     @Override
-    public void setColorFilter(ColorFilter cf)
-    {
+    public void setColorFilter(ColorFilter cf) {
         mPaint.setColorFilter(cf);
     }
 
     @Override
-    public int getOpacity()
-    {
+    public int getOpacity() {
         return PixelFormat.TRANSLUCENT;
     }
 

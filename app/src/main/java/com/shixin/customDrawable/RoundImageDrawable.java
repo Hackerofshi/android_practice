@@ -17,9 +17,9 @@ import android.graphics.drawable.Drawable;
 public class RoundImageDrawable extends Drawable {
 
 
-    private Paint mPaint;
+    private Paint  mPaint;
     private Bitmap mBitmap;
-    private RectF rectF;
+    private RectF  rectF;
 
     public RoundImageDrawable(Bitmap bitmap) {
         this.mBitmap = bitmap;
@@ -35,24 +35,20 @@ public class RoundImageDrawable extends Drawable {
     }
 
 
-//    下面几个方法都是要实现的
+    //    下面几个方法都是要实现的
     @Override
     public void draw(Canvas canvas) {
-        canvas.drawRoundRect(rectF,30,30,mPaint);
-
+        canvas.drawRoundRect(rectF, 30, 30, mPaint);
     }
 
     @Override
     public void setAlpha(int alpha) {
-
         mPaint.setAlpha(alpha);
     }
 
     @Override
     public void setColorFilter(ColorFilter colorFilter) {
-
-        mPaint.setColorFilter(colorFilter)
-                ;
+        mPaint.setColorFilter(colorFilter);
     }
 
     @Override
@@ -63,7 +59,7 @@ public class RoundImageDrawable extends Drawable {
     @Override
     public void setBounds(int left, int top, int right, int bottom) {
         super.setBounds(left, top, right, bottom);
-        rectF = new RectF(left,top,right,bottom);
+        rectF = new RectF(left, top, right, bottom);
     }
 
     @Override

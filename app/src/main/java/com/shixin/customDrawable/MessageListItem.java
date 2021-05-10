@@ -12,28 +12,23 @@ import com.shixin.rxjava.R;
  */
 
 public class MessageListItem extends RelativeLayout {
-    private static final int[] STATE_MESSAGE_READED = { R.attr.state_message_readed };
-    private boolean mMessgeReaded = false;
+    private static final int[]   STATE_MESSAGE_READED = {R.attr.state_message_readed};
+    private              boolean mMessgeReaded        = false;
 
-    public MessageListItem(Context context, AttributeSet attrs)
-    {
+    public MessageListItem(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public void setMessageReaded(boolean readed)
-    {
-        if (this.mMessgeReaded != readed)
-        {
+    public void setMessageReaded(boolean readed) {
+        if (this.mMessgeReaded != readed) {
             mMessgeReaded = readed;
             refreshDrawableState();
         }
     }
 
     @Override
-    protected int[] onCreateDrawableState(int extraSpace)
-    {
-        if (mMessgeReaded)
-        {
+    protected int[] onCreateDrawableState(int extraSpace) {
+        if (mMessgeReaded) {
 
 //            声明了一个STATE_MESSAGE_READED，然后在mMessgeReaded=true的情况下，通过onCreateDrawableState方法，加入我们自定义的状态。
             final int[] drawableState = super
