@@ -10,7 +10,7 @@ import android.widget.Button;
  * Created by admin on 2017/3/8 0008.
  */
 
-public class MyButton extends Button {
+public class MyButton extends androidx.appcompat.widget.AppCompatButton {
     public MyButton(Context context, AttributeSet attrs) {
         super(context, attrs);
     }

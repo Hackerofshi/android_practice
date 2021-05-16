@@ -52,6 +52,7 @@ public class MoveView extends View {
     public MoveView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         mTouchSlop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
+        //setClickable(true);
     }
 
     /**
@@ -94,6 +95,7 @@ public class MoveView extends View {
                 int y = (int) (event.getY(index) + 0.5f);
                 int dx = mLastTouchX - x;
                 int dy = mLastTouchY - y;
+                Log.i("ACTION_MOVE", dx + "");
                 if (!mCanMove) {
                     if (Math.abs(dy) >= mTouchSlop) {
                         if (dy > 0) {
@@ -124,7 +126,7 @@ public class MoveView extends View {
             case MotionEvent.ACTION_UP:
                 break;
         }
-        return true;
+        return false;
     }
 
     private void onPointerUp(MotionEvent event) {
@@ -136,4 +138,10 @@ public class MoveView extends View {
             mLastTouchY = (int) (event.getY(newIndex) + 0.5f);
         }
     }
+
+    @Override
+    public boolean performClick() {
+        return super.performClick();
+    }
+
 }
