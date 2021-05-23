@@ -1,4 +1,4 @@
-package com.shixin.ui.customview.scroller;
+package com.shixin.customview.scroller;
 
 import android.content.Context;
 import android.os.Build;
@@ -14,7 +14,7 @@ import androidx.annotation.RequiresApi;
 
 /**
  * @ProjectName: Android_Pratice
- * @Package: com.shixin.ui.customview.scroller
+ * @Package: com.shixin.customview.scroller
  * @ClassName: TextViewScroller
  * @Description: java类作用描述
  * @Author: shixin
@@ -86,12 +86,14 @@ public class TextViewScroller extends androidx.appcompat.widget.AppCompatAutoCom
                 overScroller.startScroll(0, overScroller.getFinalY(), 0, (int) dy);
                 invalidate();
                 break;
+
             case MotionEvent.ACTION_UP:
                 mVelocityTracker.computeCurrentVelocity(1000, mMaximumVelocity);
                 int initialVelocity = (int) mVelocityTracker.getYVelocity();
                 if (Math.abs(initialVelocity) > mMinimumVelocity) {
                     fling(initialVelocity);
-                } else if (overScroller.springBack(0, (int) getTranslationY(), 0, 0, top - getTop(), bottom - getBottom())) {
+                } else if (overScroller.springBack(0, (int) getTranslationY(),
+                        0, 0, top - getTop(), bottom - getBottom())) {
                     postInvalidateOnAnimation();
                 }
                 recycleVelocityTracker();

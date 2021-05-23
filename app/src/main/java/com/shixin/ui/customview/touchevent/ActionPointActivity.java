@@ -1,12 +1,15 @@
 package com.shixin.ui.customview.touchevent;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.shixin.customview.scroller.TextViewScroller;
 import com.shixin.customview.touchevent.MoveView;
 import com.shixin.rxjava.R;
 
@@ -16,7 +19,9 @@ public class ActionPointActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_action_point);
-        MoveView mv = findViewById(R.id.mv);
+        MoveView         mv       = findViewById(R.id.mv);
+        TextViewScroller scroller = findViewById(R.id.tvs);
+        scroller.setBoundary(0, 200);
 
         //dispatchTouchEvent(MotionEvent ev)
         //onInterceptTouchEvent(MotionEvent ev)
