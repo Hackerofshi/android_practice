@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:ignore="MissingConstraints"
-    tools:context="com.shixin.ui.constraint.ConstraintActivity">
+    tools:context="com.shixin.ui.practice.constraint.ConstraintActivity">
 
     <androidx.constraintlayout.helper.widget.Flow
         android:id="@+id/flow"

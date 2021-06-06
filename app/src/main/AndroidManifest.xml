@@ -110,6 +110,7 @@
         <activity android:name="com.shixin.ui.sourceread.TestMeasureSpecActivity" />
         <activity android:name="com.shixin.ui.customview.RVCoverActivity" />
         <activity android:name="com.shixin.ui.customview.RV1Activity" />
+        <activity android:name="com.shixin.ui.practice.CoordinatorLayoutActivity" />
 
         <service android:name=".CalcService">
 

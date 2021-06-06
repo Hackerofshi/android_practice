@@ -1,4 +1,4 @@
-package com.shixin.ui.constraint
+package com.shixin.ui.practice.constraint
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
