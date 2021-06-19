@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 import com.shixin.basex.RxBus;
 import com.shixin.bean.Course;
-import com.shixin.model.Newsbean;
+import com.shixin.bean.Newsbean;
 import com.shixin.network.NetWork;
 import com.shixin.network.api.News;
 import retrofit2.Retrofit;

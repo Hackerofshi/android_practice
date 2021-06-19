@@ -1,6 +1,6 @@
 package com.shixin.network.api;
 
-import com.shixin.model.Newsbean;
+import com.shixin.bean.Newsbean;
 import retrofit2.http.GET;
 import rx.Observable;
 

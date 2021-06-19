@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context="com.shixin.ui.rxjava.CustomViewActivity">
 
-    <com.shixin.customview.RoundImageView
+    <com.shixin.view.customview.RoundImageView
         android:id="@+id/id_meinv"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -17,7 +17,7 @@
         zhy:borderRadius="10dp"
         zhy:type="circle" />
 
-    <com.shixin.customviewgroup.FlowLayout
+    <com.shixin.view.customviewgroup.FlowLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
@@ -62,9 +62,9 @@
             android:text="tempor incididunt" />
 
 
-    </com.shixin.customviewgroup.FlowLayout>
+    </com.shixin.view.customviewgroup.FlowLayout>
 
-    <com.shixin.customviewgroup.CircleMenuLayout
+    <com.shixin.view.customviewgroup.CircleMenuLayout
         android:id="@+id/id_menulayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -90,7 +90,7 @@
 
                 android:background="@drawable/turnplate_mask_unlogin_normal" />
         </RelativeLayout>
-    </com.shixin.customviewgroup.CircleMenuLayout>
+    </com.shixin.view.customviewgroup.CircleMenuLayout>
 
     <com.shixin.event.MyLinearLayout
         android:id="@+id/ll"
@@ -113,7 +113,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp" />
 
-        <com.shixin.customDrawable.MessageListItem
+        <com.shixin.view.customDrawable.MessageListItem
             android:layout_width="match_parent"
             android:id="@+id/re"
             android:layout_height="50dp">
@@ -132,6 +132,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/id_msg_item_icon" />
-        </com.shixin.customDrawable.MessageListItem>
+        </com.shixin.view.customDrawable.MessageListItem>
     </com.shixin.event.MyLinearLayout>
 </RelativeLayout>

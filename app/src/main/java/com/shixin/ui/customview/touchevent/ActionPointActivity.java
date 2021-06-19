@@ -7,8 +7,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.shixin.customview.scroller.TextViewScroller;
-import com.shixin.customview.touchevent.MoveView;
+import com.shixin.view.customview.scroller.TextViewScroller;
+import com.shixin.view.customview.touchevent.MoveView;
 import com.shixin.ui.rxjava.R;
 
 public class ActionPointActivity extends AppCompatActivity {
