@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.shixin.R;
 import com.shixin.view.customDrawable.CircleImageDrawable;
 import com.shixin.view.customDrawable.MessageListItem;
 import com.shixin.view.customviewgroup.CircleMenuLayout;

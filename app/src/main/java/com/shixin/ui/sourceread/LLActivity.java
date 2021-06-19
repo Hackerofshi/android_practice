@@ -8,8 +8,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.shixin.ui.rxjava.R;
+import com.shixin.R;
 
 public class LLActivity extends AppCompatActivity {
     /**

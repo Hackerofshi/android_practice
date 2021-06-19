@@ -6,9 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.Observable
 import androidx.databinding.Observable.OnPropertyChangedCallback
-import com.shixin.ui.rxjava.BR
-import com.shixin.ui.rxjava.R
-import com.shixin.ui.rxjava.databinding.ActivityMain3Binding
+import com.shixin.R
+import com.shixin.databinding.ActivityMain3Binding
 import kotlin.random.Random
 
 /**
@@ -36,7 +35,7 @@ class MainActivity3 : AppCompatActivity() {
 
         goods.addOnPropertyChangedCallback(object : OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable, propertyId: Int) {
-                when (propertyId) {
+                /*when (propertyId) {
                     BR.name -> {
                         Log.e(TAG, "BR.name")
                     }
@@ -49,7 +48,7 @@ class MainActivity3 : AppCompatActivity() {
                     else -> {
                         Log.e(TAG, "未知")
                     }
-                }
+                }*/
             }
         })
     }

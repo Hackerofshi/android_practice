@@ -3,7 +3,7 @@ package com.hi.dhl.paging3.network.ui.github
 import android.view.View
 import androidx.paging.LoadState
 import com.hi.dhl.jdatabinding.DataBindingViewHolder
-import com.shixin.ui.rxjava.databinding.RecycieItemNetworkStateBinding
+import com.shixin.databinding.RecycieItemNetworkStateBinding
 
 /**
  * <pre>

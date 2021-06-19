@@ -5,9 +5,9 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.shixin.ui.rxjava.R
-import com.shixin.ui.rxjava.databinding.ActivityMain7Binding
-import com.shixin.ui.rxjava.databinding.ViewStubBinding
+import com.shixin.R
+import com.shixin.databinding.ActivityMain7Binding
+import com.shixin.databinding.ViewStubBinding
 
 /**
  * 作者：leavesC

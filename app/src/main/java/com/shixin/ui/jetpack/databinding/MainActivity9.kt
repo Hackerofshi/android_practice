@@ -10,8 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.BindingAdapter
 import androidx.databinding.BindingConversion
 import androidx.databinding.DataBindingUtil
-import com.shixin.ui.rxjava.R
-import com.shixin.ui.rxjava.databinding.ActivityMain9Binding
+import com.shixin.R
+import com.shixin.databinding.ActivityMain9Binding
 import kotlin.random.Random
 
 /**

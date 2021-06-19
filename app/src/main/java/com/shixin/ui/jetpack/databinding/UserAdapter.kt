@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.shixin.ui.rxjava.R
-import com.shixin.ui.rxjava.databinding.ItemUserBinding
+import com.shixin.R
+import com.shixin.databinding.ItemUserBinding
 
 /**
  * 作者：leavesC

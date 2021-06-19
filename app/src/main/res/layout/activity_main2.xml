@@ -3,9 +3,9 @@
 
     <data>
 
-        <import type="com.shixin.jetpack.databinding.UserBean" />
+        <import type="com.shixin.ui.jetpack.databinding.UserBean" />
 
-        <import type="com.shixin.jetpack.databinding.ObservableGoodsBean" />
+        <import type="com.shixin.ui.jetpack.databinding.ObservableGoodsBean" />
 
         <variable
             name="userInfo"

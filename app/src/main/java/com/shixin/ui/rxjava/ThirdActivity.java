@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.shixin.R;
+
 import calc.aidl.ICalcAIDL;
 
 public class ThirdActivity extends AppCompatActivity {

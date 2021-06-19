@@ -5,8 +5,8 @@ import coil.api.load
 import coil.transform.CircleCropTransformation
 import com.hi.dhl.jdatabinding.DataBindingViewHolder
 import com.shixin.bean.GitHubAccount
-import com.shixin.ui.rxjava.R
-import com.shixin.ui.rxjava.databinding.RecycieItemGithubBinding
+import com.shixin.R
+import com.shixin.databinding.RecycieItemGithubBinding
 
 
 /**

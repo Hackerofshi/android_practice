@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.hi.dhl.paging3.network.ui.MainPagingActivity;
 import com.shixin.ui.jetpack.databinding.MainActivity;
-import com.shixin.ui.rxjava.R;
+import com.shixin.R;
 import com.shixin.ui.practice.constraint.ConstraintActivity;
 import com.shixin.ui.customview.CustomViewGuideActivity;
 import com.shixin.ui.ndktest.NdkTestActivity;

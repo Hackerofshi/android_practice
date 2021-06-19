@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableArrayMap
-import com.shixin.ui.rxjava.R
-import com.shixin.ui.rxjava.databinding.ActivityMain5Binding
+import com.shixin.R
+import com.shixin.databinding.ActivityMain5Binding
 import kotlin.random.Random
 
 /**

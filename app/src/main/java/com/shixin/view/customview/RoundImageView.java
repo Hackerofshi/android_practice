@@ -15,7 +15,7 @@ import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.widget.ImageView;
 
-import com.shixin.ui.rxjava.R;
+import com.shixin.R;
 
 /**
  * Created by admin on 2017/3/7 0007.

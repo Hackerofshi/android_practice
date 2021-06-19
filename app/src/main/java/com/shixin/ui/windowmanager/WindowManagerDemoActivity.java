@@ -14,7 +14,7 @@ import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
 
-import com.shixin.ui.rxjava.R;
+import com.shixin.R;
 
 public class WindowManagerDemoActivity extends AppCompatActivity {
 

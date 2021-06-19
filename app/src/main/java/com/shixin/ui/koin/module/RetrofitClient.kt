@@ -2,7 +2,7 @@ package com.win.lib_net.net
 
 
 
-import com.shixin.ui.rxjava.BuildConfig
+import com.shixin.BuildConfig
 import com.win.lib_net.interceptor.CommonInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

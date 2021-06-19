@@ -2,7 +2,7 @@ package com.shixin.ui.practice.constraint
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.shixin.ui.rxjava.R
+import com.shixin.R
 
 class ConstraintActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

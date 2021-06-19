@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
-import com.shixin.ui.rxjava.R;
+import com.shixin.R;
 
 /**
  * Created by shixin on 2017/3/23 0023.

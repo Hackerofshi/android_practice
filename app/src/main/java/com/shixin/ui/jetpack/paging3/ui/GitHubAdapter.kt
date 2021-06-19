@@ -7,7 +7,7 @@ import androidx.annotation.LayoutRes
 import androidx.paging.PagingDataAdapter
 import com.hi.dhl.jdatabinding.dowithTry
 import com.shixin.bean.GitHubAccount
-import com.shixin.ui.rxjava.R
+import com.shixin.R
 
 /**
  * <pre>

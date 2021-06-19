@@ -6,6 +6,8 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.shixin.R;
+
 public class ScrollTestActivity extends AppCompatActivity {
     private LinearLayout itemRoot;
     private int mlastX = 0;

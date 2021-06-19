@@ -4,9 +4,9 @@
 
     <data>
 
-        <import type="com.shixin.jetpack.databinding.MainActivity7.Handler" />
+        <import type="com.shixin.ui.jetpack.databinding.MainActivity7.Handler" />
 
-        <import type="com.shixin.jetpack.databinding.UserBean" />
+        <import type="com.shixin.ui.jetpack.databinding.UserBean" />
 
         <variable
             name="handler"

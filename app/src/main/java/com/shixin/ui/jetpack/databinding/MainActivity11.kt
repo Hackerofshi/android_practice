@@ -2,7 +2,7 @@ package com.shixin.ui.jetpack.databinding
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.shixin.ui.rxjava.R
+import com.shixin.R
 /**
  * 作者：leavesC
  * 时间：2020/6/29 23:01

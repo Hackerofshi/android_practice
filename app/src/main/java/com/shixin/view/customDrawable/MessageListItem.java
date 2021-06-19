@@ -4,8 +4,7 @@ package com.shixin.view.customDrawable;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
-
-import com.shixin.ui.rxjava.R;
+import com.shixin.R;
 
 /**
  * Created by admin on 2017/3/9 0009.

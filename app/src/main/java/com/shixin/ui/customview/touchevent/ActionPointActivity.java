@@ -9,7 +9,7 @@ import android.view.View;
 
 import com.shixin.view.customview.scroller.TextViewScroller;
 import com.shixin.view.customview.touchevent.MoveView;
-import com.shixin.ui.rxjava.R;
+import com.shixin.R;
 
 public class ActionPointActivity extends AppCompatActivity {
 

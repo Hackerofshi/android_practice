@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.xutils.x;
 
+import com.shixin.R;
 import com.shixin.view.customview.BitmapCanvasView;
 
 public class DrawBitmapAvtivity extends AppCompatActivity {

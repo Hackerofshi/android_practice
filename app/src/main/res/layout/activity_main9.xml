@@ -4,9 +4,9 @@
 
     <data>
 
-        <import type="com.shixin.jetpack.databinding.ImageBean" />
+        <import type="com.shixin.ui.jetpack.databinding.ImageBean" />
 
-        <import type="com.shixin.jetpack.databinding.MainActivity9.Handler" />
+        <import type="com.shixin.ui.jetpack.databinding.MainActivity9.Handler" />
 
         <variable
             name="image"

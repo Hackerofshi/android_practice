@@ -25,7 +25,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.shixin.ui.rxjava.R;
+import com.shixin.R;
 
 import java.util.ArrayList;
 import java.util.List;

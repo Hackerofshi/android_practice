@@ -3,18 +3,17 @@ buildscript {
     ext.kotlin_version = '1.4.21'
     ext.koin_version = '2.1.6'
     repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         maven {
             url'https://maven.aliyun.com/repository/google'
         }
         maven{
             url 'https://maven.aliyun.com/repository/jcenter'
         }
-        maven{
-            url 'http://maven.aliyun.com/nexus/content/groups/public'
-        }
         google()
-        jcenter()
         mavenCentral()
+        jcenter()
+
     }
 
     dependencies {
@@ -37,21 +36,22 @@ buildscript {
 
 allprojects {
     repositories {
-        google()//新增这一行
+
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+
         maven {
             url'https://maven.aliyun.com/repository/google'
         }
         maven{
             url 'https://maven.aliyun.com/repository/jcenter'
         }
-        maven{
-            url 'http://maven.aliyun.com/nexus/content/groups/public'
-        }
         maven {
             url "https://androidx.dev/snapshots/builds/6543454/artifacts/repository/"
         }
-        jcenter()
+        google()//新增这一行
         mavenCentral()
+        jcenter()
+
     }
 }
 

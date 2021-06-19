@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.shixin.ui.jetpack.databinding.modle.User
-import com.shixin.ui.rxjava.R
-import com.shixin.ui.rxjava.databinding.ActivityDatabingTestBinding
+import com.shixin.R
+import com.shixin.databinding.ActivityDatabingTestBinding
 
 
 class DatabingTestActivity : AppCompatActivity() {

@@ -7,7 +7,7 @@
 
         <variable
             name="mainViewModel"
-            type="com.shixin.jetpack.paging3.ui.MainViewModel" />
+            type="com.shixin.ui.jetpack.paging3.ui.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -7,7 +7,7 @@ import androidx.annotation.LayoutRes
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import com.hi.dhl.paging3.network.ui.GitHubAdapter
-import com.shixin.ui.rxjava.R
+import com.shixin.R
 
 /**
  * <pre>

@@ -3,8 +3,7 @@ package com.shixin.ui.sourceread;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.shixin.ui.rxjava.R;
+import com.shixin.R;
 
 public class RLActivity extends AppCompatActivity {
 

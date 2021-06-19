@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.shixin.R;
 import com.shixin.task.MultiAsynctaskNetwork;
 import com.shixin.task.NetworkInterface;
 

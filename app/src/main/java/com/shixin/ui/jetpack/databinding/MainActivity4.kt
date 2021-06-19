@@ -3,8 +3,8 @@ package com.shixin.ui.jetpack.databinding
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.shixin.ui.rxjava.R
-import com.shixin.ui.rxjava.databinding.ActivityMain4Binding
+import com.shixin.R
+import com.shixin.databinding.ActivityMain4Binding
 import kotlin.random.Random
 
 /**

@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.shixin.ui.rxjava.R;
+import com.shixin.R;
 
 import java.util.ArrayList;
 import java.util.List;

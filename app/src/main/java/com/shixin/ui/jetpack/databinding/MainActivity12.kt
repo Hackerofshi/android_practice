@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
-import com.shixin.ui.rxjava.R
+import com.shixin.R
 /**
  * 作者：leavesC
  * 时间：2020/6/29 23:03

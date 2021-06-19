@@ -2,7 +2,6 @@ package com.shixin.ui.jetpack.databinding.modle
 
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
-import com.shixin.ui.rxjava.BR
 
 class User {
     public var name: String? = null
@@ -18,7 +17,7 @@ class GoodsBean : BaseObservable() {
     set(value) {
         field = value
         //只更新本字段
-        notifyPropertyChanged(BR.name)
+       //notifyPropertyChanged(BR.name)
     }
 
     @Bindable

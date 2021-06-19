@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
-import com.shixin.ui.rxjava.R;
+import com.shixin.R;
 
 /**
  * @ProjectName: Android_Pratice

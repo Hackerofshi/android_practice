@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import com.shixin.R;
 import com.shixin.bean.Course;
 import com.shixin.bean.Stu;
 import rx.Notification;

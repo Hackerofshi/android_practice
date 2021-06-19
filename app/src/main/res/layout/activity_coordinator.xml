@@ -26,12 +26,12 @@
                 android:src="@mipmap/hello"
                 app:layout_collapseMode="parallax" />
 
-            <Toolba
+            <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:navigationIcon="@mipmap/back_icon" />
+                app:navigationIcon="@mipmap/ic_launcher" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>

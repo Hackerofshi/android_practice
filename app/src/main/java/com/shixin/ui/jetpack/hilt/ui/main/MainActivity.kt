@@ -7,7 +7,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.shixin.ui.jetpack.hilt.di.qualifiers.ActivityScope
 import com.shixin.ui.jetpack.hilt.di.qualifiers.AppScope
-import com.shixin.ui.rxjava.R
+import com.shixin.R
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

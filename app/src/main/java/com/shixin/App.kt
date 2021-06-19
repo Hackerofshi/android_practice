@@ -1,4 +1,4 @@
-package com.shixin.app
+package com.shixin
 
 import com.shixin.base.BaseApplication
 import com.shixin.ui.jetpack.paging3.di.appModule

@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 
 import javax.inject.Inject;
 
+import com.shixin.R;
 import com.shixin.dagger.Car;
 import com.shixin.dagger.Poetry;
 import com.shixin.dagger.component.MainComponent;

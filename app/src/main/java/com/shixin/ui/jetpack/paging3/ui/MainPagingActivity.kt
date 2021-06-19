@@ -7,8 +7,8 @@ import androidx.paging.LoadState
 import com.hi.dhl.jdatabinding.DataBindingAppCompatActivity
 import com.hi.dhl.paging3.network.ui.github.FooterAdapter
 import com.shixin.ui.jetpack.paging3.ui.MainViewModel
-import com.shixin.ui.rxjava.R
-import com.shixin.ui.rxjava.databinding.ActivityPageMainBinding
+import com.shixin.R
+import com.shixin.databinding.ActivityPageMainBinding
 import kotlinx.android.synthetic.main.activity_page_main.*
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch

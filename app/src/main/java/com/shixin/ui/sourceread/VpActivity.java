@@ -10,8 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.shixin.ui.rxjava.R;
-
+import com.shixin.R;
 import java.util.ArrayList;
 
 public class VpActivity extends AppCompatActivity {

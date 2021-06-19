@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.shixin.ui.rxjava.R;
+import com.shixin.R;
 
 import java.util.ArrayList;
 import java.util.List;

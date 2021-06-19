@@ -11,6 +11,7 @@ import com.jakewharton.rxbinding.view.RxView;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import com.shixin.R;
 import com.shixin.basex.RxBus;
 import com.shixin.bean.Course;
 import com.shixin.bean.Newsbean;

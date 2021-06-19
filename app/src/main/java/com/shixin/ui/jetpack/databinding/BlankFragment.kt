@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.shixin.ui.rxjava.R
-import com.shixin.ui.rxjava.databinding.FragmentBlankBinding
+import com.shixin.R
+import com.shixin.databinding.FragmentBlankBinding
 
 /**
  * 作者：leavesC

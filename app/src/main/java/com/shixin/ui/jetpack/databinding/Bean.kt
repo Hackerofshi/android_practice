@@ -3,7 +3,6 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import androidx.databinding.ObservableField
 import androidx.databinding.ObservableFloat
-import com.shixin.ui.rxjava.BR
 
 /**
  * 作者：leavesC
@@ -26,7 +25,7 @@ class GoodsBean : BaseObservable() {
         set(value) {
             field = value
             //只更新本字段
-            notifyPropertyChanged(BR.name)
+          //  notifyPropertyChanged(BR.name)
         }
 
     @Bindable

@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import com.shixin.ui.rxjava.R
+import com.shixin.R
 import kotlinx.android.synthetic.main.activity_name.*
 
 class NameActivity : AppCompatActivity() {

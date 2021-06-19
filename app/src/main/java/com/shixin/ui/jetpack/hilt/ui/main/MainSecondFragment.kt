@@ -12,7 +12,7 @@ import com.shixin.ui.jetpack.hilt.di.qualifiers.AppScope
 import com.shixin.ui.jetpack.hilt.di.qualifiers.FragmentScope
 import com.shixin.ui.jetpack.hilt.ui.main.ActivityViewModel
 import com.shixin.ui.jetpack.hilt.ui.main.FragmentViewModel
-import com.shixin.ui.rxjava.R
+import com.shixin.R
 
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_second.*

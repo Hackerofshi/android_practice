@@ -6,7 +6,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.shixin.ui.rxjava.R;
+import com.shixin.R;
 
 public class ReadSourceActivity extends AppCompatActivity {
 
