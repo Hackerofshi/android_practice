@@ -5,7 +5,7 @@
     android:id="@+id/activity_custom_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.shixin.rxjava.CustomViewActivity">
+    tools:context="com.shixin.ui.rxjava.CustomViewActivity">
 
     <com.shixin.customview.RoundImageView
         android:id="@+id/id_meinv"

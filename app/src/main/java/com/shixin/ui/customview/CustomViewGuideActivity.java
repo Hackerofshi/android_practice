@@ -6,8 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.shixin.rxjava.R;
-import com.shixin.ui.HomeActivity;
+import com.shixin.ui.rxjava.R;
 import com.shixin.ui.customview.touchevent.ActionPointActivity;
 
 public class CustomViewGuideActivity extends AppCompatActivity {

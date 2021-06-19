@@ -4,7 +4,7 @@
     android:id="@+id/activity_event"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.shixin.rxjava.EventActivity">
+    tools:context="com.shixin.ui.rxjava.EventActivity">
     <com.shixin.event.MyButton
         android:text="event"
         android:id="@+id/event"

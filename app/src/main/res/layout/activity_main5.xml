@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="com.shixin.jetpack.databinding.MainActivity5">
+        tools:context="com.shixin.ui.jetpack.databinding.MainActivity5">
 
         <TextView
             style="@style/TextViewStyle"

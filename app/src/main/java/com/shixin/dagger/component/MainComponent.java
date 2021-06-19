@@ -10,12 +10,8 @@ package com.shixin.dagger.component;
 public interface MainComponent {
     */
 
-import com.shixin.dagger.module.MainModule;
-import com.shixin.dagger.module.PoetryModule;
-import com.shixin.rxjava.Dagger1Activity;
-import com.shixin.rxjava.DaggerActivity;
-
-import dagger.Component;
+import com.shixin.ui.rxjava.Dagger1Activity;
+import com.shixin.ui.rxjava.DaggerActivity;
 
 /**
      * 需要用到这个连接器的对象，就是这个对象里面有需要注入的属性

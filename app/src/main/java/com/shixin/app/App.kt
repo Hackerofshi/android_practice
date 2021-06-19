@@ -1,8 +1,7 @@
 package com.shixin.app
 
 import com.shixin.base.BaseApplication
-import com.shixin.jetpack.paging3.di.appModule
-import com.shixin.koin.module.AppModule
+import com.shixin.ui.jetpack.paging3.di.appModule
 import dagger.hilt.android.HiltAndroidApp
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin

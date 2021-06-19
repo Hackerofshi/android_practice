@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.shixin.jni.DynamicBridge;
-import com.shixin.rxjava.R;
+import com.shixin.ui.rxjava.R;
 
 public class NdkTestActivity extends AppCompatActivity {
 

@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.shixin.rxjava.R;
+import com.shixin.ui.rxjava.R;
 
 public class RLActivity extends AppCompatActivity {
 

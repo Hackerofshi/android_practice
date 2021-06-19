@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.shixin.rxjava.R;
+import com.shixin.ui.rxjava.R;
 
 public class LLActivity extends AppCompatActivity {
     /**

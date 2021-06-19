@@ -4,7 +4,7 @@
     android:id="@+id/activity_second"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.shixin.rxjava.SecondActivity">
+    tools:context="com.shixin.ui.rxjava.SecondActivity">
     <Button
         android:id="@+id/bu1"
         android:layout_width="wrap_content"

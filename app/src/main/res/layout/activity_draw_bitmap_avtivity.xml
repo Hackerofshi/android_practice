@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.shixin.rxjava.DrawBitmapAvtivity">
+    tools:context="com.shixin.ui.rxjava.DrawBitmapAvtivity">
 
     <Button
         android:id="@+id/reset"

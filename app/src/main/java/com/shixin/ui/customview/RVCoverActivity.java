@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shixin.customview.layoutmanager.RecyclerCoverFlowView;
-import com.shixin.rxjava.R;
+import com.shixin.ui.rxjava.R;
 
 import java.util.ArrayList;
 import java.util.List;

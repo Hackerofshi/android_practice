@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.shixin.rxjava.R;
+import com.shixin.ui.rxjava.R;
 
 /**
  * @ProjectName: Android_Pratice

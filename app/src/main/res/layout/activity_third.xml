@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.shixin.rxjava.ThirdActivity">
+    tools:context="com.shixin.ui.rxjava.ThirdActivity">
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

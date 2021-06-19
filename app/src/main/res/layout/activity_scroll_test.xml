@@ -4,7 +4,7 @@
     android:id="@+id/activity_scroll_test"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.shixin.rxjava.ScrollTestActivity">
+    tools:context="com.shixin.ui.rxjava.ScrollTestActivity">
 
     <LinearLayout
         android:id="@+id/lin_root"

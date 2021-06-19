@@ -1,16 +1,11 @@
 package com.shixin.ui.sourceread;
 
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.shixin.rxjava.R;
+import com.shixin.ui.rxjava.R;
 
 public class TestMeasureSpecActivity extends AppCompatActivity {
 

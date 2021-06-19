@@ -1,12 +1,11 @@
 package com.shixin.ui.practice;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.shixin.rxjava.R;
+import com.shixin.ui.rxjava.R;
 
 /**
  * @ProjectName: Android_Pratice

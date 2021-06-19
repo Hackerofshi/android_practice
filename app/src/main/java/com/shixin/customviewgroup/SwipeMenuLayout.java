@@ -18,7 +18,7 @@ import android.view.animation.OvershootInterpolator;
 
 import androidx.annotation.RequiresApi;
 
-import com.shixin.rxjava.R;
+import com.shixin.ui.rxjava.R;
 
 /**
  * Created by shixin on 2017/3/31 0031.

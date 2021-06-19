@@ -13,10 +13,8 @@ import android.view.Gravity;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
-import android.widget.Toast;
 
-import com.shixin.rxjava.R;
-import com.shixin.ui.HomeActivity;
+import com.shixin.ui.rxjava.R;
 
 public class WindowManagerDemoActivity extends AppCompatActivity {
 
