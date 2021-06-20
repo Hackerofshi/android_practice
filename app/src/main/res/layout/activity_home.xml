@@ -11,9 +11,13 @@
         android:layout_height="match_parent">
         <Button
             android:layout_width="match_parent"
+            android:id="@+id/btn0"
+            android:text="jetpack"
+            android:layout_height="wrap_content" />
+        <Button
+            android:layout_width="match_parent"
             android:id="@+id/btn1"
             android:text="源码解读Guide"
-            android:background="#00FFFF"
             android:layout_height="wrap_content" />
 
         <Button

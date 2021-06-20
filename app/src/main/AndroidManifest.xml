@@ -15,36 +15,37 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
-        android:name="com.shixin.App"
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.shixin.ui.jetpack.flow.FlowDemoActivity"></activity>
-        <activity android:name="com.shixin.ui.customview.touchevent.ActionPointActivity" />
-        <activity android:name="com.shixin.ui.windowmanager.WindowManagerDemoActivity" />
-        <activity android:name="com.shixin.ui.customview.CustomViewGuideActivity" />
-        <activity android:name="com.shixin.ui.sourceread.ViewPager2Activity" />
-        <activity android:name="com.shixin.ui.ndktest.NdkTestActivity" />
-        <activity android:name="com.shixin.ui.jetpack.livedata.ui.NameActivity" />
-        <activity android:name="com.shixin.ui.koin.ui.MySimpleKoinActivity" />
-        <activity android:name="com.shixin.ui.jetpack.databinding.DatabingTestActivity" />
-        <activity android:name="com.shixin.ui.sourceread.RLActivity" />
-        <activity android:name="com.shixin.ui.sourceread.LLActivity" />
-        <activity android:name="com.shixin.ui.sourceread.VpActivity" />
-        <activity android:name="com.shixin.ui.HomeActivity">
+        <activity android:name=".ui.jetpack.JetIndexActivity"></activity>
+        <activity android:name=".ui.jetpack.flow.FlowDemoActivity" />
+        <activity android:name=".ui.customview.touchevent.ActionPointActivity" />
+        <activity android:name=".ui.windowmanager.WindowManagerDemoActivity" />
+        <activity android:name=".ui.customview.CustomViewGuideActivity" />
+        <activity android:name=".ui.sourceread.ViewPager2Activity" />
+        <activity android:name=".ui.ndktest.NdkTestActivity" />
+        <activity android:name=".ui.jetpack.livedata.ui.NameActivity" />
+        <activity android:name=".ui.koin.ui.MySimpleKoinActivity" />
+        <activity android:name=".ui.jetpack.databinding.DatabingTestActivity" />
+        <activity android:name=".ui.sourceread.RLActivity" />
+        <activity android:name=".ui.sourceread.LLActivity" />
+        <activity android:name=".ui.sourceread.VpActivity" />
+        <activity android:name=".ui.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.shixin.ui.rxjava.MainActivity" />
-        <activity android:name="com.shixin.ui.rxjava.SecondActivity" />
-        <activity android:name="com.shixin.ui.rxjava.BaseActivity" />
-        <activity android:name="com.shixin.ui.rxjava.ThirdActivity" />
-        <activity android:name="com.shixin.ui.rxjava.CustomViewActivity">
+        <activity android:name=".ui.rxjava.MainActivity" />
+        <activity android:name=".ui.rxjava.SecondActivity" />
+        <activity android:name=".ui.rxjava.BaseActivity" />
+        <activity android:name=".ui.rxjava.ThirdActivity" />
+        <activity android:name=".ui.rxjava.CustomViewActivity">
 
             <!--
             <intent-filter>
@@ -54,7 +55,7 @@
             </intent-filter>
             -->
         </activity>
-        <activity android:name="com.shixin.ui.rxjava.ScrollTestActivity">
+        <activity android:name=".ui.rxjava.ScrollTestActivity">
 
             <!--
             <intent-filter>
@@ -65,9 +66,9 @@
             -->
 
         </activity>
-        <activity android:name="com.shixin.ui.rxjava.EventActivity" />
+        <activity android:name=".ui.rxjava.EventActivity" />
         <activity
-            android:name="com.shixin.ui.rxjava.DrawBitmapAvtivity"
+            android:name=".ui.rxjava.DrawBitmapAvtivity"
             android:label="@string/title_activity_draw_bitmap_avtivity"
             android:theme="@style/AppTheme.NoActionBar">
 
@@ -79,7 +80,7 @@
             </intent-filter>
             -->
         </activity>
-        <activity android:name="com.shixin.ui.rxjava.DaggerActivity">
+        <activity android:name=".ui.rxjava.DaggerActivity">
 
             <!--
             <intent-filter>
@@ -90,30 +91,30 @@
             -->
 
         </activity>
-        <activity android:name="com.shixin.ui.sourceread.ReadSourceActivity" />
-        <activity android:name="com.shixin.ui.customview.RVActivity" />
-        <activity android:name="com.shixin.ui.jetpack.hilt.ui.main.MainActivity" />
+        <activity android:name=".ui.sourceread.ReadSourceActivity" />
+        <activity android:name=".ui.customview.RVActivity" />
+        <activity android:name=".ui.jetpack.hilt.ui.main.MainActivity" />
         <activity android:name="com.github.vitaviva.hilt.ui.second.SecondActivity" />
-        <activity android:name="com.shixin.ui.jetpack.databinding.MainActivity" />
-        <activity android:name="com.shixin.ui.jetpack.databinding.MainActivity2" />
-        <activity android:name="com.shixin.ui.jetpack.databinding.MainActivity3" />
-        <activity android:name="com.shixin.ui.jetpack.databinding.MainActivity4" />
-        <activity android:name="com.shixin.ui.jetpack.databinding.MainActivity5" />
-        <activity android:name="com.shixin.ui.jetpack.databinding.MainActivity6" />
-        <activity android:name="com.shixin.ui.jetpack.databinding.MainActivity7" />
-        <activity android:name="com.shixin.ui.jetpack.databinding.MainActivity8" />
-        <activity android:name="com.shixin.ui.jetpack.databinding.MainActivity9" />
-        <activity android:name="com.shixin.ui.jetpack.databinding.MainActivity10" />
-        <activity android:name="com.shixin.ui.jetpack.databinding.MainActivity11" />
-        <activity android:name="com.shixin.ui.jetpack.databinding.MainActivity12" />
-        <activity android:name="com.shixin.ui.jetpack.databinding.MainActivity13" />
+        <activity android:name=".ui.jetpack.databinding.MainActivity" />
+        <activity android:name=".ui.jetpack.databinding.MainActivity2" />
+        <activity android:name=".ui.jetpack.databinding.MainActivity3" />
+        <activity android:name=".ui.jetpack.databinding.MainActivity4" />
+        <activity android:name=".ui.jetpack.databinding.MainActivity5" />
+        <activity android:name=".ui.jetpack.databinding.MainActivity6" />
+        <activity android:name=".ui.jetpack.databinding.MainActivity7" />
+        <activity android:name=".ui.jetpack.databinding.MainActivity8" />
+        <activity android:name=".ui.jetpack.databinding.MainActivity9" />
+        <activity android:name=".ui.jetpack.databinding.MainActivity10" />
+        <activity android:name=".ui.jetpack.databinding.MainActivity11" />
+        <activity android:name=".ui.jetpack.databinding.MainActivity12" />
+        <activity android:name=".ui.jetpack.databinding.MainActivity13" />
         <activity android:name="com.hi.dhl.paging3.network.ui.MainPagingActivity" />
-        <activity android:name="com.shixin.ui.sourceread.TestMeasureSpecActivity" />
-        <activity android:name="com.shixin.ui.customview.RVCoverActivity" />
-        <activity android:name="com.shixin.ui.customview.RV1Activity" />
-        <activity android:name="com.shixin.ui.practice.CoordinatorLayoutActivity" />
+        <activity android:name=".ui.sourceread.TestMeasureSpecActivity" />
+        <activity android:name=".ui.customview.RVCoverActivity" />
+        <activity android:name=".ui.customview.RV1Activity" />
+        <activity android:name=".ui.practice.CoordinatorLayoutActivity" />
 
-        <service android:name="com.shixin.ui.rxjava.CalcService">
+        <service android:name=".ui.rxjava.CalcService">
 
             <!--
             <intent-filter>

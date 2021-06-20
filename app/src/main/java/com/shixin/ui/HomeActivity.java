@@ -5,12 +5,14 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.hi.dhl.paging3.network.ui.MainPagingActivity;
+import com.shixin.ui.jetpack.JetIndexActivity;
 import com.shixin.ui.jetpack.databinding.MainActivity;
 import com.shixin.R;
 import com.shixin.ui.practice.constraint.ConstraintActivity;
@@ -26,6 +28,14 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        findViewById(R.id.btn0).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, JetIndexActivity.class));
+            }
+        });
+
         findViewById(R.id.btn1).setOnClickListener(view ->
                 startActivity(new Intent(HomeActivity.this, ReadSourceActivity.class)));
 
@@ -65,7 +75,7 @@ public class HomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
                         Uri.parse("package:" + getPackageName()));
                 startActivityForResult(intent, OVERLAY_PERMISSION_CODE);
-            }else {
+            } else {
                 Intent serviceIntent = new Intent(HomeActivity.this, WindowManagerDemoActivity.class);
                 startActivity(serviceIntent);
             }
