@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 
 import com.shixin.base.BaseApplication;
 
+import com.shixin.http.NetWorkUtils;
 import com.shixin.network.api.News;
 import okhttp3.Cache;
 import okhttp3.CacheControl;
@@ -21,7 +22,6 @@ import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import com.shixin.utils.NetWorkUtils;
 
 /**
  * 项目名称:RxJava

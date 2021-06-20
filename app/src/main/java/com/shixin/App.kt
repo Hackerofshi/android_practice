@@ -19,4 +19,9 @@ class App : BaseApplication() {
             modules(appModule)
         }
     }
+
+    companion object {
+        lateinit var instance: App
+            private set
+    }
 }
