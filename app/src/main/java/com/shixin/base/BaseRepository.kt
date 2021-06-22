@@ -18,7 +18,7 @@ open class BaseRepository {
                 data = result.data
             }
             is Result.Error -> {
-                Log.d("1.DataRepository", "$errorMessage & Exception - ${result.exception.message}")
+                Log.d("DataRepository", "$errorMessage & Exception - ${result.exception.message}")
             }
         }
 

@@ -7,7 +7,6 @@ import rx.Observable;
 /**
  * Created by admin on 2017/3/3 0003.
  */
-
 public interface News {
 
     /*
