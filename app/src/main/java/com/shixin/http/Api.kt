@@ -7,6 +7,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.util.SparseArray
 import androidx.annotation.NonNull
+import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.shixin.App.Companion.instance
@@ -161,7 +162,7 @@ object Api {
         .build()
 
 
-    val gson = GsonBuilder()
+    val gson: Gson = GsonBuilder()
         .disableHtmlEscaping()
         .serializeNulls()
         .enableComplexMapKeySerialization()
@@ -171,7 +172,7 @@ object Api {
         .create()
 
 
-    var retrofit = Retrofit.Builder()
+    var retrofit: Retrofit = Retrofit.Builder()
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create(gson))
         //.addConverterFactory(FastJsonConverterFactory.create())
@@ -181,7 +182,7 @@ object Api {
         .build()
 
 
-    val apiService = retrofit.create(
+    val apiService: ApiService = retrofit.create(
         ApiService::class.java
     )
 
