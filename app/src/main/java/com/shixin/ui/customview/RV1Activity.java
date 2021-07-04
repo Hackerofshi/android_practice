@@ -28,7 +28,7 @@ public class RV1Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rv1);
         recyclerView = (RecyclerView) findViewById(R.id.rv);
-        SwipeRefreshLayout refreshLayout = findViewById(R.id.srl);
+       SwipeRefreshLayout refreshLayout = findViewById(R.id.srl);
 
         getDatas();
 
@@ -38,7 +38,6 @@ public class RV1Activity extends AppCompatActivity {
                // refreshLayout.setRefreshing(false);
             }
         });
-
         //recyclerView.setLayoutManager(new LinearLayoutManager(this));
         //PagerSnapHelper helper = new PagerSnapHelper();
         //helper.attachToRecyclerView(recyclerView);

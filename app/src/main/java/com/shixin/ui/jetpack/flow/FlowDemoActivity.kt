@@ -1,16 +1,15 @@
 package com.shixin.ui.jetpack.flow;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-import android.util.Log
+import android.os.Bundle
 import android.widget.Button
-
+import androidx.appcompat.app.AppCompatActivity
 import com.shixin.R
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
-import okhttp3.Dispatcher
+import retrofit2.*
+import kotlin.coroutines.resume
+import kotlin.coroutines.resumeWithException
 
 public class FlowDemoActivity : AppCompatActivity() {
 
@@ -316,7 +315,18 @@ public class FlowDemoActivity : AppCompatActivity() {
                 it.consumeAsFlow()
             }.merge().first()
         }
+
+
+        sum(1,2)
+
     }
 
 
+
+
+
 }
+
+
+
+val sum = { x: Int, y: Int -> x + y }

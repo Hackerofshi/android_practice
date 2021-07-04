@@ -23,7 +23,8 @@ interface GitHubService {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()
 
-            return retrofit.create(GitHubService::class.java)
+            var create = retrofit.create(GitHubService::class.java)
+            return create
         }
     }
 
