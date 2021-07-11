@@ -7,7 +7,7 @@
     tools:context=".ui.practice.LambdaActivity">
 
     <Button
-        android:id="@+id/btn_sum"
+        android:id="@+id/btn_lambda"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

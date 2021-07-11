@@ -15,6 +15,7 @@ import com.hi.dhl.paging3.network.ui.MainPagingActivity;
 import com.shixin.ui.jetpack.JetIndexActivity;
 import com.shixin.ui.jetpack.databinding.MainActivity;
 import com.shixin.R;
+import com.shixin.ui.practice.PracticeGuideActivity;
 import com.shixin.ui.practice.constraint.ConstraintActivity;
 import com.shixin.ui.customview.CustomViewGuideActivity;
 import com.shixin.ui.ndktest.NdkTestActivity;
@@ -54,7 +55,7 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(new Intent(HomeActivity.this, NdkTestActivity.class));
         });
         findViewById(R.id.btn_constraint).setOnClickListener(v -> {
-            startActivity(new Intent(HomeActivity.this, ConstraintActivity.class));
+            startActivity(new Intent(HomeActivity.this, PracticeGuideActivity.class));
         });
         findViewById(R.id.ll).setOnClickListener(v -> {
             startActivity(new Intent(HomeActivity.this, TestMeasureSpecActivity.class));

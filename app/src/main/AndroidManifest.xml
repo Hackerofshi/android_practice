@@ -115,6 +115,8 @@
         <activity android:name=".ui.customview.RVCoverActivity" />
         <activity android:name=".ui.customview.RV1Activity" />
         <activity android:name=".ui.practice.CoordinatorLayoutActivity" />
+        <activity android:name=".ui.practice.constraint.ConstraintActivity" />
+        <activity android:name=".ui.practice.PracticeGuideActivity" />
 
         <service android:name=".ui.rxjava.CalcService">
 
