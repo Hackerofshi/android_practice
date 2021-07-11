@@ -122,6 +122,16 @@ fun demo03() {
     println(2.iop(3))
 }
 
+// 声明接收者
+//lambda 作为形参函数声明时，可以携带接收者，如下图：
+//带接收者的 lambda 丰富了函数声明的信息，当传递该 lambda值时，将携带该接收者，比如：
+fun kotlinDSL(block:StringBuilder.()->Unit){
+    block(StringBuilder("Kotlin"))
+}
+
+
+
+
 //要用Lambda表达式作为接收者类型的前提是接收着类型可以从上下文中推断出来。
 class HTML {
     fun body() {}
@@ -137,6 +147,13 @@ fun demo04() {
 
     html {       // 带接收者的 lambda 由此开始
         body()   // 调用该接收者对象的一个方法
+    }
+
+    // 调用高阶函数
+    kotlinDSL {
+        // 这个 lambda 的接收者类型为StringBuilder
+        append(" DSL")
+        println(this)
     }
 }
 
@@ -159,3 +176,14 @@ fun test(b : Int): () -> Int{
         return a + b
     }
 }
+
+//这段源码理解起来不难，infix 修饰符代表该函数支持中缀调用，
+// 然后为任意对象提供扩展函数 to，接受任意对象作为参数，最终返回键值对。
+fun demo05(){
+    "key" to "value"
+    // 等价于
+    "key".to("value")
+
+}
+
+infix fun Any.to(that:Any) = Pair(this,that)
