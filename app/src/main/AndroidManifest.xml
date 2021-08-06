@@ -22,7 +22,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.practice.LambdaActivity"></activity>
+        <activity
+            android:name=".ui.customview.CustomDragScaleActivity"
+            android:exported="true" />
+        <activity android:name=".ui.practice.LambdaActivity" />
         <activity android:name=".ui.jetpack.JetIndexActivity" />
         <activity android:name=".ui.jetpack.flow.FlowDemoActivity" />
         <activity android:name=".ui.customview.touchevent.ActionPointActivity" />

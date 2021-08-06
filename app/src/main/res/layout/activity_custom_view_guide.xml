@@ -27,4 +27,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Touch" />
+    <Button
+        android:id="@+id/btn5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="拖动拉伸" />
 </androidx.appcompat.widget.LinearLayoutCompat>

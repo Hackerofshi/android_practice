@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.shixin.R;
 import com.shixin.ui.customview.touchevent.ActionPointActivity;
+import com.shixin.view.customview.DragScaleView;
 
 public class CustomViewGuideActivity extends AppCompatActivity {
 
@@ -37,5 +38,8 @@ public class CustomViewGuideActivity extends AppCompatActivity {
 
         findViewById(R.id.btn4).setOnClickListener(v ->
                 startActivity(new Intent(CustomViewGuideActivity.this, ActionPointActivity.class)));
+
+        findViewById(R.id.btn5).setOnClickListener(v ->
+                startActivity(new Intent(CustomViewGuideActivity.this, CustomDragScaleActivity.class)));
     }
 }
