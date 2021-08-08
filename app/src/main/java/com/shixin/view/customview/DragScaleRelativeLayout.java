@@ -8,34 +8,44 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.shixin.R;
+import com.shixin.callBack.ValueChange;
 
-public class DragScaleRelativeLayout extends RelativeLayout implements View.OnTouchListener{
+import org.w3c.dom.Text;
 
-    protected           int   screenWidth;
-    protected            int   screenHeight;
-    protected            int   lastX;
-    protected            int   lastY;
-    private              int   oriLeft;
-    private              int   oriRight;
-    private              int   oriTop;
-    private              int   oriBottom;
-    private              int   dragDirection;
-    private static final int TOP = 0x15;
-    private static final int LEFT = 0x16;
-    private static final int BOTTOM = 0x17;
-    private static final int RIGHT = 0x18;
-    private static final int LEFT_TOP = 0x11;
-    private static final int RIGHT_TOP = 0x12;
-    private static final int LEFT_BOTTOM = 0x13;
-    private static final int RIGHT_BOTTOM = 0x14;
-    private static final int TOUCH_TWO = 0x21;
-    private static final int CENTER = 0x19;
-    private              int   offset        = 0; //可超出其父控件的偏移量
-    protected            Paint paint         = new Paint();
-    private static final int   touchDistance = 180; //触摸边界的有效距离
+public class DragScaleRelativeLayout extends RelativeLayout implements View.OnTouchListener {
+
+    protected            int         screenWidth;
+    protected            int         screenHeight;
+    protected            int         lastX;
+    protected            int         lastY;
+    private              int         oriLeft;
+    private              int         oriRight;
+    private              int         oriTop;
+    private              int         oriBottom;
+    private              int         dragDirection;
+    private static final int         TOP           = 0x15;
+    private static final int         LEFT          = 0x16;
+    private static final int         BOTTOM        = 0x17;
+    private static final int         RIGHT         = 0x18;
+    private static final int         LEFT_TOP      = 0x11;
+    private static final int         RIGHT_TOP     = 0x12;
+    private static final int         LEFT_BOTTOM   = 0x13;
+    private static final int         RIGHT_BOTTOM  = 0x14;
+    private static final int         TOUCH_TWO     = 0x21;
+    private static final int         CENTER        = 0x19;
+    private              int         offset        = 0; //可超出其父控件的偏移量
+    protected            Paint       paint         = new Paint();
+    private static final int         touchDistance = 180; //触摸边界的有效距离
+    private              ValueChange valueChange;
+    private              int         w;
+    private              int         h;
+
 
     // 初始的两个手指按下的触摸点的距离
     private float oriDis = 1f;
@@ -72,12 +82,13 @@ public class DragScaleRelativeLayout extends RelativeLayout implements View.OnTo
         paint.setColor(Color.GRAY);
         paint.setStrokeWidth(4.0f);
         paint.setStyle(Paint.Style.STROKE);
+
     }
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         setBackgroundResource(R.drawable.bg_dashgap);
-        int action = event.getAction()& MotionEvent.ACTION_MASK;
+        int action = event.getAction() & MotionEvent.ACTION_MASK;
         if (action == MotionEvent.ACTION_DOWN) {
             oriLeft = v.getLeft();
             oriRight = v.getRight();
@@ -88,7 +99,7 @@ public class DragScaleRelativeLayout extends RelativeLayout implements View.OnTo
             dragDirection = getDirection(v, (int) event.getX(),
                     (int) event.getY());
         }
-        if (action == MotionEvent.ACTION_POINTER_DOWN){
+        if (action == MotionEvent.ACTION_POINTER_DOWN) {
             oriLeft = v.getLeft();
             oriRight = v.getRight();
             oriTop = v.getTop();
@@ -101,23 +112,23 @@ public class DragScaleRelativeLayout extends RelativeLayout implements View.OnTo
         // 处理拖动事件
         delDrag(v, event, action);
         invalidate();
+        //requestLayout();
         return false;
     }
 
+
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        super.onLayout(changed, l, t, r, b);
-        Log.i("TAG", "onLayout: "+getHeight());
-        Log.i("TAG", "onLayout: "+getWidth());
-        int cCount = getChildCount();
-        int cWidth = 0;
-        int cHeight = 0;
+        //   Log.i("TAG", "onLayout: " + getHeight());
+//        Log.i("TAG", "onLayout: " + getWidth());
+        int                cCount  = getChildCount();
+        int                cWidth  = 0;
+        int                cHeight = 0;
         MarginLayoutParams cParams = null;
-        /**
-         * 遍历所有childView根据其宽和高，以及margin进行布局
-         */
-        for (int i = 0; i < cCount; i++)
-        {
+        /* *
+         * 遍历所有childView根据其宽和高，以及margin进行布局*/
+
+        for (int i = 0; i < cCount; i++) {
             View childView = getChildAt(i);
             cWidth = childView.getMeasuredWidth();
             cHeight = childView.getMeasuredHeight();
@@ -125,32 +136,60 @@ public class DragScaleRelativeLayout extends RelativeLayout implements View.OnTo
 
             int cl = 0, ct = 0, cr = 0, cb = 0;
 
-            switch (i)
-            {
+            switch (i) {
                 case 0:
                     cl = cParams.leftMargin;
                     ct = cParams.topMargin;
                     break;
                 case 1:
+                    cl = getWidth() / 2 - cWidth / 2 - cParams.leftMargin
+                            - cParams.rightMargin;
+                    ct = cParams.topMargin;
+                    break;
+                case 2:
                     cl = getWidth() - cWidth - cParams.leftMargin
                             - cParams.rightMargin;
                     ct = cParams.topMargin;
-
                     break;
-                case 2:
+                case 3:
                     cl = cParams.leftMargin;
                     ct = getHeight() - cHeight - cParams.bottomMargin;
                     break;
-                case 3:
+                case 4:
+                    cl = getWidth() / 2 - cWidth / 2 - cParams.leftMargin
+                            - cParams.rightMargin;
+                    ct = getHeight() - cHeight - cParams.bottomMargin;
+                    break;
+                case 5:
                     cl = getWidth() - cWidth - cParams.leftMargin
                             - cParams.rightMargin;
                     ct = getHeight() - cHeight - cParams.bottomMargin;
                     break;
+                case 6:
+                    View previous = getChildAt(i - 1);
+                    MarginLayoutParams preParams = (MarginLayoutParams) previous.getLayoutParams();
 
+                    cl = cParams.leftMargin;
+                    cr = getWidth() - cParams.rightMargin;
+                    ct = cParams.topMargin + previous.getMeasuredHeight() + preParams.topMargin + preParams.bottomMargin;
+                    cb = getHeight() - cParams.bottomMargin -
+                            (previous.getMeasuredHeight() + preParams.topMargin + preParams.bottomMargin);
+
+                    if (childView instanceof TextView) {
+                        w = getWidth() - cParams.leftMargin - cParams.rightMargin;
+                        h = getHeight() - cParams.topMargin - cParams.bottomMargin -
+                                (previous.getMeasuredHeight() + preParams.topMargin + preParams.bottomMargin) * 2;
+                        TextView tv = (TextView) childView;
+                        tv.setWidth(w);
+                    }
+                    childView.layout(cl, ct, cr, cb);
+                    break;
             }
-            cr = cl + cWidth;
-            cb = cHeight + ct;
-            childView.layout(cl, ct, cr, cb);
+            if (i != 6) {
+                cr = cl + cWidth;
+                cb = cHeight + ct;
+                childView.layout(cl, ct, cr, cb);
+            }
         }
     }
 
@@ -169,43 +208,46 @@ public class DragScaleRelativeLayout extends RelativeLayout implements View.OnTo
                 int dy = (int) event.getRawY() - lastY;
                 switch (dragDirection) {
                     case LEFT: // 左边缘
-                        left(v, dx);
+//                        left(v, dx);
                         break;
                     case RIGHT: // 右边缘
-                        right(v, dx);
+//                        right(v, dx);
                         break;
                     case BOTTOM: // 下边缘
-                        bottom(v, dy);
+//                        bottom(v, dy);
                         break;
                     case TOP: // 上边缘
-                        top(v, dy);
+//                        top(v, dy);
                         break;
                     case CENTER: // 点击中心-->>移动
-                        center(v, dx, dy);
+                        //center(v, dx, dy);
                         break;
                     case LEFT_BOTTOM: // 左下
-                        left(v, dx);
-                        bottom(v, dy);
+
+
+//                        left(v, dx);
+//                        bottom(v, dy);
+                        center(v, dx, dy);
                         break;
                     case LEFT_TOP: // 左上
-                        left(v, dx);
-                        top(v, dy);
+                        //left(v, dx);
+                        //top(v, dy);
                         break;
                     case RIGHT_BOTTOM: // 右下
                         right(v, dx);
                         bottom(v, dy);
                         break;
                     case RIGHT_TOP: // 右上
-                        right(v, dx);
-                        top(v, dy);
+                        //right(v, dx);
+                        //top(v, dy);
                         break;
                     case TOUCH_TWO: //双指操控
-                        float newDist =distance(event);
+                        float newDist = distance(event);
                         float scale = newDist / oriDis;
                         //控制双指缩放的敏感度
-                        int distX = (int) (scale*(oriRight-oriLeft)-(oriRight-oriLeft))/50;
-                        int distY = (int) (scale*(oriBottom-oriTop)-(oriBottom-oriTop))/50;
-                        if (newDist>10f){//当双指的距离大于10时，开始相应处理
+                        int distX = (int) (scale * (oriRight - oriLeft) - (oriRight - oriLeft)) / 50;
+                        int distY = (int) (scale * (oriBottom - oriTop) - (oriBottom - oriTop)) / 50;
+                        if (newDist > 10f) {//当双指的距离大于10时，开始相应处理
                             left(v, -distX);
                             top(v, -distY);
                             right(v, distX);
@@ -214,14 +256,27 @@ public class DragScaleRelativeLayout extends RelativeLayout implements View.OnTo
                         break;
 
                 }
-                if (dragDirection != CENTER) {
-                    v.layout(oriLeft, oriTop, oriRight, oriBottom);
+                if (dragDirection != CENTER && dragDirection != LEFT_BOTTOM) {
+                    MarginLayoutParams params = (MarginLayoutParams) getLayoutParams();
+
+                    params.height = (oriBottom - oriTop);
+                    params.width = (oriRight - oriLeft);
+                    params.leftMargin = oriLeft;
+                    params.topMargin = oriTop;
+
+
+                    v.setLayoutParams(params);
+                    //  v.layout(oriLeft, oriTop, oriRight, oriBottom);
                 }
                 lastX = (int) event.getRawX();
                 lastY = (int) event.getRawY();
                 break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_POINTER_UP:
+                if (dragDirection != CENTER) {
+                    valueChange.changed(oriRight - oriLeft, oriBottom - oriTop,
+                            getLeft(), getTop());
+                }
                 dragDirection = 0;
                 break;
         }
@@ -235,9 +290,9 @@ public class DragScaleRelativeLayout extends RelativeLayout implements View.OnTo
      * @param dy
      */
     private void center(View v, int dx, int dy) {
-        int left = v.getLeft() + dx;
-        int top = v.getTop() + dy;
-        int right = v.getRight() + dx;
+        int left   = v.getLeft() + dx;
+        int top    = v.getTop() + dy;
+        int right  = v.getRight() + dx;
         int bottom = v.getBottom() + dy;
         if (left < -offset) {
             left = -offset;
@@ -255,8 +310,17 @@ public class DragScaleRelativeLayout extends RelativeLayout implements View.OnTo
             bottom = screenHeight + offset;
             top = bottom - v.getHeight();
         }
-        Log.d("raydrag", left+"  "+top+"  "+right+"  "+bottom+"  "+dx);
-        v.layout(left, top, right, bottom);
+        Log.d("raydrag", left + "  " + top + "  " + right + "  " + bottom + "  " + dx);
+        // v.layout(left, top, right, bottom);
+
+        MarginLayoutParams params = (MarginLayoutParams) getLayoutParams();
+
+        params.height = (bottom - top);
+        params.width = (right - left);
+        params.leftMargin = left;
+        params.topMargin = top;
+
+        v.setLayoutParams(params);
     }
 
     /**
@@ -333,10 +397,10 @@ public class DragScaleRelativeLayout extends RelativeLayout implements View.OnTo
      * @return
      */
     protected int getDirection(View v, int x, int y) {
-        int left = v.getLeft();
-        int right = v.getRight();
+        int left   = v.getLeft();
+        int right  = v.getRight();
         int bottom = v.getBottom();
-        int top = v.getTop();
+        int top    = v.getTop();
         if (x < touchDistance && y < touchDistance) {
             return LEFT_TOP;
         }
@@ -375,4 +439,10 @@ public class DragScaleRelativeLayout extends RelativeLayout implements View.OnTo
         float y = event.getY(0) - event.getY(1);
         return (float) Math.sqrt(x * x + y * y);//两点间距离公式
     }
+
+    public void setValueChange(ValueChange valueChange) {
+        this.valueChange = valueChange;
+    }
+
+
 }

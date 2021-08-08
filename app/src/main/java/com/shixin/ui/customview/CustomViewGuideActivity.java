@@ -8,7 +8,6 @@ import android.view.View;
 
 import com.shixin.R;
 import com.shixin.ui.customview.touchevent.ActionPointActivity;
-import com.shixin.view.customview.DragScaleView;
 
 public class CustomViewGuideActivity extends AppCompatActivity {
 

@@ -9,12 +9,14 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
 
 import com.shixin.R;
 
-public class DragScaleView extends AppCompatImageView implements View.OnTouchListener {
+public class DragScaleView extends AppCompatTextView implements View.OnTouchListener {
     protected int screenWidth;
     protected int screenHeight;
     protected int lastX;
