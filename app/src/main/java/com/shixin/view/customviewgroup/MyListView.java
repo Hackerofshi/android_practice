@@ -2,10 +2,14 @@ package com.shixin.view.customviewgroup;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.ListView;
+
+import androidx.viewpager.widget.ViewPager;
 
 import com.shixin.R;
 
@@ -103,3 +107,4 @@ public class MyListView extends ListView implements AbsListView.OnScrollListener
         removeFooterView(mFootView);
     }
 }
+

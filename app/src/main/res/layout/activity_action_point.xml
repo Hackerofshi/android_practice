@@ -36,4 +36,10 @@
             android:text="----------"
             android:layout_height="wrap_content"/>
     </com.shixin.view.customview.scroller.RelativeScroller>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/rl"
+        android:background="@color/colorPrimary"
+        android:layout_height="30dp"/>
 </LinearLayout>

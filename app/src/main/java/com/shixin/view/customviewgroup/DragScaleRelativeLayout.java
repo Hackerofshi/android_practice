@@ -1,4 +1,4 @@
-package com.shixin.view.customview;
+package com.shixin.view.customviewgroup;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -8,15 +8,11 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.shixin.R;
 import com.shixin.callBack.ValueChange;
-
-import org.w3c.dom.Text;
 
 public class DragScaleRelativeLayout extends RelativeLayout implements View.OnTouchListener {
 
@@ -445,4 +441,8 @@ public class DragScaleRelativeLayout extends RelativeLayout implements View.OnTo
     }
 
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return super.onTouchEvent(event);
+    }
 }

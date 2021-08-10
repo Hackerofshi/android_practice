@@ -2,15 +2,11 @@ package com.shixin.ui.customview
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.core.view.updateLayoutParams
 import com.shixin.R
-import com.shixin.view.customview.DragScaleRelativeLayout
-import com.shixin.view.customview.scroller.TextViewScroller
-import kotlinx.android.synthetic.main.activity_constraint.*
+import com.shixin.view.customviewgroup.DragScaleRelativeLayout
 
 class CustomDragScaleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,6 +15,8 @@ class CustomDragScaleActivity : AppCompatActivity() {
         var tvContent = findViewById<TextView>(R.id.tv_content)
         val rl = findViewById<DragScaleRelativeLayout>(R.id.rl)
         val btn = findViewById<Button>(R.id.btn);
+
+
 
         val pp =rl.layoutParams as ViewGroup.MarginLayoutParams
 

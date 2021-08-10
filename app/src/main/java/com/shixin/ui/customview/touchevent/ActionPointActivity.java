@@ -1,15 +1,15 @@
 package com.shixin.ui.customview.touchevent;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.shixin.R;
 import com.shixin.view.customview.scroller.TextViewScroller;
 import com.shixin.view.customview.touchevent.MoveView;
-import com.shixin.R;
 
 public class ActionPointActivity extends AppCompatActivity {
 
@@ -36,12 +36,7 @@ public class ActionPointActivity extends AppCompatActivity {
         }*/
 
 
-        mv.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return false;
-            }
-        });
+        mv.setOnTouchListener((v, event) -> false);
         mv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,6 +47,12 @@ public class ActionPointActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.i("onClick", "View: ");
+            }
+        });
+        findViewById(R.id.rl).setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return false;
             }
         });
     }

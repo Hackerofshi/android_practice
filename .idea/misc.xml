@@ -5,8 +5,11 @@
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.13703703703703704" />
         <entry key="app/src/main/res/drawable-xhdpi/bg_dashgap.xml" value="0.27314814814814814" />
-        <entry key="app/src/main/res/layout/activity_custom_drag_scale.xml" value="0.14361702127659576" />
+        <entry key="app/src/main/res/layout/activity_action_point.xml" value="0.18297101449275363" />
+        <entry key="app/src/main/res/layout/activity_custom_drag_scale.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_custom_view_guide.xml" value="0.14361702127659576" />
+        <entry key="app/src/main/res/layout/activity_main1.xml" value="0.18297101449275363" />
+        <entry key="app/src/main/res/layout/activity_main2.xml" value="0.18297101449275363" />
       </map>
     </option>
   </component>

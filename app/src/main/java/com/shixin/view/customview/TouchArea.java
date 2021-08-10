@@ -1,5 +1,13 @@
 package com.shixin.view.customview;
 
+import android.content.Context;
+import android.util.AttributeSet;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+
+import androidx.customview.widget.ViewDragHelper;
+
 public class TouchArea {
 
     private float left;
@@ -15,8 +23,7 @@ public class TouchArea {
         this.bottom = bottom;
     }
 
-    public void set(float left,float top,float right,float bottom)
-    {
+    public void set(float left, float top, float right, float bottom) {
         this.left = left;
         this.top = top;
         this.right = right;
@@ -38,6 +45,7 @@ public class TouchArea {
     public void setTop(float top) {
         this.top = top;
     }
+
     public float getRight() {
         return right;
     }
@@ -55,3 +63,4 @@ public class TouchArea {
     }
 
 }
+
