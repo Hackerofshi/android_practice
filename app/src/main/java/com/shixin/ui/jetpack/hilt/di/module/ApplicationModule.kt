@@ -9,6 +9,7 @@ import dagger.hilt.android.components.ApplicationComponent
 @Module
 @InstallIn(ApplicationComponent::class)
 class ApplicationModule {
+
     @AppScope
     @Provides
     fun provide(): String {

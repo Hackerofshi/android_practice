@@ -8,7 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.shixin.ui.jetpack.hilt.di.qualifiers.ActivityScope
 import com.shixin.ui.jetpack.hilt.di.qualifiers.AppScope
 import com.shixin.R
+import com.shixin.ui.jetpack.hilt.di.bean.Truck
 import dagger.hilt.android.AndroidEntryPoint
+import retrofit2.Retrofit
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -24,6 +26,14 @@ class MainActivity : AppCompatActivity(R.layout.activity_main_kx) {
     @Inject
     lateinit var activityHash: String
 
+    @Inject
+    lateinit var truck: Truck
+
+
+    //要配置好okhttpclient 然后可以直接注入
+    @Inject
+    lateinit var retrofit: Retrofit
+
 
     private val viewModel by viewModels<ActivityViewModel>()
 
@@ -35,6 +45,8 @@ class MainActivity : AppCompatActivity(R.layout.activity_main_kx) {
         Log.v(TAG, "activity vm: $viewModel")
         Log.v(TAG, "activity vm repo: ${viewModel.repository}")
         viewModel.test()
+
+        truck.deliver()
     }
 
 }
