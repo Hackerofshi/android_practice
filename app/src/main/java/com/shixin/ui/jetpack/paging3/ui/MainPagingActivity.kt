@@ -98,7 +98,5 @@ class MainPagingActivity : DataBindingAppCompatActivity(), AnkoLogger {
         set(value) {
             if (value >= 0) field = value
         }
-
-
 }
 

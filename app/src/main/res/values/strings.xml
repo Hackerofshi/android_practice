@@ -2,4 +2,5 @@
     <string name="app_name">Android_Pratice</string>
     <string name="title_activity_draw_bitmap_avtivity">DrawBitmapAvtivity</string>
     <string name="format">%s is %s</string>
+    <string name="title_activity_home_compose">HomeComposeActivity</string>
 </resources>

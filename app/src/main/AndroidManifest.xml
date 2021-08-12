@@ -4,7 +4,7 @@
     package="com.shixin">
 
     <uses-sdk
-        android:minSdkVersion="15"
+        android:minSdkVersion="21"
         tools:overrideLibrary="com.hi.dhl.jdatabinding" />
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

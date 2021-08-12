@@ -16,7 +16,7 @@ class Truck @Inject constructor() {
 
 
 //带参数的依赖注入
-class Truck @Inject constructor(val driver: Driver, @ActivityScoped val context: Context) {
+class Truck @Inject constructor(val driver: Driver) {
 
 
     //借助刚才定义的EngineModule,很明显将会注入一个GasEngine实例到engine字段当中
@@ -24,15 +24,20 @@ class Truck @Inject constructor(val driver: Driver, @ActivityScoped val context:
 //    lateinit var engine: Engine
 
 
+
     @BindGasEngine
     @Inject
-    lateinit var gasEngine: BindGasEngine
+    lateinit var gasEngine: Engine
 
     @BindElectricEngine
     @Inject
-    lateinit var electricEngine: BindElectricEngine
+    lateinit var electricEngine: Engine
 
     fun deliver() {
-        println("Truck is delivering cargo $driver")
+        gasEngine.start()
+        electricEngine.start()
+        println("Truck is delivering cargo. Driven by $driver")
+        gasEngine.shutdown()
+        electricEngine.shutdown()
     }
 }

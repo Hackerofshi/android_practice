@@ -16,7 +16,6 @@ class GitHubRepositoryImpl(
         val mapper2Person: Mapper<GithubAccountModel, GitHubAccount>
 ) : Repository {
     override fun postOfData(id: Int): Flow<PagingData<GitHubAccount>> {
-
         return Pager(pageConfig) {
             //加载数据
             GitHubItemPagingSource(githubApi)

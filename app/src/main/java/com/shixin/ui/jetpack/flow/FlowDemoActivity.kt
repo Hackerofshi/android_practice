@@ -316,15 +316,8 @@ public class FlowDemoActivity : AppCompatActivity() {
             }.merge().first()
         }
 
-
         sum(1,2)
-
     }
-
-
-
-
-
 }
 
 

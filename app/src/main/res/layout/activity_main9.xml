@@ -23,39 +23,39 @@
         android:orientation="vertical"
         tools:context=".MainActivity9">
 
-        <ImageView
-            android:id="@+id/image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher"
-            bind:url="@{image.url}" />
+<!--        <ImageView-->
+<!--            android:id="@+id/image"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:src="@drawable/ic_launcher"-->
+<!--            bind:url="@{image.url}" />-->
 
-        <Button
-            android:id="@+id/button"
-            style="@style/BtnStyle"
-            android:onClick="@{()->handler.onClick(image)}"
-            android:text='@{"改变图片Url"}' />
+<!--        <Button-->
+<!--            android:id="@+id/button"-->
+<!--            style="@style/BtnStyle"-->
+<!--            android:onClick="@{()->handler.onClick(image)}"-->
+<!--            android:text='@{"改变图片Url"}' />-->
 
-        <TextView
-            android:id="@+id/textView"
-            style="@style/BtnStyle"
-            android:text='@{"xxx"}' />
+<!--        <TextView-->
+<!--            android:id="@+id/textView"-->
+<!--            style="@style/BtnStyle"-->
+<!--            android:text='@{"xxx"}' />-->
 
-        <TextView
-            android:id="@+id/textView1"
-            style="@style/BtnStyle"
-            android:layout_marginTop="30dp"
-            android:background='@{"红色"}'
-            android:padding="20dp"
-            android:text="红色背景蓝色字"
-            android:textColor='@{"蓝色"}' />
+<!--        <TextView-->
+<!--            android:id="@+id/textView1"-->
+<!--            style="@style/BtnStyle"-->
+<!--            android:layout_marginTop="30dp"-->
+<!--            android:background='@{"红色"}'-->
+<!--            android:padding="20dp"-->
+<!--            android:text="红色背景蓝色字"-->
+<!--            android:textColor='@{"蓝色"}' />-->
 
-        <TextView
-            style="@style/BtnStyle"
-            android:background='@{"蓝色"}'
-            android:padding="20dp"
-            android:text="蓝色背景红色字"
-            android:textColor='@{"红色",default=@color/colorAccent}' />
+<!--        <TextView-->
+<!--            style="@style/BtnStyle"-->
+<!--            android:background='@{"蓝色"}'-->
+<!--            android:padding="20dp"-->
+<!--            android:text="蓝色背景红色字"-->
+<!--            android:textColor='@{"红色",default=@color/colorAccent}' />-->
 
     </LinearLayout>
 </layout>

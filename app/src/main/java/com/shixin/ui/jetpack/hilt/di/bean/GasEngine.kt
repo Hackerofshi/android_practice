@@ -4,28 +4,35 @@ import javax.inject.Inject
 import javax.inject.Qualifier
 
 
+interface Engine {
+    fun start()
+    fun shutdown()
+}
 
-
-
-class GasEngine @Inject constructor() :Engine {
+class GasEngine @Inject constructor() : Engine {
     override fun start() {
-        println("gas engine start")
+        println("Gas engine start.")
     }
 
-    override fun shutDown() {
-        println("gas engine shutdown")
+    override fun shutdown() {
+        println("Gas engine shutdown.")
     }
 }
 
-
-class ElectricEngine @Inject constructor()  :Engine{
+class ElectricEngine @Inject constructor() : Engine {
     override fun start() {
-        println("electric engine start")
+        println("Electric engine start.")
     }
 
-    override fun shutDown() {
-        println("electric engine shutdown")
+    override fun shutdown() {
+        println("Electric engine shutdown.")
     }
-
-
 }
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class BindGasEngine
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
+annotation class BindElectricEngine
