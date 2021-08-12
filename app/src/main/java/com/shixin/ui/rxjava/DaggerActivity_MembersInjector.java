@@ -1,8 +1,8 @@
 package com.shixin.ui.rxjava;
 
 import com.google.gson.Gson;
-import com.shixin.dagger.Car;
-import com.shixin.dagger.Poetry;
+import com.shixin.ui.dagger.Car;
+import com.shixin.ui.dagger.Poetry;
 import dagger.MembersInjector;
 import dagger.internal.InjectedFieldSignature;
 import javax.annotation.Generated;

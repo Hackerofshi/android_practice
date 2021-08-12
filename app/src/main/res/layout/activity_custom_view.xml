@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context="com.shixin.ui.rxjava.CustomViewActivity">
 
-    <com.shixin.view.customview.RoundImageView
+    <com.shixin.ui.view.customview.RoundImageView
         android:id="@+id/id_meinv"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -17,7 +17,7 @@
         zhy:borderRadius="10dp"
         zhy:type="circle" />
 
-    <com.shixin.view.customviewgroup.FlowLayout
+    <com.shixin.ui.view.customviewgroup.FlowLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
@@ -62,9 +62,9 @@
             android:text="tempor incididunt" />
 
 
-    </com.shixin.view.customviewgroup.FlowLayout>
+    </com.shixin.ui.view.customviewgroup.FlowLayout>
 
-    <com.shixin.view.customviewgroup.CircleMenuLayout
+    <com.shixin.ui.view.customviewgroup.CircleMenuLayout
         android:id="@+id/id_menulayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -90,9 +90,9 @@
 
                 android:background="@drawable/turnplate_mask_unlogin_normal" />
         </RelativeLayout>
-    </com.shixin.view.customviewgroup.CircleMenuLayout>
+    </com.shixin.ui.view.customviewgroup.CircleMenuLayout>
 
-    <com.shixin.event.MyLinearLayout
+    <com.shixin.ui.view.event.MyLinearLayout
         android:id="@+id/ll"
         android:layout_below="@+id/id_menulayout"
         android:layout_width="match_parent"
@@ -103,7 +103,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
-        <com.shixin.event.MyButton
+        <com.shixin.ui.view.event.MyButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="事件分发" />
@@ -113,7 +113,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp" />
 
-        <com.shixin.view.customDrawable.MessageListItem
+        <com.shixin.ui.view.customDrawable.MessageListItem
             android:layout_width="match_parent"
             android:id="@+id/re"
             android:layout_height="50dp">
@@ -132,6 +132,6 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/id_msg_item_icon" />
-        </com.shixin.view.customDrawable.MessageListItem>
-    </com.shixin.event.MyLinearLayout>
+        </com.shixin.ui.view.customDrawable.MessageListItem>
+    </com.shixin.ui.view.event.MyLinearLayout>
 </RelativeLayout>

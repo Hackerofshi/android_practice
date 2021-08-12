@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context="com.shixin.ui.customview.touchevent.ActionPointActivity">
 
-    <com.shixin.view.customview.touchevent.MoveView
+    <com.shixin.ui.view.customview.touchevent.MoveView
         android:id="@+id/mv"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -21,13 +21,13 @@
         android:layout_height="100dp"
         android:background="@color/colora0" />
 
-    <com.shixin.view.customview.scroller.TextViewScroller
+    <com.shixin.ui.view.customview.scroller.TextViewScroller
         android:id="@+id/tvs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="测试" />
 
-    <com.shixin.view.customview.scroller.RelativeScroller
+    <com.shixin.ui.view.customview.scroller.RelativeScroller
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@color/colorAccent" >
@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:text="----------"
             android:layout_height="wrap_content"/>
-    </com.shixin.view.customview.scroller.RelativeScroller>
+    </com.shixin.ui.view.customview.scroller.RelativeScroller>
 
     <RelativeLayout
         android:layout_width="match_parent"

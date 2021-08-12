@@ -26,9 +26,9 @@ public class ScrollTestActivity extends AppCompatActivity {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         /*int scrollX = itemRoot.getScrollX();
-        int x = (int)com.shixin.event.getX();
+        int x = (int)com.shixin.ui.view.event.getX();
 
-        if (com.shixin.event.getAction() == MotionEvent.ACTION_MOVE){
+        if (com.shixin.ui.view.event.getAction() == MotionEvent.ACTION_MOVE){
             int newScrollX = scrollX + mlastX - x;
             itemRoot.scrollTo(newScrollX,0);
         }

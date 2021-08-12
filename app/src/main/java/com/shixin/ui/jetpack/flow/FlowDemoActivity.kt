@@ -32,8 +32,7 @@ public class FlowDemoActivity : AppCompatActivity() {
             flowOf(1, 2, 3, 4, 5)
                     .onEach {
                         delay(100)
-                    }
-                    .collect {
+                    }.collect {
                         println(it)
                     }
         }
@@ -57,7 +56,6 @@ public class FlowDemoActivity : AppCompatActivity() {
         //代码清单4： 消费 Flow
         CoroutineScope(Dispatchers.Main).launch() {
             intFlow.collect { println(it) }
-
         }
     }
 

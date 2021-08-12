@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".ui.customview.CustomDragScaleActivity">
 
-    <com.shixin.view.customviewgroup.DragScaleRelativeLayout
+    <com.shixin.ui.view.customviewgroup.DragScaleRelativeLayout
         android:id="@+id/rl"
         android:layout_width="200dp"
         android:layout_height="200dp"
@@ -73,7 +73,7 @@
         </ScrollView>
 
 
-    </com.shixin.view.customviewgroup.DragScaleRelativeLayout>
+    </com.shixin.ui.view.customviewgroup.DragScaleRelativeLayout>
 
 
     <Button
@@ -81,13 +81,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <com.shixin.view.customview.DragScaleView
+    <com.shixin.ui.view.customview.DragScaleView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:adjustViewBounds="true"
         android:clickable="true" />
 
-    <com.shixin.view.customview.DragViewGroup
+    <com.shixin.ui.view.customview.DragViewGroup
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -99,9 +99,9 @@
             android:visibility="gone"
             android:layout_height="50dp"/>
 
-        <com.shixin.view.customviewgroup.MyRelativeLayout
+        <com.shixin.ui.view.customviewgroup.MyRelativeLayout
             android:layout_width="100dp"
             android:background="@color/colorAccent"
             android:layout_height="100dp"/>
-    </com.shixin.view.customview.DragViewGroup>
+    </com.shixin.ui.view.customview.DragViewGroup>
 </LinearLayout>

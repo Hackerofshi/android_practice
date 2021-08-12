@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.xutils.x;
 
 import com.shixin.R;
-import com.shixin.view.customview.BitmapCanvasView;
+import com.shixin.ui.view.customview.BitmapCanvasView;
 
 public class DrawBitmapAvtivity extends AppCompatActivity {
 

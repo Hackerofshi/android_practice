@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import com.shixin.R
-import com.shixin.view.customviewgroup.DragScaleRelativeLayout
+import com.shixin.ui.view.customviewgroup.DragScaleRelativeLayout
 
 class CustomDragScaleActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

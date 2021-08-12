@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import com.shixin.R;
-import com.shixin.basex.RxBus;
+import com.shixin.base.RxBus;
 import com.shixin.bean.Course;
 import com.shixin.bean.Newsbean;
 import com.shixin.network.NetWork;

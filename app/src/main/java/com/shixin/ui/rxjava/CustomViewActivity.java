@@ -11,9 +11,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.shixin.R;
-import com.shixin.view.customDrawable.CircleImageDrawable;
-import com.shixin.view.customDrawable.MessageListItem;
-import com.shixin.view.customviewgroup.CircleMenuLayout;
+import com.shixin.ui.view.customDrawable.CircleImageDrawable;
+import com.shixin.ui.view.customDrawable.MessageListItem;
+import com.shixin.ui.view.customviewgroup.CircleMenuLayout;
 
 public class CustomViewActivity extends AppCompatActivity {
     private CircleMenuLayout mCircleMenuLayout;

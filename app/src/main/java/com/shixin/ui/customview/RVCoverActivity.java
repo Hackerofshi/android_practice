@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.shixin.view.customview.layoutmanager.RecyclerCoverFlowView;
+import com.shixin.ui.view.customview.layoutmanager.RecyclerCoverFlowView;
 import com.shixin.R;
 
 import java.util.ArrayList;

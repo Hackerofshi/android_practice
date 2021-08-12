@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.shixin.basex.RxManager;
+import com.shixin.base.RxManager;
 
 public class BaseActivity extends AppCompatActivity {
     public RxManager mRxManager;
