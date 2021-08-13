@@ -10,7 +10,7 @@ import org.koin.core.context.startKoin
 class App : BaseApplication() {
     override fun onCreate() {
         super.onCreate()
-
+        instance = this
         // start Koin!
         startKoin {
             // declare used Android context

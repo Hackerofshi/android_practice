@@ -12,16 +12,24 @@ import com.shixin.R;
 import com.shixin.task.MultiAsynctaskNetwork;
 import com.shixin.task.NetworkInterface;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EventActivity extends AppCompatActivity implements NetworkInterface{
 
     private static final String TAG = "--------";
     private TextView tv1;
+
+    List<?> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
         tv1 = (TextView) findViewById(R.id.tv1);
+
+        list = new ArrayList<String>();
+
 
        // AsyncTask
         findViewById(R.id.event).setOnTouchListener(new View.OnTouchListener() {
@@ -45,12 +53,9 @@ public class EventActivity extends AppCompatActivity implements NetworkInterface
             }
         });
 
-        findViewById(R.id.bu1).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MultiAsynctaskNetwork network = new MultiAsynctaskNetwork(EventActivity.this);
-                network.execute();
-            }
+        findViewById(R.id.bu1).setOnClickListener(v -> {
+            MultiAsynctaskNetwork network = new MultiAsynctaskNetwork(EventActivity.this);
+            network.execute();
         });
     }
 
