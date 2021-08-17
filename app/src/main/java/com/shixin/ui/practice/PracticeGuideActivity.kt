@@ -15,6 +15,10 @@ class PracticeGuideActivity : AppCompatActivity() {
         btn_lambda.setOnClickListener {
             startActivity(Intent(this, LambdaActivity::class.java))
         }
+
+        btn_notify.setOnClickListener {
+            startActivity(Intent(this, NotifyActivity::class.java))
+        }
     }
 }
 

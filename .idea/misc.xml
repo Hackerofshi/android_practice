@@ -8,13 +8,16 @@
         <entry key="app/src/main/res/layout/activity_action_point.xml" value="0.18297101449275363" />
         <entry key="app/src/main/res/layout/activity_custom_drag_scale.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_custom_view_guide.xml" value="0.14361702127659576" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.1105072463768116" />
         <entry key="app/src/main/res/layout/activity_main1.xml" value="0.18297101449275363" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.18297101449275363" />
         <entry key="app/src/main/res/layout/activity_main3.xml" value="0.18297101449275363" />
         <entry key="app/src/main/res/layout/activity_main4.xml" value="0.18297101449275363" />
         <entry key="app/src/main/res/layout/activity_main6.xml" value="0.12182971014492754" />
         <entry key="app/src/main/res/layout/activity_main9.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_notify.xml" value="0.14361702127659576" />
         <entry key="app/src/main/res/layout/activity_page_main.xml" value="0.129981884057971" />
+        <entry key="app/src/main/res/layout/activity_practice_guide.xml" value="0.1105072463768116" />
       </map>
     </option>
   </component>

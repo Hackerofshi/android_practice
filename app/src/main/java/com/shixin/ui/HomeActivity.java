@@ -12,13 +12,12 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.hi.dhl.paging3.network.ui.MainPagingActivity;
+import com.shixin.R;
+import com.shixin.ui.customview.CustomViewGuideActivity;
 import com.shixin.ui.jetpack.JetIndexActivity;
 import com.shixin.ui.jetpack.databinding.MainActivity;
-import com.shixin.R;
-import com.shixin.ui.practice.PracticeGuideActivity;
-import com.shixin.ui.practice.constraint.ConstraintActivity;
-import com.shixin.ui.customview.CustomViewGuideActivity;
 import com.shixin.ui.ndktest.NdkTestActivity;
+import com.shixin.ui.practice.PracticeGuideActivity;
 import com.shixin.ui.sourceread.ReadSourceActivity;
 import com.shixin.ui.sourceread.TestMeasureSpecActivity;
 import com.shixin.ui.windowmanager.WindowManagerDemoActivity;
@@ -98,6 +97,10 @@ public class HomeActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),
                         "ACTION_MANAGE_OVERLAY_PERMISSION Permission Denied", Toast.LENGTH_SHORT).show();
             }
+        }
+
+        for (int i = 0; i < 100; i+=5) {
+
         }
     }
 }

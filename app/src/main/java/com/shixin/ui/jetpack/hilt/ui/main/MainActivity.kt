@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main_kx) {
     lateinit var truck: Truck
 
 
-    //要配置好okhttpclient 然后可以直接注入
+    //要配置好okhttp client 然后可以直接注入
     @Inject
     lateinit var retrofit: Retrofit
 
