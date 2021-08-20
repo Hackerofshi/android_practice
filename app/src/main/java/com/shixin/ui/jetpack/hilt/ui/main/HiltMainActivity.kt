@@ -48,6 +48,8 @@ class HiltMainActivity : AppCompatActivity(R.layout.activity_main_kx) {
         Log.v(TAG, "activity : $activityHash")
         Log.v(TAG, "activity vm: $viewModel")
         Log.v(TAG, "activity vm repo: ${viewModel.repository}")
+
+
         viewModel.test()
 
         truck.deliver()
@@ -55,7 +57,7 @@ class HiltMainActivity : AppCompatActivity(R.layout.activity_main_kx) {
         //Activity
         lifecycleScope.launch{
             viewModel.sharedFlow.collect {
-                print(it)
+                print("-----------$it")
             }
         }
     }

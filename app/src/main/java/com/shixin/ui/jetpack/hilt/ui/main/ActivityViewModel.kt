@@ -1,5 +1,6 @@
 package com.shixin.ui.jetpack.hilt.ui.main
 
+import android.util.Log
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.SavedStateHandle
@@ -17,9 +18,11 @@ class ActivityViewModel @ViewModelInject constructor(
     val sharedFlow= MutableSharedFlow<String>()
 
     fun test(){
+        Log.i("TAG", "test: 测试")
         viewModelScope.launch{
             sharedFlow.emit("Hello")
             sharedFlow.emit("SharedFlow")
         }
     }
+
 }

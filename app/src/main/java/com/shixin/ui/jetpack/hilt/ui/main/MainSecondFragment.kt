@@ -1,3 +1,4 @@
+package com.shixin.ui.jetpack.hilt.ui.main
 
 import android.os.Bundle
 import android.util.Log

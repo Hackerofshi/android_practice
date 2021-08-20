@@ -1,3 +1,4 @@
+package com.shixin.ui.jetpack.hilt.ui.main
 
 import android.content.Intent
 import android.os.Bundle
@@ -6,6 +7,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.shixin.ui.jetpack.hilt.di.qualifiers.ActivityScope
 import com.shixin.ui.jetpack.hilt.di.qualifiers.AppScope
@@ -17,7 +19,11 @@ import com.shixin.ui.rxjava.SecondActivity
 
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_first.*
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import org.xutils.common.util.LogUtil
 import javax.inject.Inject
+import kotlin.math.log
 
 @AndroidEntryPoint
 class MainFirstFragment : Fragment(R.layout.fragment_first) {
@@ -51,10 +57,18 @@ class MainFirstFragment : Fragment(R.layout.fragment_first) {
         Log.d(TAG, "fragment vm repo: ${fragmentViewModel.repository}")
 
         button_activity.setOnClickListener {
-            startActivity(Intent(activity, SecondActivity::class.java));
+            //startActivity(Intent(activity, SecondActivity::class.java));
+            activityViewModel.test()
         }
         button_fragment.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        }
+
+        //Activity
+        lifecycleScope.launch {
+            activityViewModel.sharedFlow.collect {
+                Log.i("TAG", "-----------$it")
+            }
         }
     }
 }

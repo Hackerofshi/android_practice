@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="MainFirstFragment"
+        android:name="com.shixin.ui.jetpack.hilt.ui.main.MainFirstFragment"
         tools:layout="@layout/fragment_first">
 
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="MainSecondFragment"
+        android:name="com.shixin.ui.jetpack.hilt.ui.main.MainSecondFragment"
         tools:layout="@layout/fragment_second">
 
         <action
