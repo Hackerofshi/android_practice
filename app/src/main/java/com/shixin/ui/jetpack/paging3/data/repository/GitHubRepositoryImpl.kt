@@ -11,9 +11,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class GitHubRepositoryImpl(
-        val pageConfig: PagingConfig,
-        val githubApi: GitHubService,
-        val mapper2Person: Mapper<GithubAccountModel, GitHubAccount>
+    private val pageConfig: PagingConfig,
+    private val githubApi: GitHubService,
+    private val mapper2Person: Mapper<GithubAccountModel, GitHubAccount>
 ) : Repository {
     override fun postOfData(id: Int): Flow<PagingData<GitHubAccount>> {
         return Pager(pageConfig) {

@@ -26,9 +26,7 @@ public class RxBus {
     public static synchronized RxBus getInstance() {
         if (null == instance) {
             instance = new RxBus();
-
         }
-
         return instance;
     }
 
@@ -38,8 +36,7 @@ public class RxBus {
     }
 
     @SuppressWarnings("rawtypes")
-    private ConcurrentHashMap<Object, List<Subject>>
-            subjectMapper = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<Object, List<Subject>> subjectMapper = new ConcurrentHashMap<>();
 
     /**
      * 订阅事件源
@@ -48,9 +45,7 @@ public class RxBus {
      * @param mAction1
      * @return
      */
-
     public RxBus onEvent(Observable<?> mObservable, Action1<Object> mAction1) {
-
         mObservable.observeOn(AndroidSchedulers.mainThread())
                 .subscribe(mAction1, new Action1<Throwable>() {
                     @Override
@@ -81,8 +76,6 @@ public class RxBus {
         subjectList.add(subject = PublishSubject.<T>create());
         Log.d("shixin", "register" + tag + "size" + subjectList.size());
         return subject;
-
-
     }
 
 
@@ -90,13 +83,9 @@ public class RxBus {
         List<Subject>
                 subjects = subjectMapper.get(tag);
         if (null == subjects) {
-            subjectMapper.remove(tag)
-            ;
+            subjectMapper.remove(tag);
         }
-
     }
-
-
 
 
     /**
@@ -116,7 +105,7 @@ public class RxBus {
             subjects.remove((Subject<?, ?>) observable);
             if (isEmpty(subjects)) {
                 subjectMapper.remove(tag);
-                Log.d("shixin","unregister"+ tag + "  size:" + subjects.size());
+                Log.d("shixin", "unregister" + tag + "  size:" + subjects.size());
             }
         }
         return getInstance();
@@ -133,12 +122,12 @@ public class RxBus {
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
     public void post(@NonNull Object tag, @NonNull Object content) {
-        Log.d("shixin","post"+ "eventName: " + tag);
+        Log.d("shixin", "post" + "eventName: " + tag);
         List<Subject> subjectList = subjectMapper.get(tag);
         if (!isEmpty(subjectList)) {
             for (Subject subject : subjectList) {
                 subject.onNext(content);
-                Log.d("shixin","onEvent"+ "eventName: " + tag);
+                Log.d("shixin", "onEvent" + "eventName: " + tag);
             }
         }
     }
@@ -147,7 +136,4 @@ public class RxBus {
     public static boolean isEmpty(Collection<Subject> collection) {
         return null == collection || collection.isEmpty();
     }
-
-
-
 }

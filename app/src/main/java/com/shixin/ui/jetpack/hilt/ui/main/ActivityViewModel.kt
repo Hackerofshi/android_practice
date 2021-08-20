@@ -7,8 +7,15 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.shixin.ui.jetpack.hilt.repo.Repository
+import io.reactivex.Observable
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
+import io.reactivex.ObservableEmitter
+
+import io.reactivex.ObservableOnSubscribe
+
+
+
 
 class ActivityViewModel @ViewModelInject constructor(
         val repository: Repository,
@@ -23,6 +30,18 @@ class ActivityViewModel @ViewModelInject constructor(
             sharedFlow.emit("Hello")
             sharedFlow.emit("SharedFlow")
         }
+    }
+
+    fun test1(){
+        //创建被观察者
+        val observable: Observable<Int?> = Observable.create(
+            ObservableOnSubscribe<Int?> { e ->
+                e.onNext(1)
+                e.onNext(2)
+                e.onComplete()
+                e.onNext(3)
+                //e.onError(new Throwable());
+            })
     }
 
 }
