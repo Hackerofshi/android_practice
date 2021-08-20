@@ -1,13 +1,14 @@
 package com.shixin.ui.rxjava;
 
-import android.annotation.TargetApi;
+import static android.R.attr.x;
+import static android.R.attr.y;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.os.Environment;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,9 +17,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxCompoundButton;
+import com.shixin.R;
+import com.shixin.bean.Course;
+import com.shixin.bean.Stu;
+import com.shixin.utils.RxSchedulers;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,9 +30,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import com.shixin.R;
-import com.shixin.bean.Course;
-import com.shixin.bean.Stu;
 import rx.Notification;
 import rx.Observable;
 import rx.Observer;
@@ -42,10 +43,6 @@ import rx.functions.Func2;
 import rx.observables.GroupedObservable;
 import rx.schedulers.Schedulers;
 import rx.schedulers.TimeInterval;
-import com.shixin.utils.RxSchedulers;
-
-import static android.R.attr.x;
-import static android.R.attr.y;
 
 public class MainActivity extends BaseActivity {
 
@@ -274,14 +271,10 @@ public class MainActivity extends BaseActivity {
 
 
         Observable
-                .create(new Observable.OnSubscribe<Drawable>() {
-                    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-                    @Override
-                    public void call(Subscriber<? super Drawable> subscriber) {
-                        Drawable drable = getTheme().getDrawable(drableRes);
-                        subscriber.onNext(drable);
-                        subscriber.onCompleted();
-                    }
+                .create((Observable.OnSubscribe<Drawable>) subscriber -> {
+                    Drawable drable = getTheme().getDrawable(drableRes);
+                    subscriber.onNext(drable);
+                    subscriber.onCompleted();
                 }).compose(RxSchedulers.<Drawable>io_main())
                 .subscribe(new Observer<Drawable>() {
                     @Override

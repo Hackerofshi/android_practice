@@ -11,6 +11,8 @@ import retrofit2.*
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
+const val name = "jjjj"
+
 public class FlowDemoActivity : AppCompatActivity() {
 
 

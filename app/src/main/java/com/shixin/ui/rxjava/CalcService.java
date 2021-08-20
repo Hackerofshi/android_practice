@@ -52,8 +52,5 @@ public class CalcService extends Service {
         public int min(int x, int y) throws RemoteException {
             return x - y;
         }
-
     };
-
-
 }
