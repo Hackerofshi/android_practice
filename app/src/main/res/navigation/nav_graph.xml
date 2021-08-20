@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.github.vitaviva.hilt.ui.main.MainFirstFragment"
+        android:name="MainFirstFragment"
         tools:layout="@layout/fragment_first">
 
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.github.vitaviva.hilt.ui.main.MainSecondFragment"
+        android:name="MainSecondFragment"
         tools:layout="@layout/fragment_second">
 
         <action

@@ -33,6 +33,14 @@ class LambdaActivity : AppCompatActivity() {
                 // lambda 表达式中的最后一个表达式是返回值：
                 result
             })
+        }
+
+        "test".let {
+
+        }
+
+
+        btn_sum.apply {
 
         }
     }
@@ -125,11 +133,9 @@ fun demo03() {
 // 声明接收者
 //lambda 作为形参函数声明时，可以携带接收者，如下图：
 //带接收者的 lambda 丰富了函数声明的信息，当传递该 lambda值时，将携带该接收者，比如：
-fun kotlinDSL(block:StringBuilder.()->Unit){
+fun kotlinDSL(block: StringBuilder.() -> Unit) {
     block(StringBuilder("Kotlin"))
 }
-
-
 
 
 //要用Lambda表达式作为接收者类型的前提是接收着类型可以从上下文中推断出来。
@@ -169,9 +175,9 @@ fun <T, R> Collection<T>.fold(
     return accumulator
 }
 
-fun test(b : Int): () -> Int{
+fun test(b: Int): () -> Int {
     var a = 3
-    return fun() : Int{
+    return fun(): Int {
         a++
         return a + b
     }
@@ -179,11 +185,10 @@ fun test(b : Int): () -> Int{
 
 //这段源码理解起来不难，infix 修饰符代表该函数支持中缀调用，
 // 然后为任意对象提供扩展函数 to，接受任意对象作为参数，最终返回键值对。
-fun demo05(){
+fun demo05() {
     "key" to "value"
     // 等价于
     "key".to("value")
-
 }
 
-infix fun Any.to(that:Any) = Pair(this,that)
+infix fun Any.to(that: Any) = Pair(this, that)

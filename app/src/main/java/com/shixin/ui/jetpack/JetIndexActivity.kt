@@ -5,8 +5,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.shixin.R
 import com.shixin.ui.jetpack.flow.FlowDemoActivity
-import com.shixin.ui.sourceread.ReadSourceActivity
+import com.shixin.ui.jetpack.hilt.ui.main.HiltMainActivity
 import kotlinx.android.synthetic.main.activity_jet_index.*
+import kotlinx.coroutines.flow.flow
 
 
 class JetIndexActivity : AppCompatActivity() {
@@ -16,6 +17,9 @@ class JetIndexActivity : AppCompatActivity() {
 
         btn1.setOnClickListener {
             startActivity(Intent(this@JetIndexActivity, FlowDemoActivity::class.java));
+        }
+        btn2.setOnClickListener {
+            startActivity(Intent(this@JetIndexActivity, HiltMainActivity::class.java));
         }
     }
 }

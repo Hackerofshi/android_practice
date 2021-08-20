@@ -1,4 +1,3 @@
-package com.github.vitaviva.hilt.ui.main
 
 import android.os.Bundle
 import android.util.Log

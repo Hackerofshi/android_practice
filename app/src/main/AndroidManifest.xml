@@ -101,7 +101,7 @@
         </activity>
         <activity android:name=".ui.sourceread.ReadSourceActivity" />
         <activity android:name=".ui.customview.RVActivity" />
-        <activity android:name=".ui.jetpack.hilt.ui.main.MainActivity" />
+        <activity android:name=".ui.jetpack.hilt.ui.main.HiltMainActivity" />
         <activity android:name="com.github.vitaviva.hilt.ui.second.SecondActivity" />
         <activity android:name=".ui.jetpack.databinding.MainActivity" />
         <activity android:name=".ui.jetpack.databinding.MainActivity2" />

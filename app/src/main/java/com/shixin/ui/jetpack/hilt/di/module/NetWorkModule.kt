@@ -31,7 +31,7 @@ class NetWorkModule {
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder().addConverterFactory(GsonConverterFactory.create())
-            .baseUrl("")
+            .baseUrl("http:192.168.0.1:9090")
             .client(okHttpClient)
             .build()
     }

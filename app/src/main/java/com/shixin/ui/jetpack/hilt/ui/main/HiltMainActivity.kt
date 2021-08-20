@@ -5,16 +5,20 @@ import android.os.PersistableBundle
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.shixin.ui.jetpack.hilt.di.qualifiers.ActivityScope
 import com.shixin.ui.jetpack.hilt.di.qualifiers.AppScope
 import com.shixin.R
 import com.shixin.ui.jetpack.hilt.di.bean.Truck
+import com.shixin.ui.practice.it
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(R.layout.activity_main_kx) {
+class HiltMainActivity : AppCompatActivity(R.layout.activity_main_kx) {
 
     private val TAG = this.javaClass.toString()
 
@@ -47,6 +51,13 @@ class MainActivity : AppCompatActivity(R.layout.activity_main_kx) {
         viewModel.test()
 
         truck.deliver()
+
+        //Activity
+        lifecycleScope.launch{
+            viewModel.sharedFlow.collect {
+                print(it)
+            }
+        }
     }
 
 }
