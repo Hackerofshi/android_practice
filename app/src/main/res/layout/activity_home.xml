@@ -64,6 +64,13 @@
             android:id="@+id/windowmanager"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
+
+        <Button
+            android:text="opengl"
+            android:id="@+id/opengl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

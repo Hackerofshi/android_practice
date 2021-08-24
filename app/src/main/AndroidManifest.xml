@@ -23,6 +23,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.opengl.OpenGLES20Activity"
+            android:exported="true" />
+        <activity
             android:name=".ui.practice.NotifyActivity"
             android:exported="true" />
         <activity

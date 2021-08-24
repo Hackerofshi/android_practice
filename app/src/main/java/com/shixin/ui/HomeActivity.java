@@ -17,6 +17,7 @@ import com.shixin.ui.customview.CustomViewGuideActivity;
 import com.shixin.ui.jetpack.JetIndexActivity;
 import com.shixin.ui.jetpack.databinding.MainActivity;
 import com.shixin.ui.ndktest.NdkTestActivity;
+import com.shixin.ui.opengl.OpenGLES20Activity;
 import com.shixin.ui.practice.PracticeGuideActivity;
 import com.shixin.ui.sourceread.ReadSourceActivity;
 import com.shixin.ui.sourceread.TestMeasureSpecActivity;
@@ -62,6 +63,9 @@ public class HomeActivity extends AppCompatActivity {
         findViewById(R.id.windowmanager).setOnClickListener(v -> {
             addOverlay();
         });
+        findViewById(R.id.opengl).setOnClickListener(v -> {
+            startActivity(new Intent(HomeActivity.this, OpenGLES20Activity.class));
+        });
 
     }
 
@@ -97,10 +101,6 @@ public class HomeActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),
                         "ACTION_MANAGE_OVERLAY_PERMISSION Permission Denied", Toast.LENGTH_SHORT).show();
             }
-        }
-
-        for (int i = 0; i < 100; i+=5) {
-
         }
     }
 }
