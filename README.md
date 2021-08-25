@@ -294,3 +294,13 @@ https://juejin.cn/post/6902009428633698312
 https://www.jianshu.com/p/f5f0d38e3e44
 
 
+
+
+---
+## 编译错误的查找
+> android databinding kotlin A failure occurred while executing org.jetbrains.kotlin.gradle.internal.KaptExecution 编译错误的查找
+
+一般都和插件有关，查看项目的build.gradle的插件是否符合需求
+
+
+

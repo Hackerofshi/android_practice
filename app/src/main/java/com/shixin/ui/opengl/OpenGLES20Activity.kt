@@ -14,7 +14,7 @@ class OpenGLES20Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         gLView = MyGLSurfaceView(this)
-        //setContentView(gLView)
+        setContentView(gLView)
         // setContentView(R.layout.activity_open_gles20)
     }
 }
