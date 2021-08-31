@@ -23,7 +23,6 @@ Java_com_shixin_jni_NDKBridge_resultFrom(JNIEnv *env, jobject thiz, jint a, jint
     s.num_c[2] = c;
     s.num_c[3] = d;
     float f = s.num_f;
-
     return f;
 }
 
@@ -41,3 +40,6 @@ Java_com_shixin_jni_NDKBridge_floatToString(JNIEnv *env, jobject thiz, jfloat f)
     (env)->SetIntArrayRegion( array, 0, 4, buff);
     return array;
 }
+
+
+

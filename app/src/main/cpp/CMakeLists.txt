@@ -19,6 +19,9 @@ add_library( # Sets the name of the library.
              # Provides a relative path to your source file(s).
              native-lib.cpp
              native-dynamic-lib.cpp
+             main.cpp
+             support.cpp
+             Demo1.cpp
         )
 
 # Searches for a specified prebuilt library and stores the path as a
