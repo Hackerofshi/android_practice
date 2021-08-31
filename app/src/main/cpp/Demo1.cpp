@@ -27,5 +27,38 @@ int main(){
     Demo1 demo1;
 
     demo1.breadth = 0.34;
-
 }
+
+
+class Shape
+{
+public:
+    void setWidth(int w)
+    {
+        width = w;
+    }
+    void setHeight(int h)
+    {
+        height = h;
+    }
+protected:
+    int width;
+    int height;
+};
+
+// 派生类
+class Rectangle: public Shape
+{
+public:
+    int getArea()
+    {
+        return (width * height);
+    }
+};
+
+class PrintData{
+public:
+    void print(){
+        cout<<"dd"<<endl;
+    }
+};

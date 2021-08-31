@@ -8,4 +8,9 @@ extern void write_extern();
 int main(){
     count = 5;
     write_extern();
+    int* p = &count;
+    *p = 34;
+
+
+
 }
