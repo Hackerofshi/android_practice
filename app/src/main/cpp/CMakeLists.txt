@@ -5,27 +5,41 @@
 
 cmake_minimum_required(VERSION 3.4.1)
 
+##官方标准配置
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fno-rtti -fno-exceptions -Wall")
+
+##ANDROID_PLATFORM_LEVEL=18
+add_definitions("-DDYNAMIC_ES3")
+set(OPENGL_LIB GLESv3)
+
+
 # Creates and names a library, sets it as either STATIC
 # or SHARED, and provides the relative paths to its source code.
 # You can define multiple libraries, and CMake builds them for you.
 # Gradle automatically packages shared libraries with your APK.
 
+include_directories(
+        util
+        sample
+)
+
 add_library( # Sets the name of the library.
-             native-lib
+        native-lib
 
-             # Sets the library as a shared library.
-             SHARED
+        # Sets the library as a shared library.
+        SHARED
 
-             # Provides a relative path to your source file(s).
-             native-lib.cpp
-             native-dynamic-lib.cpp
-             main.cpp
-             support.cpp
-             Demo1.cpp
-             jniImpl.cpp
-             MyGLRenderContext.cpp
-             TriangleSample.cpp
-             util/GLUtils.cpp
+        # Provides a relative path to your source file(s).
+        native-lib.cpp
+        native-dynamic-lib.cpp
+        main.cpp
+        support.cpp
+        Demo1.cpp
+        jniImpl.cpp
+        MyGLRenderContext.cpp
+        TriangleSample.cpp
+        util/GLUtils.cpp
         )
 
 # Searches for a specified prebuilt library and stores the path as a
@@ -35,19 +49,24 @@ add_library( # Sets the name of the library.
 # completing its build.
 
 find_library( # Sets the name of the path variable.
-              log-lib
+        log-lib
 
-              # Specifies the name of the NDK library that
-              # you want CMake to locate.
-              log )
+        # Specifies the name of the NDK library that
+        # you want CMake to locate.
+        log)
 
 # Specifies libraries CMake should link to your target library. You
 # can link multiple libraries, such as libraries you define in this
 # build script, prebuilt third-party libraries, or system libraries.
 
 target_link_libraries( # Specifies the target library.
-                       native-lib
-
-                       # Links the target library to the log library
-                       # included in the NDK.
-                       ${log-lib} )
+        native-lib
+        ${OPENGL_LIB}
+        # Links the target library to the log library
+        # included in the NDK.
+        ${log-lib}
+        EGL
+        GLESv3
+        android
+        m
+        )

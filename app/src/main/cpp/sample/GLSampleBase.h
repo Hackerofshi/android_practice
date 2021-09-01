@@ -11,8 +11,8 @@
 
 #include "stdint.h"
 #include <GLES3/gl3.h>
-#include <ImageDef.h>
-#include <ByteFlowLock.h>
+#include "../util/ImageDef.h"
+#include "../util/ByteFlowLock.h"
 
 //For PI define
 #define MATH_PI 3.1415926535897932384626433832802

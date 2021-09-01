@@ -18,6 +18,7 @@ jint native_static_text(JNIEnv *env, jobject jobject1, jstring msg) {
     const char *p_msg = env->GetStringUTFChars(msg, JNI_FALSE);
     __android_log_print(ANDROID_LOG_INFO, "mm", "method = %s, msg = %s", __FUNCTION__, p_msg);
 
+    return 0;
 }
 
 
@@ -46,4 +47,5 @@ jint JNI_OnLoad(JavaVM *vm, void *reserved) {
         }
         return result;
     }
+    return 0;
 }

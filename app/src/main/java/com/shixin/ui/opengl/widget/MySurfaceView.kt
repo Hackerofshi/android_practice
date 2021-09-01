@@ -61,7 +61,7 @@ class MySurfaceView @JvmOverloads constructor(context: Context?, attrs: Attribut
 
 class MyNativeRender {
     init {
-        System.loadLibrary("native-render")
+        System.loadLibrary("native-lib")
     }
 
     external fun native_OnInit()

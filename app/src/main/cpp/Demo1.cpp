@@ -21,13 +21,13 @@ Demo1::Demo1()
 {
     cout << "Object is being created" << endl;
 }
-
-int main(){
-
-    Demo1 demo1;
-
-    demo1.breadth = 0.34;
-}
+//
+//int main(){
+//
+//    Demo1 demo1;
+//
+//    demo1.breadth = 0.34;
+//}
 
 
 class Shape
