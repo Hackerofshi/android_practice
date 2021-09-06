@@ -36,10 +36,10 @@ add_library( # Sets the name of the library.
         main.cpp
         support.cpp
         Demo1.cpp
-        jniImpl.cpp
-        MyGLRenderContext.cpp
-        TriangleSample.cpp
-        util/GLUtils.cpp
+#        jniImpl.cpp
+#        MyGLRenderContext.cpp
+#        TriangleSample.cpp
+#        util/GLUtils.cpp
         )
 
 # Searches for a specified prebuilt library and stores the path as a
@@ -61,12 +61,7 @@ find_library( # Sets the name of the path variable.
 
 target_link_libraries( # Specifies the target library.
         native-lib
-        ${OPENGL_LIB}
         # Links the target library to the log library
         # included in the NDK.
         ${log-lib}
-        EGL
-        GLESv3
-        android
-        m
         )
