@@ -1,4 +1,12 @@
 package com.shixin.kotlin
 
-class Test {
+open class Base(var b: Int) {}
+
+
+class Test : Base {
+    constructor(i: Int) : super(i) {
+        println(i)
+    }
 }
+
+

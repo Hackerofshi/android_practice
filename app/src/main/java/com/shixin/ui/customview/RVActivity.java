@@ -37,6 +37,11 @@ public class RVActivity extends AppCompatActivity {
         //recyclerView.setLayoutManager(new CustomLayoutManagerRemould1());
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new RvAdapter());
+
+
+
+
+
     }
 
     private void getDatas() {
@@ -93,4 +98,6 @@ public class RVActivity extends AppCompatActivity {
             tvName = itemView.findViewById(R.id.tvName);
         }
     }
+
+
 }
