@@ -30,6 +30,11 @@ import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Function;
 import rx.Notification;
 import rx.Observable;
 import rx.Observer;
@@ -47,16 +52,16 @@ import rx.schedulers.TimeInterval;
 public class MainActivity extends BaseActivity {
 
     private Subscriber<String> subscriber;
-    private Observable observable;
-    private String tag = "------";
-    private String path;
-    private ImageView img1;
-    private Button button;
-    private Button button1;
-    private CheckBox check;
-    private CheckBox check1;
-    private TextView tv1;
-    private int i;
+    private Observable         observable;
+    private String             tag = "------";
+    private String             path;
+    private ImageView          img1;
+    private Button             button;
+    private Button             button1;
+    private CheckBox           check;
+    private CheckBox           check1;
+    private TextView           tv1;
+    private int                i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -170,7 +175,7 @@ public class MainActivity extends BaseActivity {
         });
 
         //第二种实现的打印的方式
-        String[] words = {"hello", "hi", "haha"};
+        String[]   words       = {"hello", "hi", "haha"};
         Observable observable1 = Observable.from(words);
 
 
@@ -196,12 +201,12 @@ public class MainActivity extends BaseActivity {
             }
         };
 
-        /*// 自动创建 Subscriber ，并使用 onNextAction 来定义 onNext()
-        observable.subscribe(onNextAction);
-        //自动创建 Subscriber ，并使用 onNextAction 和 onErrorAction 来定义 onNext() 和 onError()
-        observable.subscribe(onNextAction, onErrorAction);
-        //自动创建 Subscriber ，并使用 onNextAction、 onErrorAction 和 onCompletedAction 来定义 onNext()、 onError() 和 onCompleted()
-        observable.subscribe(onNextAction, onErrorAction, onCompletedAction);*/
+        // 自动创建 Subscriber ，并使用 onNextAction 来定义 onNext()
+        /**observable.subscribe(onNextAction);
+         //自动创建 Subscriber ，并使用 onNextAction 和 onErrorAction 来定义 onNext() 和 onError()
+         observable.subscribe(onNextAction, onErrorAction);
+         //自动创建 Subscriber ，并使用 onNextAction、 onErrorAction 和 onCompletedAction 来定义 onNext()、 onError() 和 onCompleted()
+         observable.subscribe(onNextAction, onErrorAction, onCompletedAction);*/
 
 
     }
@@ -294,7 +299,60 @@ public class MainActivity extends BaseActivity {
                     }
                 });
 
+        Observable.create(new Observable.OnSubscribe<String>() {
+            @Override
+            public void call(Subscriber<? super String> subscriber) {
 
+            }
+        }).subscribe(new Observer<String>() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(String s) {
+
+            }
+        });
+
+
+        io.reactivex.Observable.create(new ObservableOnSubscribe<String>() {
+            @Override
+            public void subscribe(@NonNull ObservableEmitter<String> emitter) throws Exception {
+                emitter.onNext("");
+            }
+        }).map(new Function<String, String>() {
+            @Override
+            public String apply(@NonNull String s) throws Exception {
+                return "--";
+            }
+        }).subscribe(new io.reactivex.Observer<String>() {
+            @Override
+            public void onSubscribe(@NonNull Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(@NonNull String s) {
+
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
     }
 
 
@@ -343,8 +401,8 @@ public class MainActivity extends BaseActivity {
         opts.inInputShareable = true;
         opts.inDither = false;
         opts.inPurgeable = true;
-        FileInputStream is = null;
-        Bitmap bitmap = null;
+        FileInputStream is     = null;
+        Bitmap          bitmap = null;
         try {
             is = new FileInputStream(path);
             bitmap = BitmapFactory.decodeFileDescriptor(is.getFD(), null, opts);
@@ -373,7 +431,7 @@ public class MainActivity extends BaseActivity {
         stu.name = "小强";
         Stu stu1 = new Stu();
         stu1.name = "小明";
-        Stu[] stus = {stu, stu1};
+        Stu[]  stus   = {stu, stu1};
         Course course = new Course();
         course.name = "化学";
 

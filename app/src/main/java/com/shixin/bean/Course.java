@@ -6,4 +6,8 @@ package com.shixin.bean;
 
 public class Course {
     public String name;
+
+    abstract class Test {
+        public void test(){};
+    }
 }

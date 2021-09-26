@@ -16,24 +16,24 @@ import com.shixin.ui.view.customDrawable.MessageListItem;
 import com.shixin.ui.view.customviewgroup.CircleMenuLayout;
 
 public class CustomViewActivity extends AppCompatActivity {
-    private CircleMenuLayout mCircleMenuLayout;
-    private static final String TAG = "-----------=";
-    private String[] mItemTexts = new String[]{"安全中心 ", "特色服务", "投资理财",
+    private              CircleMenuLayout mCircleMenuLayout;
+    private static final String           TAG        = "-----------=";
+    private final        String[]         mItemTexts = new String[]{"安全中心 ", "特色服务", "投资理财",
             "转账汇款", "我的账户", "信用卡"};
-    private int[] mItemImgs = new int[]{R.drawable.home_mbank_1_normal,
+    private final        int[]            mItemImgs  = new int[]{R.drawable.home_mbank_1_normal,
             R.drawable.home_mbank_2_normal, R.drawable.home_mbank_3_normal,
             R.drawable.home_mbank_4_normal, R.drawable.home_mbank_5_normal,
             R.drawable.home_mbank_6_normal};
-    private ImageView image;
-    private MessageListItem me;
-    private ImageView img1;
+    private              ImageView        image;
+    private              MessageListItem  me;
+    private              ImageView        img1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         //int 为32个字节
-        System.out.println(TAG+(~7));
+        System.out.println(TAG + (~7));
         //自已切换布局文件看效果
 //		setContentView(R.layout.activity_main02);
         setContentView(R.layout.activity_custom_view);

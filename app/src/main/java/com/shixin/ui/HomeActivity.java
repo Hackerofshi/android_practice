@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -13,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.hi.dhl.paging3.network.ui.MainPagingActivity;
 import com.shixin.R;
+import com.shixin.bean.Bird;
 import com.shixin.ui.customview.CustomViewGuideActivity;
 import com.shixin.ui.jetpack.JetIndexActivity;
 import com.shixin.ui.jetpack.databinding.MainActivity;
@@ -29,6 +31,11 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        Bird bird = new Bird();
+        bird.create();
+
+        Log.i("TAG", "onCreate:------- ");
 
         findViewById(R.id.btn0).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +74,7 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(new Intent(HomeActivity.this, OpenGLES20Activity.class));
         });
 
+        //AsyncTask
     }
 
     private              boolean askedForOverlayPermission;
