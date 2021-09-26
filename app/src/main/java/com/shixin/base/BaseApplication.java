@@ -4,7 +4,6 @@ import android.app.Application;
 import android.content.Context;
 import android.content.res.Resources;
 
-import org.xutils.x;
 //import android.support.multidex.MultiDex;
 
 /**
@@ -18,7 +17,6 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         baseApplication = this;
-        x.Ext.init(this);
     }
 
     public static Context getAppContext() {

@@ -21,7 +21,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_first.*
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import org.xutils.common.util.LogUtil
 import javax.inject.Inject
 import kotlin.math.log
 

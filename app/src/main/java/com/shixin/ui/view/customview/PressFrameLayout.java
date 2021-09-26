@@ -22,7 +22,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
-import org.xutils.common.util.DensityUtil;
 
 @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 public class PressFrameLayout extends FrameLayout {
@@ -74,9 +73,9 @@ public class PressFrameLayout extends FrameLayout {
         //开启ViewGroup的onDraw()
         setWillNotDraw(false);
 
-        padding = DensityUtil.dip2px(20);
-        cornerRadius = DensityUtil.dip2px(5);
-        shadeOffset = DensityUtil.dip2px(5);
+        padding = 20;
+        cornerRadius = 5;
+        shadeOffset = 5;
 
         //View的background为颜色或者图片的两种情况
         Drawable backGround = getBackground();

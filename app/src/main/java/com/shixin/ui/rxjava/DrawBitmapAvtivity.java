@@ -7,7 +7,7 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.xutils.x;
+
 
 import com.shixin.R;
 import com.shixin.ui.view.customview.BitmapCanvasView;
@@ -19,7 +19,6 @@ public class DrawBitmapAvtivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        x.view().inject(this);
         setContentView(R.layout.activity_draw_bitmap_avtivity);
         final BitmapCanvasView myView = (BitmapCanvasView)findViewById(R.id.myview);
         img1 = (ImageView) findViewById(R.id.img1);
