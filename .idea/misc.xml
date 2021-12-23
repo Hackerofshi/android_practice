@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.13703703703703704" />
+        <entry key="..\:/AndroidProject/android_practice/app/src/main/res/layout/activity_mvi_main.xml" value="0.3729166666666667" />
         <entry key="app/src/main/res/drawable-xhdpi/bg_dashgap.xml" value="0.27314814814814814" />
         <entry key="app/src/main/res/layout/activity_action_point.xml" value="0.18297101449275363" />
         <entry key="app/src/main/res/layout/activity_constraint.xml" value="0.335" />
@@ -73,7 +74,7 @@
       </value>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
