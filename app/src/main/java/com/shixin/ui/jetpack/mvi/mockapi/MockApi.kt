@@ -8,6 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
 interface MockApi {
+
     @GET("mock")
     suspend fun getLatestNews(): MockApiResponse
 
