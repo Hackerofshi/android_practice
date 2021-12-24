@@ -2,7 +2,11 @@ package com.shixin.ui.jetpack.mvi.repository
 
 import com.shixin.ui.jetpack.mvi.mockapi.MockApi
 import com.shixin.ui.jetpack.mvi.utils.PageState
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 
 class NewsRepository {
 
@@ -30,5 +34,21 @@ class NewsRepository {
         } ?: run {
             return PageState.Error("Failed to get News")
         }
+    }
+
+    suspend fun getMockApiResponse1(): Flow<PageState<List<NewsItem>>> {
+        return flow {
+            try {
+                val articlesApiResult = MockApi.create().getLatestNews()
+                articlesApiResult.articles?.let { list ->
+                    emit(PageState.Success(data = list))
+                } ?: run {
+                    // emit(PageState.Error("Failed to get News"))
+                    emit(PageState.Error<List<NewsItem>>("Failed to get News"))
+                }
+            } catch (e: Exception) {
+                emit(PageState.Error<List<NewsItem>>(e))
+            }
+        }.flowOn(Dispatchers.IO)
     }
 }

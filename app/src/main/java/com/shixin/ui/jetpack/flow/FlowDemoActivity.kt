@@ -32,11 +32,11 @@ public class FlowDemoActivity : AppCompatActivity() {
     private fun demo1() {
         CoroutineScope(Dispatchers.Main).launch {
             flowOf(1, 2, 3, 4, 5)
-                    .onEach {
-                        delay(100)
-                    }.collect {
-                        println(it)
-                    }
+                .onEach {
+                    delay(100)
+                }.collect {
+                    println(it)
+                }
         }
     }
 
@@ -211,11 +211,11 @@ public class FlowDemoActivity : AppCompatActivity() {
                     emit(it)
                 }
             }.conflate()
-                    .collect { value ->
-                        println("Collecting $value")
-                        delay(100)
-                        println("$value collected")
-                    }
+                .collect { value ->
+                    println("Collecting $value")
+                    delay(100)
+                    println("$value collected")
+                }
         }
         //我们快速地发送了 100 个元素，最后接收到的只有两个，当然这个结果每次都不一定一样：
         //
@@ -275,7 +275,7 @@ public class FlowDemoActivity : AppCompatActivity() {
             }.map {
                 flow { List(it) { emit(it) } }
             }.flattenConcat()
-                    .collect { println(it) }
+                .collect { println(it) }
         }
     }
 
@@ -316,10 +316,16 @@ public class FlowDemoActivity : AppCompatActivity() {
             }.merge().first()
         }
 
-        sum(1,2)
+        sum(1, 2)
     }
 }
 
 
-
 val sum = { x: Int, y: Int -> x + y }
+
+fun sum2(x: Int, y: Int): Int {
+    return x + y
+}
+
+val sum1 = sum2(1, 2)
+

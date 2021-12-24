@@ -71,3 +71,34 @@ fun test1() {
     val person = Person("geniusmart")
     person()
 }
+
+
+
+fun test11() {
+    val items = listOf(1, 2, 3, 4, 5)
+
+    // Lambdas 表达式是花括号括起来的代码块。
+    items.fold(0, {
+        // 如果一个 lambda 表达式有参数，前面是参数，后跟“->”
+            acc: Int, i: Int ->
+        print("acc = $acc, i = $i, ")
+        val result = acc + i
+        println("result = $result")
+        // lambda 表达式中的最后一个表达式是返回值：
+        result
+    })
+    //acc = 0, i = 1, result = 1
+    //acc = 1, i = 2, result = 3
+    //acc = 3, i = 3, result = 6
+    //acc = 6, i = 4, result = 10
+    //acc = 10, i = 5, result = 15
+
+
+
+    // lambda 表达式的参数类型是可选的，如果能够推断出来的话：
+    //joinedToString = Elements: 1 2 3 4 5
+    val joinedToString = items.fold("Elements:", { acc, i -> acc + " " + i })
+
+    // 函数引用也可以用于高阶函数调用：
+    val product = items.fold(1, Int::times)
+}

@@ -322,17 +322,8 @@ public class MainActivity extends BaseActivity {
         });
 
 
-        io.reactivex.Observable.create(new ObservableOnSubscribe<String>() {
-            @Override
-            public void subscribe(@NonNull ObservableEmitter<String> emitter) throws Exception {
-                emitter.onNext("");
-            }
-        }).map(new Function<String, String>() {
-            @Override
-            public String apply(@NonNull String s) throws Exception {
-                return "--";
-            }
-        }).subscribe(new io.reactivex.Observer<String>() {
+        io.reactivex.Observable.create((ObservableOnSubscribe<String>) emitter -> emitter.onNext(""))
+                .map(s -> "--").subscribe(new io.reactivex.Observer<String>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
 

@@ -7,6 +7,7 @@ import kotlinx.coroutines.launch
 import com.shixin.ui.jetpack.mvi.repository.NewsItem
 import com.shixin.ui.jetpack.mvi.repository.NewsRepository
 import com.shixin.ui.jetpack.mvi.utils.*
+import kotlinx.coroutines.flow.collect
 
 class MainViewModel : ViewModel() {
     private var count: Int = 0
@@ -53,5 +54,27 @@ class MainViewModel : ViewModel() {
                 }
             }
         }
+
+
+
+        viewModelScope.launch {
+            repository.getMockApiResponse1().collect {
+                when(it){
+                    is PageState.Error -> {
+                        _viewStates.setState {
+                            copy(fetchStatus = FetchStatus.Fetched)
+                        }
+                        _viewEvents.setEvent(MainViewEvent.ShowToast(message = it.message))
+                    }
+                    is PageState.Success -> {
+                        _viewStates.setState {
+                            copy(fetchStatus = FetchStatus.Fetched, newsList = it.data)
+                        }
+                    }
+                }
+            }
+        }
+
+
     }
 }
