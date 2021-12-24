@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_mvi_main.*
 //https://juejin.cn/post/7027815347281477645#heading-9
 class MVIMainActivity  : AppCompatActivity()  {
     private val viewModel: MainViewModel by viewModels()
+    private val mViewModel by viewModels<ApiViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,4 +70,51 @@ class MVIMainActivity  : AppCompatActivity()  {
             }
         }
     }
+
+
+    private fun initObserver() {
+        mViewModel.wxArticleLiveData.observeState(this) {
+            onSuccess { data: List<Any> ->
+                showNetErrorPic(false)
+               // mBinding.tvContent.text = data.toString()
+            }
+
+            onFailed { code, msg ->
+            }
+
+            onException {
+                showNetErrorPic(true)
+            }
+
+            onEmpty {
+            }
+
+            onComplete {
+               // dismissLoading()
+            }
+        }
+
+        mViewModel.mediatorLiveDataLiveData.observe(this) {
+            showNetErrorPic(false)
+            //mBinding.tvContent.text = it.data.toString()
+        }
+
+        mViewModel.userLiveData.observeState(this) {
+            onSuccess {
+               // mBinding.tvContent.text = it.toString()
+            }
+
+//            onComplete {
+            //自带loading，不需要手动取消loading
+//                dismissLoading()
+//            }
+        }
+    }
+
+    private fun showNetErrorPic(isShowError: Boolean) {
+        //mBinding.tvContent.isGone = isShowError
+        //mBinding.ivContent.isVisible = isShowError
+    }
+
+
 }

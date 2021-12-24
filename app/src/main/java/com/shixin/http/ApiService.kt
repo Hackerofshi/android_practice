@@ -1,5 +1,11 @@
 package com.shixin.http
 
+import com.shixin.ui.jetpack.mvi.entity.ApiResponse
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.GET
+import retrofit2.http.POST
+
 /**
  *
  * @ProjectName:    Android_Pratice
@@ -14,4 +20,19 @@ package com.shixin.http
  * @Version:        1.0
  */
 interface ApiService {
+
+
+    @GET("wxarticle/chapters/json")
+    suspend fun getWxArticle(): ApiResponse<List<Any>>
+
+    @GET("abc/chapters/json")
+    suspend fun getWxArticleError(): ApiResponse<List<Any>>
+
+    @FormUrlEncoded
+    @POST("user/login")
+    suspend fun login(@Field("username") userName: String, @Field("password") passWord: String): ApiResponse<Any?>
+
+    companion object {
+        const val BASE_URL = "https://wanandroid.com/"
+    }
 }

@@ -6,6 +6,10 @@ class Demo {
 
 }
 
+fun main() {
+    test1()
+}
+
 fun test() {
     val demo = Demo()
 
