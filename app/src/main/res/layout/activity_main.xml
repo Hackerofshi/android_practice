@@ -27,6 +27,7 @@
         android:layout_height="wrap_content">
         <Button
             android:text="pic1"
+            android:onClick="click"
             android:layout_width="wrap_content"
             android:id="@+id/bu1"
             android:layout_height="wrap_content" />

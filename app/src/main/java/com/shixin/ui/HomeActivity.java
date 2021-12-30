@@ -74,6 +74,10 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(new Intent(HomeActivity.this, OpenGLES20Activity.class));
         });
 
+        findViewById(R.id.rxjava).setOnClickListener(v -> {
+            startActivity(new Intent(HomeActivity.this, com.shixin.ui.rxjava.MainActivity.class));
+        });
+
         //AsyncTask
     }
 

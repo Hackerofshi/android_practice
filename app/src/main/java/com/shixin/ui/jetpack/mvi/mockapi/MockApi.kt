@@ -13,6 +13,14 @@ interface MockApi {
     suspend fun getLatestNews(): MockApiResponse
 
     companion object {
+
+        fun createOkHttp(): OkHttpClient {
+            return OkHttpClient()
+                .newBuilder()
+                .addInterceptor(MockInterceptor())
+                .build()
+        }
+
         // Please do not follow this code as this has been
         // modified to intercept API calls with mock response.
         fun create(): MockApi {
@@ -30,7 +38,6 @@ interface MockApi {
         }
     }
 }
-
 
 
 object RetrofitClient : BaseRetrofitClient() {

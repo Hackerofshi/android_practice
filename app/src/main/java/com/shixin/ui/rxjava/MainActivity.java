@@ -29,6 +29,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -71,7 +73,7 @@ public class MainActivity extends BaseActivity {
         path = Environment.getExternalStorageDirectory().getPath() + "/img/logo.jpg";
         File file = new File(path);
         //System.out.println("-----" + path + "----" + file.length());
-        init();
+        //init();
         initView();
         initRxBus();
 
@@ -126,7 +128,7 @@ public class MainActivity extends BaseActivity {
                 init1();
                 break;
             case R.id.bu2:
-                initFlatmap();
+                init2();
                 break;
             case R.id.bu3:
                 initTimer();
@@ -169,10 +171,46 @@ public class MainActivity extends BaseActivity {
                 subscriber.onNext("Hi");
                 subscriber.onNext("Aloha");
                 subscriber.onCompleted();
-
                 //subscriber.onError();
             }
         });
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(Object o) {
+
+                    }
+                });
+
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Subscriber() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(Object o) {
+
+                    }
+                });
 
         //第二种实现的打印的方式
         String[]   words       = {"hello", "hi", "haha"};
@@ -206,7 +244,24 @@ public class MainActivity extends BaseActivity {
          //自动创建 Subscriber ，并使用 onNextAction 和 onErrorAction 来定义 onNext() 和 onError()
          observable.subscribe(onNextAction, onErrorAction);
          //自动创建 Subscriber ，并使用 onNextAction、 onErrorAction 和 onCompletedAction 来定义 onNext()、 onError() 和 onCompleted()
-         observable.subscribe(onNextAction, onErrorAction, onCompletedAction);*/
+         */
+        observable.subscribe(onNextAction, onErrorAction, onCompletedAction);
+        observable.subscribe(new Observer() {
+            @Override
+            public void onCompleted() {
+
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onNext(Object o) {
+
+            }
+        });
 
 
     }
@@ -273,6 +328,7 @@ public class MainActivity extends BaseActivity {
     private void init1() {
 
         final int drableRes = R.mipmap.ic_launcher;
+        Log.i("TAG", "onCompleted: test");
 
 
         Observable
@@ -284,7 +340,7 @@ public class MainActivity extends BaseActivity {
                 .subscribe(new Observer<Drawable>() {
                     @Override
                     public void onCompleted() {
-
+                        Log.i("TAG", "onCompleted: test");
                     }
 
                     @Override
@@ -299,71 +355,81 @@ public class MainActivity extends BaseActivity {
                     }
                 });
 
-        Observable.create(new Observable.OnSubscribe<String>() {
-            @Override
-            public void call(Subscriber<? super String> subscriber) {
 
-            }
-        }).subscribe(new Observer<String>() {
-            @Override
-            public void onCompleted() {
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onNext(String s) {
-
-            }
-        });
-
-
-        io.reactivex.Observable.create((ObservableOnSubscribe<String>) emitter -> emitter.onNext(""))
-                .map(s -> "--").subscribe(new io.reactivex.Observer<String>() {
-            @Override
-            public void onSubscribe(@NonNull Disposable d) {
-
-            }
-
-            @Override
-            public void onNext(@NonNull String s) {
-
-            }
-
-            @Override
-            public void onError(@NonNull Throwable e) {
-
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-        });
+//
+//
+//        io.reactivex.Observable.create((ObservableOnSubscribe<String>) emitter -> emitter.onNext(""))
+//                .map(s -> "--").subscribe(new io.reactivex.Observer<String>() {
+//            @Override
+//            public void onSubscribe(@NonNull Disposable d) {
+//
+//            }
+//
+//            @Override
+//            public void onNext(@NonNull String s) {
+//
+//            }
+//
+//            @Override
+//            public void onError(@NonNull Throwable e) {
+//
+//            }
+//
+//            @Override
+//            public void onComplete() {
+//
+//            }
+//        });
     }
 
 
     private void init2() {
-        Observable
-                .just(path) // 输入类型 String
-                .map(new Func1<String, Bitmap>() {
-                    @Override
-                    public Bitmap call(String filePath) { // 参数类型 String
-                        System.out.println("---sd-----------" + filePath);
-                        return createBitmap(filePath); // 返回类型 Bitmap
-                    }
-                })
+//        Observable
+//                .just(path) // 输入类型 String
+//                .map(new Func1<String, Bitmap>() {
+//                    @Override
+//                    public Bitmap call(String filePath) { // 参数类型 String
+//                        System.out.println("---sd-----------" + filePath);
+//                        return createBitmap(filePath); // 返回类型 Bitmap
+//                    }
+//                })
+//                .subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Action1<Bitmap>() {
+//                    @Override
+//                    public void call(Bitmap bitmap) { // 参数类型 Bitmap
+//                        System.out.println("Hello--------------" + bitmap.getWidth() + Thread.currentThread().getId());
+//                        img1.setImageBitmap(bitmap);
+//                    }
+//                });
+
+        Observable.create((Observable.OnSubscribe<String>) subscriber -> {
+            subscriber.onNext("1");
+            subscriber.onNext("2");
+            subscriber.onNext("3");
+            subscriber.onNext("4");
+            subscriber.onNext("5");
+            subscriber.onNext("6");
+            subscriber.onCompleted();
+        })
+
+
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<Bitmap>() {
+                .subscribe(new Observer<String>() {
                     @Override
-                    public void call(Bitmap bitmap) { // 参数类型 Bitmap
-                        System.out.println("Hello--------------" + bitmap.getWidth() + Thread.currentThread().getId());
-                        img1.setImageBitmap(bitmap);
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        Log.i("TAG", "init2: " + s);
                     }
                 });
     }

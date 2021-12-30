@@ -5,18 +5,22 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.shixin.R
+import com.shixin.ui.jetpack.mvi.mockapi.MockApi
 import com.shixin.ui.jetpack.mvi.utils.FetchStatus
 import com.shixin.ui.jetpack.mvi.utils.observeState
 import com.shixin.ui.jetpack.mvi.utils.toast
 import kotlinx.android.synthetic.main.activity_mvi_main.*
-
+import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody.Companion.toRequestBody
+import java.io.IOException
 
 
 //https://juejin.cn/post/7027815347281477645#heading-9
 class MVIMainActivity  : AppCompatActivity()  {
     private val viewModel: MainViewModel by viewModels()
     private val mViewModel by viewModels<ApiViewModel>()
-
+    val JSON: MediaType = "application/json; charset=utf-8".toMediaType()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mvi_main)
@@ -33,6 +37,23 @@ class MVIMainActivity  : AppCompatActivity()  {
         fabStar.setOnClickListener {
             viewModel.dispatch(MainViewAction.FabClicked)
         }
+
+    }
+
+    @Throws(IOException::class)
+    fun post(url: String?, json: String) {
+        val body: RequestBody = json.toRequestBody(JSON)
+        val request: Request = Request.Builder()
+            .url(url?:"")
+            .post(body)
+            .build()
+       MockApi.createOkHttp().newCall(request).enqueue(object :Callback{
+           override fun onFailure(call: Call, e: IOException) {
+           }
+
+           override fun onResponse(call: Call, response: Response) {
+           }
+       })
     }
 
     private fun initViewModel() {

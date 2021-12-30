@@ -71,6 +71,12 @@
             android:id="@+id/opengl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
+        <Button
+            android:text="rxjava"
+            android:id="@+id/rxjava"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

@@ -8,7 +8,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.13703703703703704" />
+        <entry key="..\:/AndroidProject/android_practice/app/src/main/res/layout/activity_home.xml" value="0.3125" />
+        <entry key="..\:/AndroidProject/android_practice/app/src/main/res/layout/activity_main.xml" value="0.22239583333333332" />
         <entry key="..\:/AndroidProject/android_practice/app/src/main/res/layout/activity_mvi_main.xml" value="0.3729166666666667" />
+        <entry key="..\:/AndroidProject/android_practice/app/src/main/res/layout/activity_second.xml" value="0.26666666666666666" />
         <entry key="app/src/main/res/drawable-xhdpi/bg_dashgap.xml" value="0.27314814814814814" />
         <entry key="app/src/main/res/layout/activity_action_point.xml" value="0.18297101449275363" />
         <entry key="app/src/main/res/layout/activity_constraint.xml" value="0.335" />
