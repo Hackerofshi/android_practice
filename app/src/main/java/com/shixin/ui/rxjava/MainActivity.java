@@ -29,14 +29,12 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Function;
 import rx.Notification;
 import rx.Observable;
 import rx.Observer;
@@ -356,30 +354,36 @@ public class MainActivity extends BaseActivity {
                 });
 
 
-//
-//
-//        io.reactivex.Observable.create((ObservableOnSubscribe<String>) emitter -> emitter.onNext(""))
-//                .map(s -> "--").subscribe(new io.reactivex.Observer<String>() {
-//            @Override
-//            public void onSubscribe(@NonNull Disposable d) {
-//
-//            }
-//
-//            @Override
-//            public void onNext(@NonNull String s) {
-//
-//            }
-//
-//            @Override
-//            public void onError(@NonNull Throwable e) {
-//
-//            }
-//
-//            @Override
-//            public void onComplete() {
-//
-//            }
-//        });
+        io.reactivex.Observable
+                .create(new ObservableOnSubscribe<Object>() {
+            @Override
+            public void subscribe(@NonNull ObservableEmitter<Object> emitter) throws Exception {
+                emitter.onNext("fff");
+            }
+        }).subscribeOn(io.reactivex.schedulers.Schedulers.io())
+                .observeOn(io.reactivex.android.schedulers.AndroidSchedulers.mainThread())
+
+                .map(s -> "--").subscribe(new io.reactivex.Observer<String>() {
+            @Override
+            public void onSubscribe(@NonNull Disposable d) {
+
+            }
+
+            @Override
+            public void onNext(@NonNull String s) {
+
+            }
+
+            @Override
+            public void onError(@NonNull Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        });
     }
 
 
