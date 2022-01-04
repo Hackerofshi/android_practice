@@ -3,6 +3,10 @@ package com.shixin.ui.rxjava;
 import static android.R.attr.x;
 import static android.R.attr.y;
 
+
+import static com.uber.autodispose.AutoDispose.autoDisposable;
+
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,12 +21,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.lifecycle.Lifecycle;
+
 import com.jakewharton.rxbinding.view.RxView;
 import com.jakewharton.rxbinding.widget.RxCompoundButton;
 import com.shixin.R;
 import com.shixin.bean.Course;
 import com.shixin.bean.Stu;
 import com.shixin.utils.RxSchedulers;
+import com.uber.autodispose.AutoDispose;
+import com.uber.autodispose.ObservableSubscribeProxy;
+import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -35,10 +44,13 @@ import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Function;
 import rx.Notification;
 import rx.Observable;
 import rx.Observer;
 import rx.Subscriber;
+import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
 import rx.functions.Action1;
@@ -93,15 +105,15 @@ public class MainActivity extends BaseActivity {
         button = (Button) findViewById(R.id.bu1);
         button1 = (Button) findViewById(R.id.bu2);
         tv1 = (TextView) findViewById(R.id.tv1);
-        RxView.clicks(button).throttleFirst(2, TimeUnit.SECONDS)
-                .subscribe(new Action1<Void>() {
-                    @Override
-                    public void call(Void aVoid) {
-                        Toast.makeText(MainActivity.this, "点击了", Toast.LENGTH_SHORT).show();
-                        //initLift();
-                        initSchedulerPeriodically();
-                    }
-                });
+//        RxView.clicks(button).throttleFirst(2, TimeUnit.SECONDS)
+//                .subscribe(new Action1<Void>() {
+//                    @Override
+//                    public void call(Void aVoid) {
+//                        Toast.makeText(MainActivity.this, "点击了", Toast.LENGTH_SHORT).show();
+//                        //initLift();
+//                        initSchedulerPeriodically();
+//                    }
+//                });
 
         check = (CheckBox) findViewById(R.id.checkbox);
         check1 = (CheckBox) findViewById(R.id.checkbox);
@@ -129,10 +141,11 @@ public class MainActivity extends BaseActivity {
                 init2();
                 break;
             case R.id.bu3:
-                initTimer();
+                init1();
                 break;
             case R.id.bu4:
-                startActivity(new Intent(this, SecondActivity.class));
+                // startActivity(new Intent(this, SecondActivity.class));
+                initAutoDispose();
                 break;
         }
 
@@ -298,7 +311,7 @@ public class MainActivity extends BaseActivity {
             }
         });
 
-        deferObservable.subscribe(new Subscriber() {
+        Subscription subscribe = deferObservable.subscribe(new Subscriber() {
             @Override
             public void onCompleted() {
 
@@ -314,6 +327,9 @@ public class MainActivity extends BaseActivity {
                 System.out.println("defer result:" + o.toString());
             }
         });
+
+
+
         /**
          * just result:10
          defer result:15
@@ -329,41 +345,58 @@ public class MainActivity extends BaseActivity {
         Log.i("TAG", "onCompleted: test");
 
 
-        Observable
-                .create((Observable.OnSubscribe<Drawable>) subscriber -> {
-                    Drawable drable = getTheme().getDrawable(drableRes);
-                    subscriber.onNext(drable);
-                    subscriber.onCompleted();
-                }).compose(RxSchedulers.<Drawable>io_main())
-                .subscribe(new Observer<Drawable>() {
+//        Observable
+//                .create((Observable.OnSubscribe<Drawable>) subscriber -> {
+//                    Drawable drable = getTheme().getDrawable(drableRes);
+//                    subscriber.onNext(drable);
+//                    subscriber.onCompleted();
+//                }).compose(RxSchedulers.<Drawable>io_main())
+//                .subscribe(new Observer<Drawable>() {
+//                    @Override
+//                    public void onCompleted() {
+//                        Log.i("TAG", "onCompleted: test");
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
+//                    }
+//
+//                    @Override
+//                    public void onNext(Drawable drawable) {
+//                        img1.setImageDrawable(drawable);
+//
+//                    }
+//                });
+
+
+        io.reactivex.Observable<String> fff = io.reactivex.Observable
+                .create(new ObservableOnSubscribe<String>() {
                     @Override
-                    public void onCompleted() {
-                        Log.i("TAG", "onCompleted: test");
+                    public void subscribe(@NonNull ObservableEmitter<String> emitter) throws Exception {
+                        emitter.onNext("fff");
                     }
+                });
+//        fff  .doOnDispose(() -> Log.i("TAG", "Disposing subscription from onCreate()"))
+//                .as(autoDisposable(AndroidLifecycleScopeProvider.from(this)));
 
+        io.reactivex.Observable<String> map = fff.subscribeOn(io.reactivex.schedulers.Schedulers.io())
+                .observeOn(io.reactivex.android.schedulers.AndroidSchedulers.mainThread())
+                .map(new Function<String, String>() {
                     @Override
-                    public void onError(Throwable e) {
-                        Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onNext(Drawable drawable) {
-                        img1.setImageDrawable(drawable);
-
+                    public String apply(@NonNull String s) throws Exception {
+                        return "";
                     }
                 });
 
-
-        io.reactivex.Observable
-                .create(new ObservableOnSubscribe<Object>() {
+        ObservableSubscribeProxy<String> as = map.doOnDispose(new Action() {
             @Override
-            public void subscribe(@NonNull ObservableEmitter<Object> emitter) throws Exception {
-                emitter.onNext("fff");
-            }
-        }).subscribeOn(io.reactivex.schedulers.Schedulers.io())
-                .observeOn(io.reactivex.android.schedulers.AndroidSchedulers.mainThread())
+            public void run() throws Exception {
 
-                .map(s -> "--").subscribe(new io.reactivex.Observer<String>() {
+            }
+        }).as(AutoDispose.<String>autoDisposable(AndroidLifecycleScopeProvider.from(this)));
+
+        as.subscribe(new io.reactivex.Observer<String>() {
             @Override
             public void onSubscribe(@NonNull Disposable d) {
 
@@ -384,6 +417,47 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+
+
+        io.reactivex.Observable.interval(1, TimeUnit.SECONDS)
+                .doOnDispose(() -> Log.i("TAG", "Disposing subscription from onResume() with untilEvent ON_DESTROY"))
+                .as(autoDisposable(AndroidLifecycleScopeProvider.from(this, Lifecycle.Event.ON_DESTROY)))
+                .subscribe(num -> Log.i("TAG", "Started in onResume(), running until in onDestroy(): " + num));
+
+    }
+
+    @SuppressLint("AutoDispose")
+    private void initAutoDispose() {
+        io.reactivex.Observable.interval(1, TimeUnit.SECONDS)
+                .subscribeOn(io.reactivex.schedulers.Schedulers.io())
+                .observeOn(io.reactivex.android.schedulers.AndroidSchedulers.mainThread())
+                .doOnDispose(new Action() {
+                    @Override
+                    public void run() throws Exception {
+
+                    }
+                })
+                .as(autoDisposable(AndroidLifecycleScopeProvider.from(this)))
+                .subscribe(new io.reactivex.Observer<Long>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull Long aLong) {
+
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                });
     }
 
 

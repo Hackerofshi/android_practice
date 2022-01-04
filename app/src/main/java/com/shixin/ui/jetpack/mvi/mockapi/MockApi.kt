@@ -4,6 +4,7 @@ import com.shixin.http.ApiService
 import com.shixin.ui.jetpack.mvi.base.BaseRetrofitClient
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 

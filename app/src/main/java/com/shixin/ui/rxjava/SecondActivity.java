@@ -17,6 +17,7 @@ import com.shixin.bean.Course;
 import com.shixin.bean.Newsbean;
 import com.shixin.network.NetWork;
 import com.shixin.network.api.News;
+
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -29,7 +30,7 @@ import rx.schedulers.Schedulers;
 
 public class SecondActivity extends AppCompatActivity {
 
-    private Button bu1;
+    private        Button bu1;
     private static String BASE_URL = "http://api-php.nashigroup.com/";
 
     @Override
@@ -46,21 +47,16 @@ public class SecondActivity extends AppCompatActivity {
                 });
 
 
-
-        findViewById(R.id.bu2).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Course content = new Course();
-                content.name = "hello";
-                //这边发出消息
-                /**
-                 * {@link MainActivity}
-                 */
-                RxBus.getInstance().post("---", content);
-               // finish();
-            }
+        findViewById(R.id.bu2).setOnClickListener(v -> {
+            Course content = new Course();
+            content.name = "hello";
+            //这边发出消息
+            /**
+             * {@link MainActivity}
+             */
+            RxBus.getInstance().post("---", content);
+            // finish();
         });
-
 
 
     }
@@ -107,10 +103,24 @@ public class SecondActivity extends AppCompatActivity {
 
                     @Override
                     public void onNext(Newsbean.DataBean dataBean) {
-                        System.out.println("------"+dataBean.category);
+                        System.out.println("------" + dataBean.category);
                     }
                 });
 
+        testLambda(() -> {
 
+        });
+
+    }
+
+
+    private void testLambda(Test test) {
+        Test test1 = () -> {
+        };
+    }
+
+
+    interface Test {
+        void Test();
     }
 }
