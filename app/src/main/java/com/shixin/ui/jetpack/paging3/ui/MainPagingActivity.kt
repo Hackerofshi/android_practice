@@ -45,9 +45,7 @@ class MainPagingActivity : DataBindingAppCompatActivity(), AnkoLogger {
 
         // bind view
         mBinding.apply {
-            rvList.adapter = mAdapter.withLoadStateFooter(
-                    footer = FooterAdapter(mAdapter)
-            )
+            rvList.adapter = mAdapter
             swipeRefresh.setOnRefreshListener {
                 mAdapter.refresh()
             }

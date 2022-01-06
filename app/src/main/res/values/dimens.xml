@@ -6,4 +6,5 @@
 
     <dimen name="paddingBig">190dp</dimen>
     <dimen name="paddingSmall">150dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 </resources>

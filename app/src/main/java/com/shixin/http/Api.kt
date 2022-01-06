@@ -126,10 +126,10 @@ object Api {
         val sharedPreferences: SharedPreferences = instance
             .getSharedPreferences(COOKIE, Context.MODE_PRIVATE)
         val string = sharedPreferences.getString(AUTHORIZED, "")
-        val split = string!!.split(";").toTypedArray()
+        val split = string?.split(";")?.toTypedArray()
         val builder = chain.request().newBuilder()
-        if (split.size > 0) {
-            builder.addHeader("Cookie", split[0])
+        if (split?.size ?: 0 > 0) {
+            builder.addHeader("Cookie", split?.get(0) ?: "")
         }
         val build = builder
             .addHeader("Content-Type", "application/json")

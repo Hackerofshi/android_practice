@@ -19,6 +19,9 @@ class PracticeGuideActivity : AppCompatActivity() {
         btn_notify.setOnClickListener {
             startActivity(Intent(this, NotifyActivity::class.java))
         }
+        btn_fragment.setOnClickListener {
+            startActivity(Intent(this, FragmentSourceActivity::class.java))
+        }
     }
 }
 

@@ -1,19 +1,32 @@
 package com.shixin.ui.jetpack.flow;
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
 import com.shixin.R
 import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.*
 import retrofit2.*
+import java.lang.reflect.Method
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
 const val name = "jjjj"
 
-public class FlowDemoActivity : AppCompatActivity() {
+class FlowDemoActivity : AppCompatActivity() {
+
+
+    class TestObserver(val str: String) : LifecycleObserver {
+        @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+        fun onCreate() {
+            Log.d("TAG", "-----------LifecycleObserver -- onCreate" + str);
+        }
+    }
 
 
     //文章 https://zhuanlan.zhihu.com/p/114295411
@@ -27,7 +40,10 @@ public class FlowDemoActivity : AppCompatActivity() {
             test1();
         }
 
+        lifecycle.addObserver(TestObserver("test"))
+
     }
+
 
     private fun demo1() {
         CoroutineScope(Dispatchers.Main).launch {
@@ -328,4 +344,9 @@ fun sum2(x: Int, y: Int): Int {
 }
 
 val sum1 = sum2(1, 2)
+
+
+
+
+
 
