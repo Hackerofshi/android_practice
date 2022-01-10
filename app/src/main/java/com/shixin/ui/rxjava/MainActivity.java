@@ -42,10 +42,13 @@ import java.util.concurrent.TimeUnit;
 
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.ObservableSource;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Timed;
 import rx.Notification;
 import rx.Observable;
 import rx.Observer;
@@ -147,7 +150,87 @@ public class MainActivity extends BaseActivity {
                 // startActivity(new Intent(this, SecondActivity.class));
                 initAutoDispose();
                 break;
+            case R.id.bu5:
+                testTimeInterval();
+                break;
         }
+
+    }
+
+    String TAG = "1234";
+
+    @SuppressLint("AutoDispose")
+    private void testTimeInterval() {
+//
+//        io.reactivex.Observable.interval(1, TimeUnit.MILLISECONDS)
+//                .observeOn(io.reactivex.schedulers.Schedulers.io())
+//                .subscribeOn(io.reactivex.android.schedulers.AndroidSchedulers.mainThread())
+//                .subscribe(new Consumer<Long>() {
+//                    @Override
+//                    public void accept(Long aLong) throws Exception {
+//                        io.reactivex.Observable
+//                                .create(emitter -> {
+//                                    emitter.onNext("1");
+//                                })
+//                                .observeOn(io.reactivex.schedulers.Schedulers.io())
+//                                .subscribeOn(io.reactivex.android.schedulers.AndroidSchedulers.mainThread())
+//                                .subscribe(new Consumer<Object>() {
+//                                    @Override
+//                                    public void accept(Object o) throws Exception {
+//
+//                                    }
+//                                });
+//                    }
+//                });
+
+//        io.reactivex.Observable.create(new ObservableOnSubscribe<Object>() {
+//            @Override
+//            public void subscribe(@NonNull ObservableEmitter<Object> emitter) throws Exception {
+//                emitter.onNext("1");
+//            }
+//        }).repeatWhen(new Function<io.reactivex.Observable<Object>, ObservableSource<?>>() {
+//            @Override
+//            public ObservableSource<?> apply(@NonNull io.reactivex.Observable<Object> objectObservable) throws Exception {
+//                return objectObservable.flatMap(new Function<Object, ObservableSource<?>>() {
+//                    @Override
+//                    public ObservableSource<?> apply(@NonNull Object throwable) throws Exception {
+//
+//                        // 加入判断条件：当轮询次数 = 5次后，就停止轮询
+////                        if (i > 3) {
+////                            // 此处选择发送onError事件以结束轮询，因为可触发下游观察者的onError（）方法回调
+////                            return  io.reactivex.Observable.error(new Throwable("轮询结束"));
+////                        }
+//                        // 若轮询次数＜4次，则发送1Next事件以继续轮询
+//                        // 注：此处加入了delay操作符，作用 = 延迟一段时间发送（此处设置 = 2s），以实现轮询间间隔设置
+//                        return  io.reactivex.Observable.just(1).delay(5, TimeUnit.MILLISECONDS);
+//                    }
+//                });
+//            }
+//        }).subscribeOn( io.reactivex.schedulers.Schedulers.io())               // 切换到IO线程进行网络请求
+//                .observeOn(io.reactivex.android.schedulers.AndroidSchedulers.mainThread())  // 切换回到主线程 处理请求结果
+//        .subscribe(new Consumer<Object>() {
+//            @Override
+//            public void accept(Object o) throws Exception {
+//                Log.i("TAG", "accept: ");
+//            }
+//        });
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    for (; ; ) {
+                        Thread.sleep(1);
+                        Log.i(TAG, "run: ");
+                        if (MainActivity.this.isDestroyed()){
+                            return;
+                        }
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
 
     }
 
@@ -327,7 +410,6 @@ public class MainActivity extends BaseActivity {
                 System.out.println("defer result:" + o.toString());
             }
         });
-
 
 
         /**

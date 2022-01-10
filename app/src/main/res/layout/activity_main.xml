@@ -61,6 +61,12 @@
         android:layout_width="wrap_content"
         android:id="@+id/bu4"
         android:layout_height="wrap_content" />
+    <Button
+        android:onClick="click"
+        android:text="test5"
+        android:layout_width="wrap_content"
+        android:id="@+id/bu5"
+        android:layout_height="wrap_content" />
     <ImageView
         android:layout_width="wrap_content"
         android:id="@+id/img1"
