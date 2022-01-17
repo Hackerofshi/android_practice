@@ -1,2 +1,5 @@
-//include ':UltimateBarX'
 include ':app'
+include ':apt-annotation'
+include ':apt-library'
+include ':apt-processor'
+include ':libary'

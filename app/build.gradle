@@ -25,6 +25,15 @@ android {
                 cppFlags ""
             }
         }
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += [MODULE_NAME: project.getName()]
+                arguments += ["room.schemaLocation":
+                                     "$projectDir/schemas".toString()]
+            }
+        }
+
     }
     buildTypes {
         release {
@@ -171,5 +180,9 @@ dependencies {
 
     implementation 'com.uber.autodispose:autodispose-android-archcomponents:1.1.0'
 
+
+    implementation project(path: ':apt-library')
+    implementation project(path: ':apt-annotation')
+    kapt project(path: ':apt-processor')
 
 }

@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.hi.dhl.paging3.network.ui.MainPagingActivity;
 import com.shixin.R;
+import com.shixin.apt_annotation.AptAnnotation;
 import com.shixin.bean.Bird;
 import com.shixin.ui.customview.CustomViewGuideActivity;
 import com.shixin.ui.jetpack.JetIndexActivity;
@@ -25,8 +26,10 @@ import com.shixin.ui.sourceread.ReadSourceActivity;
 import com.shixin.ui.sourceread.TestMeasureSpecActivity;
 import com.shixin.ui.windowmanager.WindowManagerDemoActivity;
 
+@AptAnnotation(desc = "我是 MainActivity 上面的注解")
 public class HomeActivity extends AppCompatActivity {
 
+    @AptAnnotation(desc = "我是 onCreate 上面的注解")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
