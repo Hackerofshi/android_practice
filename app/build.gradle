@@ -184,5 +184,6 @@ dependencies {
     implementation project(path: ':apt-library')
     implementation project(path: ':apt-annotation')
     kapt project(path: ':apt-processor')
-
+    implementation project(path: ':libary')
+    implementation project(path: ':inject')
 }
