@@ -45,3 +45,45 @@ fun main1() = runBlocking { // this: CoroutineScope
 
     println("Coroutine scope is over") // 这一行在内嵌 launch 执行完毕后才输出
 }
+
+fun main2() = runBlocking {
+    //                  变化在这里
+    //                      ↓
+    val job = launch(start = CoroutineStart.LAZY) {
+        println("Coroutine start!")
+        delay(1000L)
+    }
+    delay(500L)
+    job.log()
+    job.start()     // 变化在这里
+    job.log()
+    delay(500L)
+    job.cancel()
+    delay(500L)
+    job.log()
+    delay(2000L)
+    println("Process end!")
+}
+
+
+/**
+ * 打印Job的状态信息
+ */
+fun Job.log() {
+    logX("""
+        isActive = $isActive
+        isCancelled = $isCancelled
+        isCompleted = $isCompleted
+    """.trimIndent())
+}
+
+/**
+ * 控制台输出带协程信息的log
+ */
+fun logX(any: Any?) {
+    println("""
+================================
+$any
+Thread:${Thread.currentThread().name}
+================================""".trimIndent())
+}

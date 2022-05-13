@@ -1,13 +1,80 @@
 package com.shixin.kotlin.dsl
 
 
-
 class Demo {
+
+    //使用函数式编程
+    private var listener: (Int) -> Int = {
+        100
+    }
+
+    fun setMethodListener1(listener: ((Int) -> Int)) {
+        this.listener = listener
+    }
+
+
+    //函数式接口 VS 函数类型
+    //这里很有意思，对于SAM接口，Kotlin可以把lambda转换成对应的SAM接口实例，从而简化代码，这其实就是一个约定，
+    // 但是当Kotlin代码定义SAM接口，将无法转换，因为Kotlin自己就有函数类型。
+    //KT文件单方法接口
+    interface OneMethodListener1 {
+        fun onMethod(a: Int)
+    }
+
+    //接口实例
+    private var listener1: OneMethodListener1? = null
+
+    //设置监听
+    fun setOnMethodListener1(listener: OneMethodListener1) {
+        this.listener1 = listener
+    }
+
+    //高阶函数
+    //高阶函数其实很简单，就是参数是其他函数或者返回值是其他函数的函数
+    private var onMethodListener: ((Int) -> Unit)? = null
+
+    fun setMethodListener(listener: ((Int) -> Unit)?) {
+        this.onMethodListener = listener
+    }
 
 }
 
 fun main() {
     test1()
+
+    val demo = Demo()
+
+
+
+    var tempString = "zyh"
+    demo.setMethodListener1 { i ->
+        tempString = "wy"
+        100
+    }
+
+
+    //但是当Kotlin代码定义SAM接口，将无法转换，因为Kotlin自己就有函数类型。
+    // IDE并没有提醒我们可以改成lambda，这就是不支持约定，因为在Kotlin中，
+    // 这种SAM接口可以使用高阶函数来实现，比如下面代码：
+    demo.setOnMethodListener1(object : Demo.OneMethodListener1 {
+        override fun onMethod(a: Int) {
+        }
+    })
+
+    //高阶函数接口实现
+    demo.setMethodListener {
+
+    }
+
+
+    //SAM构造方法
+    val testJava = TestJava()
+    //简化写法
+    testJava.setSingleFunctionListener {
+        Runnable {
+
+        }
+    }
 }
 
 fun test() {
@@ -77,7 +144,6 @@ fun test1() {
 }
 
 
-
 fun test11() {
     val items = listOf(1, 2, 3, 4, 5)
 
@@ -98,7 +164,6 @@ fun test11() {
     //acc = 10, i = 5, result = 15
 
 
-
     // lambda 表达式的参数类型是可选的，如果能够推断出来的话：
     //joinedToString = Elements: 1 2 3 4 5
     val joinedToString = items.fold("Elements:", { acc, i -> acc + " " + i })
@@ -106,3 +171,6 @@ fun test11() {
     // 函数引用也可以用于高阶函数调用：
     val product = items.fold(1, Int::times)
 }
+
+
+
