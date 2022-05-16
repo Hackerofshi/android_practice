@@ -13,8 +13,10 @@ class Demo {
     }
 
 
+
+    //
     //函数式接口 VS 函数类型
-    //这里很有意思，对于SAM接口，Kotlin可以把lambda转换成对应的SAM接口实例，从而简化代码，这其实就是一个约定，
+    //这里很有意思，对于SAM接口，Kotlin可以把lambda转换成对应的SAM（single abstract method）接口实例，从而简化代码，这其实就是一个约定，
     // 但是当Kotlin代码定义SAM接口，将无法转换，因为Kotlin自己就有函数类型。
     //KT文件单方法接口
     interface OneMethodListener1 {
@@ -37,13 +39,18 @@ class Demo {
         this.onMethodListener = listener
     }
 
+
+    fun setMethodListener2(tag: Boolean = true, listener: ((Int) -> Unit)?) {
+        this.onMethodListener = listener
+    }
+
+
 }
 
 fun main() {
     test1()
 
     val demo = Demo()
-
 
 
     var tempString = "zyh"
@@ -63,6 +70,11 @@ fun main() {
 
     //高阶函数接口实现
     demo.setMethodListener {
+
+    }
+
+
+    demo.setMethodListener2(tag = false) {
 
     }
 
@@ -148,7 +160,7 @@ fun test11() {
     val items = listOf(1, 2, 3, 4, 5)
 
     // Lambdas 表达式是花括号括起来的代码块。
-    items.fold(0, {
+    items.fold(0) {
         // 如果一个 lambda 表达式有参数，前面是参数，后跟“->”
             acc: Int, i: Int ->
         print("acc = $acc, i = $i, ")
@@ -156,7 +168,7 @@ fun test11() {
         println("result = $result")
         // lambda 表达式中的最后一个表达式是返回值：
         result
-    })
+    }
     //acc = 0, i = 1, result = 1
     //acc = 1, i = 2, result = 3
     //acc = 3, i = 3, result = 6
@@ -166,7 +178,7 @@ fun test11() {
 
     // lambda 表达式的参数类型是可选的，如果能够推断出来的话：
     //joinedToString = Elements: 1 2 3 4 5
-    val joinedToString = items.fold("Elements:", { acc, i -> acc + " " + i })
+    val joinedToString = items.fold("Elements:") { acc, i -> "$acc $i" }
 
     // 函数引用也可以用于高阶函数调用：
     val product = items.fold(1, Int::times)
