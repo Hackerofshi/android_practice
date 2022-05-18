@@ -26,7 +26,6 @@ class GitHubItemPagingSource(
             e.printStackTrace()
             LoadResult.Error(e)
         }
-
     }
 
 }

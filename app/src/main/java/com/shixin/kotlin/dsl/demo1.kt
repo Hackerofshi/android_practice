@@ -169,6 +169,7 @@ fun test11() {
         // lambda 表达式中的最后一个表达式是返回值：
         result
     }
+
     //acc = 0, i = 1, result = 1
     //acc = 1, i = 2, result = 3
     //acc = 3, i = 3, result = 6
