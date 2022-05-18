@@ -1,5 +1,7 @@
 package com.shixin.ui.jetpack.paging3.data.remote
 
+import androidx.room.Entity
+
 /**
  * <pre>
  *     author: dhl
@@ -7,6 +9,7 @@ package com.shixin.ui.jetpack.paging3.data.remote
  *     desc  :
  * </pre>
  */
+@Entity
 data class GithubAccountModel(
     var login: String? = null,
     var id: Int = 0,

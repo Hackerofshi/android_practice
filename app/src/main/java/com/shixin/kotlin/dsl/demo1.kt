@@ -13,7 +13,6 @@ class Demo {
     }
 
 
-
     //
     //函数式接口 VS 函数类型
     //这里很有意思，对于SAM接口，Kotlin可以把lambda转换成对应的SAM（single abstract method）接口实例，从而简化代码，这其实就是一个约定，
@@ -93,6 +92,8 @@ fun test() {
     val demo = Demo()
 
     demo.printSum { i, i2 -> i + i2 }
+
+    demo.printSum(sum)
 
 
     // 调用高阶函数

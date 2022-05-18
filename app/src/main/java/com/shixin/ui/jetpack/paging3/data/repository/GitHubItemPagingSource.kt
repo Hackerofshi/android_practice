@@ -1,6 +1,7 @@
 package com.shixin.ui.jetpack.paging3.data.repository
 
 import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import com.shixin.ui.jetpack.paging3.data.remote.GitHubService
 import com.shixin.ui.jetpack.paging3.data.remote.GithubAccountModel
 import org.jetbrains.anko.AnkoLogger
@@ -26,6 +27,10 @@ class GitHubItemPagingSource(
             e.printStackTrace()
             LoadResult.Error(e)
         }
+    }
+
+    override fun getRefreshKey(state: PagingState<Int, GithubAccountModel>): Int? {
+        return 0
     }
 
 }
