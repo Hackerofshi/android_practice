@@ -8,7 +8,6 @@ import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.shixin.App
 import com.shixin.dao.AppDatabase
-import com.shixin.ui.jetpack.paging3.data.mapper.Message
 import com.shixin.ui.jetpack.paging3.data.remote.GitHubService
 import com.shixin.ui.jetpack.paging3.data.remote.GithubAccountModel
 

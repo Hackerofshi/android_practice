@@ -58,6 +58,7 @@ abstract class TraditionLazyFragment : Fragment() {
         judgeLazyInit()
     }
 
+    //清除状态
     override fun onDestroyView() {
         super.onDestroyView()
         isLoaded = false
