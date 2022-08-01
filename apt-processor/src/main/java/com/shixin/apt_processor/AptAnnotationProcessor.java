@@ -89,7 +89,7 @@ public class AptAnnotationProcessor extends AbstractProcessor {
         //获取当前注解下的节点信息
         Set<? extends Element> rootElements = roundEnv.getElementsAnnotatedWith(AptAnnotation.class);
 
-        // 构建 test 函数
+        // 构建 test 函数体
         MethodSpec.Builder builder = MethodSpec.methodBuilder("test")
                 .addModifiers(Modifier.PUBLIC) // 指定方法修饰符
                 .returns(void.class) // 指定返回类型
@@ -97,13 +97,14 @@ public class AptAnnotationProcessor extends AbstractProcessor {
         builder.addStatement("$T.out.println($S)", System.class, "模块: " + mModuleName);
         builder.addStatement("$T.out.println($S)", System.class, "时间: " + System.currentTimeMillis());
 
+        //解析注解
         if (rootElements != null && !rootElements.isEmpty()) {
             for (Element element : rootElements) {
                 //当前节点名称
                 String elementName = element.getSimpleName().toString();
                 //当前节点下注解的属性
                 String desc = element.getAnnotation(AptAnnotation.class).desc();
-                // 构建方法体
+                // 构建方法体，
                 builder.addStatement("$T.out.println($S)", System.class,
                         "节点: " + elementName + "  " + "描述: " + desc);
             }
