@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 
-@ExperimentalPagingApi
+@OptIn(androidx.paging.ExperimentalPagingApi::class)
 class GitHubRepositoryImpl(
     private val pageConfig: PagingConfig,
     private val githubApi: GitHubService,

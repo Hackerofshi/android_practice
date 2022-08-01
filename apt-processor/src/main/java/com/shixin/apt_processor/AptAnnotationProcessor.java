@@ -25,6 +25,7 @@ import javax.lang.model.element.TypeElement;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 
+
 //注意：getSupportedAnnotationTypes()、getSupportedSourceVersion()
 // 和getSupportedOptions()
 // 这三个方法，我们还可以采用注解的方式进行提供：
@@ -94,6 +95,7 @@ public class AptAnnotationProcessor extends AbstractProcessor {
                 .returns(void.class) // 指定返回类型
                 .addParameter(String.class, "param"); // 添加参数
         builder.addStatement("$T.out.println($S)", System.class, "模块: " + mModuleName);
+        builder.addStatement("$T.out.println($S)", System.class, "时间: " + System.currentTimeMillis());
 
         if (rootElements != null && !rootElements.isEmpty()) {
             for (Element element : rootElements) {

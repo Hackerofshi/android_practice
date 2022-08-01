@@ -11,7 +11,7 @@ import com.shixin.dao.AppDatabase
 import com.shixin.ui.jetpack.paging3.data.remote.GitHubService
 import com.shixin.ui.jetpack.paging3.data.remote.GithubAccountModel
 
-@ExperimentalPagingApi
+@OptIn(androidx.paging.ExperimentalPagingApi::class)
 class CustomRemoteMediator(private val api: GitHubService) : RemoteMediator<Int, GithubAccountModel>() {
 
     private val mMessageDao = AppDatabase.getInstance(App.instance)?.messageDao()

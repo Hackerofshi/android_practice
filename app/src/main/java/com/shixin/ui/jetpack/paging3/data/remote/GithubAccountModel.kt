@@ -1,6 +1,7 @@
 package com.shixin.ui.jetpack.paging3.data.remote
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 /**
  * <pre>
@@ -11,8 +12,9 @@ import androidx.room.Entity
  */
 @Entity
 data class GithubAccountModel(
-    var login: String? = null,
+    @PrimaryKey
     var id: Int = 0,
+    var login: String? = null,
     var node_id: String? = null,
     var avatar_url: String? = null,
     var gravatar_id: String? = null,

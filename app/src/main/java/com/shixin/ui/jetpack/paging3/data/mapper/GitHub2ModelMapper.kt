@@ -14,8 +14,8 @@ import com.shixin.ui.jetpack.paging3.data.remote.GithubAccountModel
 class GitHub2ModelMapper : Mapper<GitHubAccount, GithubAccountModel> {
     override fun map(input: GitHubAccount): GithubAccountModel =
         GithubAccountModel(
-            input.login,
             input.id,
+            input.login,
             input.node_id,
             input.avatar_url,
             input.gravatar_id,

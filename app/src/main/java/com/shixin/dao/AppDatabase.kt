@@ -9,6 +9,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.shixin.ui.jetpack.paging3.data.mapper.Message
+import com.shixin.ui.jetpack.paging3.data.remote.GithubAccountModel
 
 /**
  *
@@ -26,6 +27,7 @@ import com.shixin.ui.jetpack.paging3.data.mapper.Message
 @Database(
     entities = arrayOf(
         Message::class,
+        GithubAccountModel::class,
     ), version = 1
 )
 @TypeConverters()
@@ -55,7 +57,7 @@ abstract class AppDatabase() : RoomDatabase() {
         private var sInstance: AppDatabase? = null
 
         @VisibleForTesting
-        val DATABASE_NAME = "basic-zhenan-db"
+        val DATABASE_NAME = "basic-db"
         fun getInstance(context: Context): AppDatabase? {
             if (sInstance == null) {
                 synchronized(AppDatabase::class.java) {

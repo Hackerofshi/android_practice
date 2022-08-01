@@ -130,8 +130,7 @@ dependencies {
 
     //使用 Hilt 注入 WorkManager
     implementation 'androidx.hilt:hilt-common:1.0.0'
-    implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha01'
-    kapt "androidx.hilt:hilt-compiler:1.0.0-alpha01"
+    kapt "androidx.hilt:hilt-compiler:1.0.0"
 
 
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
@@ -216,5 +215,6 @@ dependencies {
     def room_version = "2.4.2"
     implementation "androidx.room:room-ktx:$room_version"
     implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-paging:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 }
