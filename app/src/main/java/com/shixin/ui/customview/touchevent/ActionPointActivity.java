@@ -35,6 +35,18 @@ public class ActionPointActivity extends AppCompatActivity {
             performClick();
         }*/
 
+        //onTouch() 与 onTouchEvent()以及click三者的区别和联系 ：
+        //
+        //onTouch() 与 onTouchEvent() 都是处理触摸事件的 API
+        //
+        //onTouch() 属于 onTouchListener 接口中的方法，是 View 暴露给用户的接口便于处理触摸事件，
+        // 而 onTouchEvent() 是 Android 系统自身对于 Touch 处理的实现
+        //
+        //先调用 onTouch() 后调用 onTouchEvent()。而且只有当 onTouch() 未消费 Touch 事件才有可能调用到onTouchEvent()。
+        // 即 onTouch() 的优先级比 onTouchEvent() 的优先级更高。
+        //
+        //在 onTouchEvent() 中处理 ACTION_UP 时会利用 ClickListene r执行 Click 事件，所以 Touch 的处理是优先于 Click 的
+
 
         mv.setOnTouchListener((v, event) -> false);
         mv.setOnClickListener(new View.OnClickListener() {
