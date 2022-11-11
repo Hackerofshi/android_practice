@@ -67,7 +67,7 @@
 
 
         <Button
-            android:text="opengl"
+            android:text="LaunchMode"
             android:id="@+id/opengl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

@@ -9,16 +9,10 @@ public class DynamicBridge {
     }
 
 
-    public native int text(String message);
-
-    public static native int static_text(String message);
-
     public String name = "ooo";
 
-    public native void native_init();
-
     public DynamicBridge(){
-        native_init();
+
     }
 
     public void print() {

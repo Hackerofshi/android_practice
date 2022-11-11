@@ -26,14 +26,12 @@
             android:name=".ui.inject.InjectActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.lazyfragment.LazyFragmentActivity"
+            android:name=".libary.lazyfragment.LazyFragmentActivity"
             android:exported="false" />
         <activity
             android:name=".ui.practice.FragmentSourceActivity"
             android:exported="false" />
-        <activity
-            android:name=".ui.opengl.OpenGLES20Activity"
-            android:exported="true" />
+
         <activity
             android:name=".ui.practice.NotifyActivity"
             android:exported="true" />
@@ -135,6 +133,10 @@
         <activity android:name=".ui.practice.CoordinatorLayoutActivity" />
         <activity android:name=".ui.practice.constraint.ConstraintActivity" />
         <activity android:name=".ui.practice.PracticeGuideActivity" />
+        <activity
+            android:name=".ui.activityrecord.TestActivitySingleTaskActvity"
+            android:launchMode="singleTask" />
+        <activity android:name=".ui.activityrecord.TestActivityStandardActvity" />
 
         <service android:name=".ui.rxjava.CalcService">
 

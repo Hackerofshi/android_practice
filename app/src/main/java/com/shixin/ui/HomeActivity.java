@@ -16,11 +16,11 @@ import com.hi.dhl.paging3.network.ui.MainPagingActivity;
 import com.shixin.R;
 import com.shixin.apt_annotation.AptAnnotation;
 import com.shixin.bean.Bird;
+import com.shixin.ui.activityrecord.TestActivitySingleTaskActvity;
 import com.shixin.ui.customview.CustomViewGuideActivity;
 import com.shixin.ui.jetpack.JetIndexActivity;
 import com.shixin.ui.jetpack.databinding.MainActivity;
 import com.shixin.ui.ndktest.NdkTestActivity;
-import com.shixin.ui.opengl.OpenGLES20Activity;
 import com.shixin.ui.practice.PracticeGuideActivity;
 import com.shixin.ui.sourceread.ReadSourceActivity;
 import com.shixin.ui.sourceread.TestMeasureSpecActivity;
@@ -74,7 +74,7 @@ public class HomeActivity extends AppCompatActivity {
             addOverlay();
         });
         findViewById(R.id.opengl).setOnClickListener(v -> {
-            startActivity(new Intent(HomeActivity.this, OpenGLES20Activity.class));
+            startActivity(new Intent(HomeActivity.this, TestActivitySingleTaskActvity.class));
         });
 
         findViewById(R.id.rxjava).setOnClickListener(v -> {
