@@ -303,12 +303,19 @@ https://www.jianshu.com/p/f5f0d38e3e44
 一般都和插件有关，查看项目的build.gradle的插件是否符合需求
 
 ---
-FFmpeg 视频处理
+##  FFmpeg 视频处理
 https://github.com/yangjie10930/EpMedia
 
 
 -------
-APT
+## APT
 https://juejin.cn/post/6978500975770206239#heading-18
+
+## RecyclerView 
+
+https://github.com/ren93/RecyclerBanner
+
+
+
 
 

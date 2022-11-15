@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.hi.dhl.paging3.network.ui.MainPagingActivity;
 import com.shixin.R;
 import com.shixin.apt_annotation.AptAnnotation;
@@ -25,6 +26,10 @@ import com.shixin.ui.practice.PracticeGuideActivity;
 import com.shixin.ui.sourceread.ReadSourceActivity;
 import com.shixin.ui.sourceread.TestMeasureSpecActivity;
 import com.shixin.ui.windowmanager.WindowManagerDemoActivity;
+import com.shixin.utils.CommonUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @AptAnnotation(desc = "我是 MainActivity 上面的注解")
 public class HomeActivity extends AppCompatActivity {
@@ -81,11 +86,46 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(new Intent(HomeActivity.this, com.shixin.ui.rxjava.MainActivity.class));
         });
 
+        testGrid();
+
+
         //AsyncTask
     }
 
-    private              boolean askedForOverlayPermission;
-    private static final int     OVERLAY_PERMISSION_CODE = 0xa1;
+    private void testGrid() {
+        CommonUtils.Point point = new CommonUtils.Point();
+        point.x = 2;
+        point.y = 2;
+
+        CommonUtils.Point point1 = new CommonUtils.Point();
+        point1.x = 0;
+        point1.y = 0;
+
+        CommonUtils.Point point2 = new CommonUtils.Point();
+        point2.x = 1;
+        point2.y = 0;
+
+        CommonUtils.Point point3 = new CommonUtils.Point();
+        point3.x = 1;
+        point3.y = 1;
+
+        CommonUtils.Point point4 = new CommonUtils.Point();
+        point4.x = 0;
+        point4.y = 1;
+
+        List<CommonUtils.Point> pts = new ArrayList<>();
+        pts.add(point1);
+        pts.add(point2);
+        pts.add(point3);
+        pts.add(point4);
+
+
+        boolean inPolygon = CommonUtils.isInPolygon(point, pts);
+        LogUtils.i("是否在范围内=" + inPolygon);
+    }
+
+    private boolean askedForOverlayPermission;
+    private static final int OVERLAY_PERMISSION_CODE = 0xa1;
 
     public void addOverlay() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

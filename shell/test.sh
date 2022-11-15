@@ -1,0 +1,4 @@
+
+PATH=`pwd`
+echo "-------$PATH"
+

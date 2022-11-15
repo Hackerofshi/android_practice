@@ -9,8 +9,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.OrientationHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.shixin.ui.view.customview.layoutmanager.CoverFlowLayoutManager;
 import com.shixin.ui.view.customview.layoutmanager.RecyclerCoverFlowView;
 import com.shixin.R;
 
@@ -31,8 +33,8 @@ public class RVCoverActivity extends AppCompatActivity {
 
         //recyclerView.setLayoutManager(new CustomLayoutManager1(1.5f,0.85f));
         //recyclerView.setLayoutManager(new CustomLayoutManager());
-        //recyclerView.setLayoutManager(new CoverFlowLayoutManager(OrientationHelper.VERTICAL));
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new CoverFlowLayoutManager(OrientationHelper.VERTICAL));
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new RvAdapter());
     }
 
