@@ -23,6 +23,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.thread.ThreadActivity"
+            android:exported="false" />
+        <activity android:name=".ui.HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".ui.inject.InjectActivity"
             android:exported="false" />
         <activity
@@ -31,7 +41,6 @@
         <activity
             android:name=".ui.practice.FragmentSourceActivity"
             android:exported="false" />
-
         <activity
             android:name=".ui.practice.NotifyActivity"
             android:exported="true" />
@@ -52,13 +61,6 @@
         <activity android:name=".ui.sourceread.RLActivity" />
         <activity android:name=".ui.sourceread.LLActivity" />
         <activity android:name=".ui.sourceread.VpActivity" />
-        <activity android:name=".ui.HomeActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity android:name=".ui.rxjava.MainActivity" />
         <activity android:name=".ui.rxjava.SecondActivity" />
         <activity android:name=".ui.rxjava.BaseActivity" />

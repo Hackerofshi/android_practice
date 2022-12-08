@@ -77,6 +77,12 @@
             android:id="@+id/rxjava"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+        <Button
+            android:text="Thread"
+            android:id="@+id/thread"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>
