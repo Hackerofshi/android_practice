@@ -1,5 +1,6 @@
 package com.shixin.ui.jetpack.mvi.repository
 
+import com.shixin.bean.Stu
 import com.shixin.ui.jetpack.mvi.base.BaseRepository
 import com.shixin.ui.jetpack.mvi.entity.ApiResponse
 import com.shixin.ui.jetpack.mvi.entity.ApiSuccessResponse
@@ -14,6 +15,11 @@ class WxArticleRepository : BaseRepository() {
     }
 
     suspend fun fetchWxArticleFromNet(): ApiResponse<List<Any>> {
+        val stu = Stu()
+        stu.apply {
+            this.name  = ""
+        }
+
         return executeHttp {
             mService.getWxArticle()
         }
